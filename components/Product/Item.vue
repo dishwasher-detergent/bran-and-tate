@@ -50,9 +50,11 @@ export default {
     },
     methods: {
       showModal() {
+		document.querySelector('body').style.overflow = 'hidden';
         this.isModalVisible = true;
       },
       closeModal() {
+		document.querySelector('body').style.overflow = 'auto';
         this.isModalVisible = false;
       }
     }

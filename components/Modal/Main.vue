@@ -27,7 +27,7 @@
 <template>
   <transition name="slide">
     <div class="top-0 bottom-0 left-0 right-0 fixed flex items-end justify-center z-50">
-      <div class="relative overflow-hidden w-full h-3/5 flex flex-col rounded shadow-t bg-gray-50 border-t border-gray-300"
+      <div class="relative overflow-hidden w-full md:h-3/5 h-4/5 flex flex-col rounded shadow-t bg-gray-50 border-t border-gray-300"
         role="dialog"
         aria-labelledby="modalTitle"
         aria-describedby="modalDescription"
@@ -52,14 +52,14 @@
         </header> -->
 
         <section
-          class="w-full h-full pb-20 flex flex-col md:flex-row"
+          class="w-full h-full pb-20 flex flex-col md:flex-row text-md md:text-xl"
           id="modalDescription"
         >
-		<div class="w-full h-48 md:w-2/5 md:h-full bg-gray-300">
+		<div class="w-full h-1/2 md:w-2/5 md:h-full bg-gray-300">
           <slot name="img"></slot>
 		</div>
-		<div class="w-full h-full p-5 space-y-5">
-			<h1 class="font-bold text-5xl">
+		<div class="w-full md:w-3/5 md:h-full h-1/2 p-5 space-y-5 overflow-y-scroll">
+			<h1 class="font-bold text-3xl md:text-5xl">
 				<slot name="header"></slot>
 			</h1>
 			<div class="inline-block">
@@ -69,18 +69,22 @@
 					/>
 				</ProductColorContainer>
 			</div>
-			<div class="w-40 h-10 bg-gray-100 ring-1 ring-gray-200 rounded flex flex-row">
+			<div class="w-24 h-8 md:w-40 md:h-10 bg-gray-100 ring-1 ring-gray-200 rounded flex flex-row">
 				<button class="w-3/5 h-full bg-gray-200" @click="dcrsCnt()">-</button>
-				<p class="w-full flex items-center justify-center bold text-xl">{{count}}</p>
+				<p class="w-full flex items-center justify-center bold md:text-xl">{{count}}</p>
 				<button class="w-3/5 h-full bg-gray-200" @click="incCnt()">+</button>
 			</div>
 			<div>
-				<p class="font-bold text-2xl">Description</p>
-				<slot name="description" class="text-xl"></slot>
+				<h3 class="font-bold text-xl md:text-2xl">Description</h3>
+				<p class="break-words">
+					<slot name="description"></slot>
+				</p>
 			</div>
 			<div>
-				<p class="font-bold text-2xl">Demensions</p>
-				<slot name="size"></slot>
+				<h3 class="font-bold text-xl md:text-2xl">Demensions</h3>
+				<p>
+					<slot name="size"></slot>
+				</p>
 			</div>
 		</div>
         </section>
@@ -100,26 +104,18 @@
   </transition>
 </template>
 <style scoped>
-
 	.shadow-t {
 		box-shadow: 0 -1px 3px 0 rgba(0, 0, 0, 0.1), 0 -1px 2px 0 rgba(0, 0, 0, 0.06);
 	}
 
-  .modal-body {
-    position: relative;
-    padding: 20px 10px;
-  }
-
 	.slide-leave-active,
 	.slide-enter-active {
-	transition: .25s;
+		transition: .25s;
 	}
 	.slide-enter {
-	transform: translate(0,100%);
-	opacity: 1;
+		transform: translate(0,100%);
 	}
 	.slide-leave-to {
-	transform: translate(0,100%);
-	opacity: 0;
+		transform: translate(0,100%);
 	}
 </style>
