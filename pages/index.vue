@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen pb-48 relative">
+  <div class="min-h-screen pb-48 relative bg-gray-50">
     <nav
       class="w-full md:h-20 bg-white shadow border-b border-gray-300 relative z-10"
     >
@@ -29,7 +29,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-gray-50 w-full py-10">
+    <div class="w-full py-10">
       <div
         class="max-w-7xl px-5 mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 items-center justify-items-center gap-5"
       >

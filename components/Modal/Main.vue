@@ -6,7 +6,8 @@
 	],
 	data(){
 		return{
-			count: 1
+			count: 1,
+			secondary: false
 		}
 	},
     methods: {
@@ -19,14 +20,23 @@
 	  dcrsCnt(){
 		  if(this.count == 1) return;
 		  this.count--
+	  },
+	  afterEnter(){
+		  this.secondary = true
+	  },
+	  afterLeave(){
+		  this.secondary = false
 	  }
     },
   };
 </script>
 
 <template>
-  <transition name="slide">
-    <div class="top-0 bottom-0 left-0 right-0 fixed flex items-end justify-center z-50">
+  <transition name="slide" v-on:after-enter="afterEnter" v-on:before-leave="afterLeave">
+    <div class="top-0 bottom-0 left-0 right-0 fixed flex flex-col justify-end z-50">
+		<transition name="slide">
+	  		<div class="relative w-full md:h-2/5 h-1/5 bg-gray-900 bg-opacity-20" v-show="secondary"></div>
+		</transition>
       <div class="relative overflow-hidden w-full md:h-3/5 h-4/5 flex flex-col rounded shadow-t bg-gray-50 border-t border-gray-300"
         role="dialog"
         aria-labelledby="modalTitle"
@@ -55,7 +65,7 @@
           class="w-full h-full pb-20 flex flex-col md:flex-row text-md md:text-xl"
           id="modalDescription"
         >
-		<div class="w-full h-1/2 md:w-2/5 md:h-full bg-gray-300">
+		<div class="w-full h-1/2 md:w-1/2 md:h-full bg-gray-300">
           <slot name="img"></slot>
 		</div>
 		<div class="w-full md:w-3/5 md:h-full h-1/2 p-5 space-y-5 overflow-y-scroll">
@@ -110,7 +120,7 @@
 
 	.slide-leave-active,
 	.slide-enter-active {
-		transition: .25s;
+		transition: .15s;
 	}
 	.slide-enter {
 		transform: translate(0,100%);

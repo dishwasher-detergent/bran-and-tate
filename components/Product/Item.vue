@@ -48,12 +48,18 @@ export default {
         isModalVisible: false,
       };
     },
+	mounted(){
+		window.addEventListener('keyup', this.closeModal)
+	},
     methods: {
       showModal() {
 		document.querySelector('body').style.overflow = 'hidden';
         this.isModalVisible = true;
       },
-      closeModal() {
+      closeModal(e = '') {
+		if(e){
+			if(e.key != 'Escape') return;
+		}
 		document.querySelector('body').style.overflow = 'auto';
         this.isModalVisible = false;
       }
