@@ -1,0 +1,26 @@
+{
+	"product":[
+		{
+			"id":0,
+			"title":"styff",
+			"size": {
+				"h": 5,
+				"w": 5
+			},
+			"colors":["blue","gray","orange"],
+			"description": "testaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+			"img": "url"
+		},
+		{
+			"id":1,
+			"title":"asdfa",
+			"size": {
+				"h": 5,
+				"w": 5
+			},
+			"colors":["blue","gray","orange"],
+			"description": "test",
+			"img": "url"
+		}
+	]
+}

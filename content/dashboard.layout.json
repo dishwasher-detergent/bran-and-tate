@@ -1,0 +1,86 @@
+{
+  "add_or_edit":{
+    "title": "Add or Edit",
+    "layout": [
+      { "x": 0, 
+        "y": 0, 
+        "w": 12, 
+        "h": 6, 
+        "i": "0", 
+        "name": "Table", 
+        "type": "table"
+      },
+      { "x": 0, 
+        "y": 0, 
+        "w": 12, 
+        "h": 6, 
+        "i": "1", 
+        "name": "Graph", 
+        "type": "graph"
+      }
+    ]
+  },
+  "product_statistics":{
+    "title": "Product Statistics",
+    "layout": [
+      { "x": 0, 
+        "y": 0, 
+        "w": 12, 
+        "h": 6, 
+        "i": "0", 
+        "name": "Table", 
+        "type": "table"
+      },
+      { "x": 0, 
+        "y": 0, 
+        "w": 12, 
+        "h": 6, 
+        "i": "1", 
+        "name": "Graph", 
+        "type": "graph"
+      }
+    ]
+  },
+  "update_database":{
+    "title": "Full Database Update",
+    "layout": [
+      { "x": 0, 
+        "y": 0, 
+        "w": 12, 
+        "h": 6, 
+        "i": "0", 
+        "name": "Table", 
+        "type": "table"
+      },
+      { "x": 0, 
+        "y": 0, 
+        "w": 12, 
+        "h": 6, 
+        "i": "1", 
+        "name": "Graph", 
+        "type": "graph"
+      }
+    ]
+  },
+  "user_management":{
+    "title": "User Management",
+    "layout": [
+      { "x": 0, 
+        "y": 0, 
+        "w": 12, 
+        "h": 6, 
+        "i": "0", 
+        "name": "Table", 
+        "type": "table"
+      },
+      { "x": 0, 
+        "y": 0, 
+        "w": 12, 
+        "h": 6, 
+        "i": "1", 
+        "name": "Graph", 
+        "type": "graph"
+      }
+    ]
+  }
+}
