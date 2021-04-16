@@ -4,6 +4,7 @@
 	props: [
 		'colors',
 		'title',
+		'price',
 	],
 	data(){
 		return{
@@ -36,7 +37,7 @@
 				price: this.price,
 				quantity: this.count,
 			}
-			this.$store.commit('UPDATE_CART',this.test)
+			this.$store.commit('UPDATE_CART',product)
 			this.close()
 		}
     },

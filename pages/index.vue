@@ -34,6 +34,7 @@
             </svg>
             <div class="top-0 right-0 absolute px-1.5 h-5 flex items-center justify-center text-sm bg-red-500 text-white text-bold rounded-full ">{{$store.state.cart.length}}</div>
           </NavSubItem>
+          {{$store.state.cart}}
         </div>
       </div>
     </div>
