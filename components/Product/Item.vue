@@ -7,6 +7,7 @@
 			<div class="h-full w-full p-2 overflow-y-hidden">
 				<h1 class="font-bold text-2xl">
 					{{title}}
+					{{price}}
 				</h1>
 				<p class="break-words">
 					{{description}}
@@ -19,15 +20,20 @@
 		<ModalMain
 			v-show="isModalVisible"
 			:colors="colors"
+			:title="title"
+			:price="price"
+
 			@close="closeModal"
 			>
 			<template v-slot:header>
 				{{title}}
+				{{price}}
 			</template>
 			<template v-slot:img>
 			</template>
 			<template v-slot:size>
-				{{size}}
+				<p>Height: {{size.h}}'</p>
+				<p>Width: {{size.w}}'</p>
 			</template>
 			<template v-slot:description>
 				{{description}}
@@ -42,6 +48,7 @@ export default {
 		'description',
 		'colors',
 		'size',
+		'price',
 	],
 	data() {
       return {
