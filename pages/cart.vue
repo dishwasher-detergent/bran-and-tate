@@ -4,7 +4,10 @@
 		<div>
 			<h1 class="font-bold text-3xl pb-10">{{$store.state.cart.length}} Product(s) in your Cart</h1>
 		</div>
-		<div class="w-full p-2 mb-6 rounded flex flex-row ring-1 ring-gray-200 bg-gray-50" v-for="item in $store.state.cart" :key="item.id">
+		<div v-if="$store.state.cart.length == 0" class="w-full h-96 p-2 mb-6 rounded flex items-center justify-center ring-1 ring-gray-200 bg-white">
+			<h2 class="font-bold text-3xl">There seems to be nothing in your cart, yet!</h2>
+		</div>
+		<div v-else class="w-full p-2 mb-6 rounded flex flex-row ring-1 ring-gray-200 bg-white" v-for="item in $store.state.cart" :key="item.id">
 			<div class="h-48 w-48 flex-none rounded bg-gray-200 flex items-center justify-center">
 				Image Here
 			</div>
@@ -40,23 +43,35 @@ export default {
 			total: 0
 		}
 	},
-	mounted(){
-		let cart = this.$store.state.cart
-		for(let i = 0; i < cart.length; i++){
-			this.total += parseFloat(cart[i].price)
-		}
+	created(){
+		this.calculatePrice()
+		this.$store.watch(
+			(state)=>{
+				return this.$store.state.cart
+			},
+			()=>{
+				this.calculatePrice()
+			}
+		)
 	},
+	
 	methods:{
 		removeFromCart(e){
 			let cart = this.$store.state.cart
 			let tempCart = [];
 			for(let i = 0; i < cart.length; i++){
-				// console.log(cart[i].id)
 				if(cart[i].id != e){
 					tempCart.push(cart[i])
 				}
 			}
 			this.$store.commit('REPLACE_CART',tempCart)
+		},
+		calculatePrice(){
+			const cart = this.$store.state.cart
+			this.total = 0
+			for(let i = 0; i < cart.length; i++){
+				this.total += parseFloat(cart[i].price)
+			}
 		}
 	}
 }

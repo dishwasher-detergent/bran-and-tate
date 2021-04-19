@@ -16,7 +16,10 @@
 				</p>
 			</div>
 			<div class="w-full flex items-center justify-center">
-				<button class="px-4 py-2 rounded bg-blue-500 text-white text-sm" @click="showModal()">Add to Cart</button>
+				<transition name="fade">
+					<button v-if="addedToCart" class="px-4 py-2 rounded bg-green-500 text-white text-sm">In Cart!</button>
+					<button v-else class="px-4 py-2 rounded bg-blue-500 text-white text-sm" @click="showModal()">Add to Cart</button>
+				</transition>
 			</div>
 		</div>
 		<ModalMain
@@ -59,10 +62,20 @@ export default {
 	data() {
       return {
         isModalVisible: false,
+		addedToCart: false,
       };
     },
 	mounted(){
 		window.addEventListener('keyup', this.closeModal)
+		this.checkCart()
+		this.$store.watch(
+			(state)=>{
+				return this.$store.state.cart
+			},
+			()=>{
+				this.checkCart()
+			}
+		)
 	},
     methods: {
       showModal() {
@@ -75,7 +88,22 @@ export default {
 		}
 		document.querySelector('body').style.overflow = 'auto';
         this.isModalVisible = false;
-      }
+      },
+	  checkCart(){
+		  const cart = this.$store.state.cart
+		  for(let i = 0; i < cart.length; i++){
+			  if(cart[i].id == this.id) this.addedToCart = true
+		  }
+	  }
     }
 }
 </script>
+<style scoped>
+	.fade-leave-active,
+	.fade-enter-active {
+		transition: .5s;
+	}
+	.fade-enter,.fade-leave-to {
+		opacity:0
+	}
+</style>

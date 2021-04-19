@@ -4,16 +4,18 @@
 			<slot></slot>
 		</p>
 	</nuxt-link>
-	<button v-else @click="search" class="flex items-center justify-center h-full w-2 px-16 text-lg rounded-t-xl">
-		<p class="rounded-full py-2 px-4 hover:bg-blue-200 relative">
-			<slot></slot>
-		</p>
-	</button>
+	<div v-else @click="search" class="flex items-center justify-center h-full w-2 px-16 text-lg rounded-t-xl">
+		<input :id="value" :value="value" type="checkbox" class="hidden"/>
+		<label :for="value" class="rounded-full py-2 px-4 hover:bg-blue-200 relative">
+			<slot></slot>	
+		</label>
+	</div>
 </template>
 <script>
 export default {
 	props:[
-		'type'
+		'type',
+		'value'
 	],
 	methods: {
 		search() {
@@ -26,5 +28,9 @@ export default {
 <style scoped>
 p {
 	transition: all .15s;
+}
+
+input[type="checkbox"]:checked + label {
+	@apply bg-blue-200
 }
 </style>
