@@ -9,6 +9,9 @@ export const mutations = {
     },
     UPDATE_CART(state,value){
         state.cart.push(value)
+    },
+    REPLACE_CART(state,value){
+        state.cart = value
     }
 }
 

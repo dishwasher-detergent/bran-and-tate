@@ -1,6 +1,21 @@
 <template>
-  <div>
+  <div class="min-h-screen pb-56 relative bg-gray-50">
+    <nav
+      class="w-full md:h-20 bg-white shadow border-b border-gray-300 relative z-10"
+    >
+      <div
+        class="mx-auto max-w-7xl px-5 grid grid-cols-1 md:grid-cols-2 items-center justify-items-center md:justify-items-stretch"
+      >
+        <NavLogo />
+        <div class="flex flex-row justify-end space-between h-16 md:h-full">
+          <NavItem type="link" link="/">Shop</NavItem>
+          <NavItem>About</NavItem>
+          <NavItem>Location</NavItem>
+        </div>
+      </div>
+    </nav>
     <Nuxt />
+    <footer class="w-full h-48 absolute bottom-0 bg-gray-900"></footer>
   </div>
 </template>
 
@@ -15,13 +30,7 @@ html {
     'Helvetica Neue',
     Arial,
     sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+    @apply text-gray-900;
 }
 
 *,

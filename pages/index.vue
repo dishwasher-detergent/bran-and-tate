@@ -1,20 +1,8 @@
 <template>
-  <div class="min-h-screen pb-48 relative bg-gray-50">
-    <nav
-      class="w-full md:h-20 bg-white shadow border-b border-gray-300 relative z-10"
-    >
-      <div
-        class="mx-auto max-w-7xl px-5 grid grid-cols-1 md:grid-cols-2 items-center justify-items-center md:justify-items-stretch"
-      >
-        <NavLogo />
-        <div class="flex flex-row justify-end space-between h-16 md:h-full">
-          <NavItem>Shop</NavItem>
-          <NavItem>About</NavItem>
-          <NavItem>Location</NavItem>
-        </div>
-      </div>
-    </nav>
-    <div class="bg-red-200 w-full h-96"></div>
+  <div>
+    <div class="bg-gray-200 w-full h-96 flex items-center justify-center">
+      Image Here
+    </div>
     <div class="w-full md:h-16 border-b border-gray-300 shadow sticky top-0 bg-white">
       <div class="mx-auto max-w-7xl px-5 h-full flex flex-col md:flex-row">
         <div class="w-full">
@@ -28,13 +16,12 @@
           <NavSubItem type="Porch" @sort="sorting">Porch</NavSubItem>
           <NavSubItem type="Wall" @sort="sorting">Wall</NavSubItem>
           <NavSubItem type="Seasonal" @sort="sorting">Seasonal</NavSubItem>
-          <NavSubItem>
+          <NavSubItem type="cart">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
             <div class="top-0 right-0 absolute px-1.5 h-5 flex items-center justify-center text-sm bg-red-500 text-white text-bold rounded-full ">{{$store.state.cart.length}}</div>
           </NavSubItem>
-          {{$store.state.cart}}
         </div>
       </div>
     </div>
@@ -48,10 +35,10 @@
           :size="product.size"
           :colors="product.colors"
           :price="product.price"
+          :id="product.id"
         />
       </div>
     </div>
-    <footer class="w-full h-48 absolute bottom-0 bg-gray-900"></footer>
   </div>
 </template>
 <script>

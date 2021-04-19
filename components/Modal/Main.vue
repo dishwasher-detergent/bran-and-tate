@@ -5,6 +5,7 @@
 		'colors',
 		'title',
 		'price',
+		'id'
 	],
 	data(){
 		return{
@@ -36,6 +37,7 @@
 				color: this.color,
 				price: this.price,
 				quantity: this.count,
+				id: this.id
 			}
 			this.$store.commit('UPDATE_CART',product)
 			this.close()
@@ -75,7 +77,10 @@
 			<h1 class="font-bold text-3xl md:text-5xl">
 				<slot name="header"></slot>
 			</h1>
-			<h3 class="font-bold text-xl md:text-2xl">Colors</h3>
+			<h3 class="text-2xl md:text-3xl">
+				$<slot name="price"></slot>
+			</h3>
+			<h4 class="font-bold text-xl md:text-2xl">Colors</h4>
 			<div class="inline-block">
 				<ProductColorContainer>
 					<ProductColor v-for="color in colors" :key="color.id" 
@@ -83,20 +88,20 @@
 					/>
 				</ProductColorContainer>
 			</div>
-			<h3 class="font-bold text-xl md:text-2xl">Quantity</h3>
+			<h4 class="font-bold text-xl md:text-2xl">Quantity</h4>
 			<div class="w-24 h-8 md:w-40 md:h-10 bg-gray-100 ring-1 ring-gray-200 rounded flex flex-row">
 				<button class="w-3/5 h-full bg-gray-200" @click="dcrsCnt()">-</button>
 				<p class="w-full flex items-center justify-center bold md:text-xl">{{count}}</p>
 				<button class="w-3/5 h-full bg-gray-200" @click="incCnt()">+</button>
 			</div>
 			<div>
-				<h3 class="font-bold text-xl md:text-2xl">Description</h3>
+				<h4 class="font-bold text-xl md:text-2xl">Description</h4>
 				<p class="break-words">
 					<slot name="description"></slot>
 				</p>
 			</div>
 			<div>
-				<h3 class="font-bold text-xl md:text-2xl">Demensions</h3>
+				<h4 class="font-bold text-xl md:text-2xl">Demensions</h4>
 				<p>
 					<slot name="size"></slot>
 				</p>
