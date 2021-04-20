@@ -82,13 +82,15 @@
 			<h3 class="text-2xl md:text-3xl">
 				$<slot name="price"></slot>
 			</h3>
-			<h4 class="font-bold text-xl md:text-2xl">Colors</h4>
-			<div class="inline-block">
-				<ProductColorContainer>
-					<ProductColor v-for="color in colors" :key="color.id" 
-						:color="color"
-					/>
-				</ProductColorContainer>
+			<div v-if="colors.length > 0">
+				<h4 class="font-bold text-xl md:text-2xl">Colors</h4>
+				<div class="inline-block">
+					<ProductColorContainer>
+						<ProductColor v-for="color in colors" :key="color.id" 
+							:color="color"
+						/>
+					</ProductColorContainer>
+				</div>
 			</div>
 			<h4 class="font-bold text-xl md:text-2xl">Quantity</h4>
 			<div class="w-24 h-8 md:w-40 md:h-10 bg-gray-100 ring-1 ring-gray-200 rounded flex flex-row">

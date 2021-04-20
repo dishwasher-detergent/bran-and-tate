@@ -4,9 +4,9 @@
 			<slot></slot>
 		</p>
 	</nuxt-link>
-	<div v-else @click="search" class="flex items-center justify-center h-full w-2 px-16 text-lg rounded-t-xl">
-		<input :id="value" :value="value" type="checkbox" class="hidden"/>
-		<label :for="value" class="rounded-full py-2 px-4 hover:bg-blue-200 relative">
+	<div v-else class="flex items-center justify-center h-full w-2 px-16 text-lg rounded-t-xl">
+		<input @input="search" :id="value" :value="value" type="checkbox" class="hidden"/>
+		<label :for="value" class="cursor-pointer rounded-full py-2 px-4 hover:bg-blue-200 relative">
 			<slot></slot>	
 		</label>
 	</div>
@@ -18,9 +18,8 @@ export default {
 		'value'
 	],
 	methods: {
-		search() {
-			console.log(this.type)
-			this.$emit('sort',this.type)
+		search(e) {
+			this.$emit('sort',e)
 		}
 	}
 }
