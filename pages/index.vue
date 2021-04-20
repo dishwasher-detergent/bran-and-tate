@@ -1,7 +1,9 @@
 <template>
   <div>
-    <div class="bg-gray-200 w-full h-96 flex items-center justify-center">
-      Image Here
+    <div id="landing-banner" class="bg-gray-200 w-full h-96 flex items-center justify-center">
+      <div class="h-full w-full flex items-center justify-center bg-gray-500 bg-opacity-10">
+        <h1 class="font-bold text-7xl">Bran And Tate.</h1>
+      </div>
     </div>
     <div class="w-full md:h-16 border-b border-gray-300 shadow sticky top-0 bg-white">
       <div class="mx-auto max-w-7xl px-5 h-full flex flex-col md:flex-row">
@@ -11,7 +13,7 @@
           />
         </div>
         <div
-          class="w-full flex flex-row justify-center md:justify-end space-between h-full pb-2 md:pb-0"
+          class="w-full flex flex-row justify-center flex-wrap md:justify-end space-between h-full pb-2 md:pb-0"
         >
           <NavSubItem type="Porch" value="Porch" @sort="sorting">Porch</NavSubItem>
           <NavSubItem type="Wall" value="Wall" @sort="sorting">Wall</NavSubItem>
@@ -36,6 +38,7 @@
           :colors="product.colors"
           :price="product.price"
           :id="product.id"
+          :image="product.image"
         />
       </div>
     </div>
@@ -60,3 +63,10 @@ export default {
   }
 }
 </script>
+<style scoped>
+#landing-banner {
+  background-image: url("~/assets/background.jpg");
+  background-position: center;
+  background-size: cover;
+}
+</style>

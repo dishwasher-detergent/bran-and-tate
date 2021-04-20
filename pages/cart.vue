@@ -4,29 +4,32 @@
 		<div>
 			<h1 class="font-bold text-3xl pb-10">{{$store.state.cart.length}} Product(s) in your Cart</h1>
 		</div>
-		<div v-if="$store.state.cart.length == 0" class="w-full h-96 p-2 mb-6 rounded flex items-center justify-center ring-1 ring-gray-200 bg-white">
-			<h2 class="font-bold text-3xl">There seems to be nothing in your cart, yet!</h2>
+		<div v-if="$store.state.cart.length == 0" class="w-full h-96 p-5 mb-6 rounded flex items-center justify-center ring-1 ring-gray-200 bg-white">
+			<h2 class="font-bold text-3xl text-center">There seems to be nothing in your cart, yet!</h2>
 		</div>
-		<div v-else class="w-full p-2 mb-6 rounded flex flex-row ring-1 ring-gray-200 bg-white" v-for="item in $store.state.cart" :key="item.id">
-			<div class="h-48 w-48 flex-none rounded bg-gray-200 flex items-center justify-center">
-				Image Here
+		<div v-else class="w-full p-2 mb-6 rounded flex flex-col md:flex-row ring-1 ring-gray-200 bg-white" v-for="item in $store.state.cart" :key="item.id">
+			<div class="h-48 w-full md:w-48 flex-none rounded bg-gray-200 flex items-center justify-center overflow-hidden">
+				<img :src="require(`~/assets/${item.image}.jpg`)" class="w-full"/>
 			</div>
-			<div class="px-5 space-y-2 w-full">
-				<h1 class="text-2xl font-bold truncate">{{item.name}}</h1>
-				<p>Color: {{item.color}}</p>
-				<p>Price: ${{item.price}}</p>
-				<p>Quantity: {{item.quantity}}</p>
-			</div>
-			<div class="h-full w-10 flex-none flex justify-center">
-				<button class="text-red-600" @click="removeFromCart(item.id)">
-					<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-					</svg>
-				</button>
+			<div class="flex flex-row py-5 md:pt-5">
+				<div class="px-5 space-y-2 w-full">
+					<h1 class="text-2xl font-bold truncate">{{item.name}}</h1>
+					<p>Color: {{item.color}}</p>
+					<p>Price: ${{item.price}} Per</p>
+					<p>Quantity: {{item.quantity}}</p>
+					<p class="font-bold">Total Price: ${{item.price * item.quantity}}</p>
+				</div>
+				<div class="h-full w-10 flex-none flex justify-center">
+					<button class="text-red-600" @click="removeFromCart(item.id)">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+						</svg>
+					</button>
+				</div>
 			</div>
 		</div>
 		<div>
-			<p class="w-full text-right text-2xl font-bold py-5">Subtotal: {{total}}</p>
+			<p class="w-full text-right text-2xl font-bold py-5">Subtotal: ${{total}}</p>
 			<div class="flex items-center justify-end">
 				<button class="mt-4 px-4 py-2 rounded bg-blue-500 text-white">
 					Check out
@@ -69,8 +72,11 @@ export default {
 		calculatePrice(){
 			const cart = this.$store.state.cart
 			this.total = 0
+			let tempTotal = 0
 			for(let i = 0; i < cart.length; i++){
-				this.total += parseFloat(cart[i].price)
+				tempTotal = parseFloat(cart[i].price) * parseInt(cart[i].quantity)
+				this.total += tempTotal
+				tempTotal = 0
 			}
 		}
 	}

@@ -5,7 +5,8 @@
 		'colors',
 		'title',
 		'price',
-		'id'
+		'id',
+		'image'
 	],
 	data(){
 		return{
@@ -37,7 +38,8 @@
 				color: this.color,
 				price: this.price,
 				quantity: this.count,
-				id: this.id
+				id: this.id,
+				image: this.image
 			}
 			this.$store.commit('UPDATE_CART',product)
 			this.close()
@@ -60,7 +62,7 @@
         <section
           class="w-full h-full pb-20 flex flex-col md:flex-row text-md md:text-xl"
         >
-		<div class="w-full h-1/2 md:w-1/2 md:h-full bg-gray-300">
+		<div class="w-full h-1/2 md:w-1/2 md:h-full bg-gray-700 flex items-center justify-center">
           <slot name="img"></slot>
 		</div>
 		<div class="w-full md:w-3/5 md:h-full h-1/2 p-5 space-y-5 overflow-y-scroll relative">
@@ -100,7 +102,7 @@
 					<slot name="description"></slot>
 				</p>
 			</div>
-			<div>
+			<div class="pb-10">
 				<h4 class="font-bold text-xl md:text-2xl">Demensions</h4>
 				<p>
 					<slot name="size"></slot>

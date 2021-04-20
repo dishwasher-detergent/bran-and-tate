@@ -2,55 +2,42 @@
 	"product":[
 		{
 			"id": 1,
-			"title":"styff",
+			"title":"Farmers Market",
 			"size": {
-				"h": 5,
-				"w": 5
+				"h": 1,
+				"w": 2
 			},
-			"colors":["blue","gray","orange"],
-			"description": "testaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-			"img": "url",
-			"type": "Porch",
-			"price": "10.99"
+			"colors":[],
+			"description": "Farmers market sign on wood cabinet door.",
+			"image": "farmers_market",
+			"type": "Wall",
+			"price": "30"
 		},
 		{
 			"id": 2,
-			"title":"aaa",
+			"title":"Gather",
 			"size": {
-				"h": 5,
-				"w": 5
+				"h": 2,
+				"w": 1
 			},
-			"colors":["blue","gray","orange"],
-			"description": "asdfasdfasdfasdfasdfasdf",
-			"img": "url",
+			"colors":[],
+			"description": "Distressed grey framed, handpainted, on white and grey striped material.",
+			"image": "gather",
 			"type": "Wall",
-			"price": "21.99"
+			"price": "25"
 		},
 		{
 			"id": 3,
-			"title":"51asdfa",
+			"title":"Welcome",
 			"size": {
-				"h": 5,
-				"w": 5
+				"h": 6,
+				"w": 1
 			},
-			"colors":["blue","gray","orange"],
+			"colors":["Distressed White"],
 			"description": "ggggaasssdddd",
-			"img": "url",
-			"type": "Wall",
-			"price": "21.99"
-		},
-		{
-			"id": 4,
-			"title":"123",
-			"size": {
-				"h": 5,
-				"w": 5
-			},
-			"colors":["blue","gray","orange"],
-			"description": "gaggggghhh",
-			"img": "url",
-			"type": "Wall",
-			"price": "21.99"
+			"image": "welcome_porch",
+			"type": "Porch",
+			"price": "35"
 		}
 	]
 }

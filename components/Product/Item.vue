@@ -1,7 +1,7 @@
 <template>
 	<div class="w-full h-96 rounded shadow ring-1 ring-gray-200 bg-white">
-		<div class="w-full h-2/5 bg-gray-200 flex items-center justify-center">
-			Image Here
+		<div class="w-full h-2/5 bg-gray-200 flex items-center justify-center overflow-hidden">
+			<img class="w-full" :src="require(`~/assets/${image}.jpg`)" />
 		</div>
 		<div class="h-3/5 grid grid-rows-4 ">
 			<div class="h-full w-full p-2 overflow-y-hidden row-span-3">
@@ -28,10 +28,12 @@
 			:title="title"
 			:price="price"
 			:id="id"
+			:image="image"
 
 			@close="closeModal"
 			>
 			<template v-slot:img>
+				<img :src="require(`~/assets/${image}.jpg`)" class="h-full"/>
 			</template>
 			<template v-slot:header>
 				{{title}}
@@ -57,7 +59,8 @@ export default {
 		'colors',
 		'size',
 		'price',
-		'id'
+		'id',
+		'image'
 	],
 	data() {
       return {
