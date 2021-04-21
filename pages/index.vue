@@ -51,7 +51,7 @@ export default {
       products: [],
       search: '',
       filter: [],
-      api: process.env.API_URL
+      api: process.env.NUXT_ENV_API_URL
     };
   },
   async fetch(){
