@@ -37,7 +37,7 @@
           :size="product.size"
           :colors="product.colors"
           :price="product.price"
-          :id="product.id"
+          :id="product._id"
           :image="product.image"
         />
       </div>
