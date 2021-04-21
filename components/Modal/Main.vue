@@ -83,7 +83,7 @@
 				$<slot name="price"></slot>
 			</h3>
 			<div v-if="colors.length > 0">
-				<h4 class="font-bold text-xl md:text-2xl">Colors</h4>
+				<h4 class="mb-5 font-bold text-xl md:text-2xl">Colors</h4>
 				<div class="inline-block">
 					<ProductColorContainer>
 						<ProductColor v-for="color in colors" :key="color.id" 

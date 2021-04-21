@@ -51,22 +51,27 @@ export default {
       products: [],
       search: '',
       filter: [],
+      api: process.env.API_URL
     };
   },
   async fetch(){
-    const product = await this.$content('shop.product').fetch()
-    this.products = product.product
+    // const product = await this.$content('shop.product').fetch()
+    const product = await fetch(this.api + "/products").then((res) =>
+      res.json()
+    );
+    console.log(product)
+    this.products = product
   },
   methods:{
     sorting(e){
       this.search = e
     },
     alter_filter(e){
-      const index = this.filter.indexOf(e.target.value)
+      const index = this.filter.indexOf(e.target.value.toLowerCase())
       if(index > -1){
         this.filter.splice(index, 1)
       } else {
-        this.filter.push(e.target.value)
+        this.filter.push(e.target.value.toLowerCase())
       }
     },
     itemSearch(e){

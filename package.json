@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@nuxt/content": "^1.14.0",
+    "@nuxtjs/dotenv": "^1.4.1",
     "core-js": "^3.9.1",
     "nuxt": "^2.15.3",
     "vue-grid-layout": "^2.3.12",
