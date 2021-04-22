@@ -1,24 +1,24 @@
 <template>
-	<div class="w-full h-96 rounded shadow ring-1 ring-gray-200 bg-white">
+	<div class="w-full h-96 rounded shadow ring-1 ring-gray-200 bg-white overflow-hidden">
 		<div class="w-full h-2/5 bg-gray-200 flex items-center justify-center overflow-hidden">
 			<img class="w-full" :src="require(`~/assets/${image}.jpg`)" />
 		</div>
 		<div class="h-3/5 grid grid-rows-4 ">
-			<div class="h-full w-full p-2 overflow-y-hidden row-span-3">
+			<div class="h-full w-full p-2 px-4 overflow-y-hidden row-span-3">
 				<h1 class="font-bold text-3xl truncate">
 					{{title}}
 				</h1>
-				<h3>
+				<h3 class="text-xl">
 					${{price}}
 				</h3>
-				<p class="break-words">
+				<p class="break-words text-lg">
 					{{description}}
 				</p>
 			</div>
 			<div class="w-full flex items-center justify-center">
 				<transition name="fade">
 					<button v-if="addedToCart" class="px-4 py-2 rounded bg-green-500 text-white text-sm">In Cart!</button>
-					<button v-else class="px-4 py-2 rounded bg-blue-500 text-white text-sm" @click="showModal()">Add to Cart</button>
+					<button v-else class="px-4 py-2 rounded bg-blue-500 text-white text-sm" @click="showModal()">Quick View</button>
 				</transition>
 			</div>
 		</div>

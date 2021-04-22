@@ -2,7 +2,7 @@
   <div>
     <div id="landing-banner" class="bg-gray-200 w-full h-96 flex items-center justify-center">
       <div class="h-full w-full flex items-center justify-center bg-gray-500 bg-opacity-10">
-        <h1 class="font-bold text-7xl">Bran And Tate.</h1>
+        <h1 class="font-bold text-7xl text-center">Bran And Tate.</h1>
       </div>
     </div>
     <div class="w-full md:h-16 border-b border-gray-300 shadow sticky top-0 bg-white">
@@ -13,7 +13,7 @@
           />
         </div>
         <div
-          class="w-full md:w-3/5 lg:w-1/2 flex flex-row justify-center flex-wrap flex-nowrap md:justify-end space-between h-full pb-2 md:pb-0"
+          class="w-full md:w-3/5 lg:w-1/2 flex flex-row justify-center flex-wrap md:justify-end space-between h-full pb-2 md:pb-0"
         >
           <NavSubItem type="Porch" value="Porch" @sort="alter_filter">Porch</NavSubItem>
           <NavSubItem type="Wall" value="Wall" @sort="alter_filter">Wall</NavSubItem>

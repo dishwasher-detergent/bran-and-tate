@@ -65,7 +65,7 @@
 		<div class="w-full h-1/2 md:w-1/2 md:h-full bg-gray-700 flex items-center justify-center">
           <slot name="img"></slot>
 		</div>
-		<div class="w-full md:w-3/5 md:h-full h-1/2 p-5 space-y-5 overflow-y-scroll relative">
+		<div class="w-full md:w-3/5 md:h-full h-1/2 p-5 space-y-2 md:space-y-5 overflow-y-scroll relative">
 			<button
 			type="button"
 			class="h-6 w-6 mt-5 mr-5 flex items-center justify-center absolute top-0 right-0"
@@ -76,14 +76,14 @@
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
 				</svg>
 			</button>
-			<h1 class="font-bold text-3xl md:text-5xl">
+			<h1 class="font-bold text-4xl md:text-5xl">
 				<slot name="header"></slot>
 			</h1>
 			<h3 class="text-2xl md:text-3xl">
 				$<slot name="price"></slot>
 			</h3>
 			<div v-if="colors.length > 0">
-				<h4 class="mb-5 font-bold text-xl md:text-2xl">Colors</h4>
+				<h4 class="mb-2 font-bold text-xl md:text-2xl">Colors</h4>
 				<div class="inline-block">
 					<ProductColorContainer>
 						<ProductColor v-for="color in colors" :key="color.id" 
@@ -92,11 +92,13 @@
 					</ProductColorContainer>
 				</div>
 			</div>
-			<h4 class="font-bold text-xl md:text-2xl">Quantity</h4>
-			<div class="w-24 h-8 md:w-40 md:h-10 bg-gray-100 ring-1 ring-gray-200 rounded flex flex-row">
-				<button class="w-3/5 h-full bg-gray-200" @click="dcrsCnt()">-</button>
-				<p class="w-full flex items-center justify-center bold md:text-xl">{{count}}</p>
-				<button class="w-3/5 h-full bg-gray-200" @click="incCnt()">+</button>
+			<div>
+				<h4 class="mb-2 font-bold text-xl md:text-2xl">Quantity</h4>
+				<div class="w-24 h-8 md:w-40 md:h-10 bg-gray-100 ring-1 ring-gray-200 rounded flex flex-row">
+					<button class="w-3/5 h-full bg-gray-200" @click="dcrsCnt()">-</button>
+					<p class="w-full flex items-center justify-center bold md:text-xl">{{count}}</p>
+					<button class="w-3/5 h-full bg-gray-200" @click="incCnt()">+</button>
+				</div>
 			</div>
 			<div>
 				<h4 class="font-bold text-xl md:text-2xl">Description</h4>
