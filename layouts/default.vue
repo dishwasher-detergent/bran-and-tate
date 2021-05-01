@@ -10,7 +10,7 @@
         <div class="flex flex-row justify-end space-between h-16 md:h-full">
           <NavItem type="link" link="/">Shop</NavItem>
           <NavItem>About</NavItem>
-          <NavItem>Location</NavItem>
+          <NavItem type="drop">Location</NavItem>
         </div>
       </div>
     </nav>
