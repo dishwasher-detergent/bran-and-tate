@@ -118,7 +118,7 @@
         <footer class="w-full h-20 absolute bottom-0">
           <button
             type="button"
-            class="w-full h-full bg-blue-500 text-white font-bold"
+            class="w-full h-full bg-babyBlue text-white font-bold"
             @click="add_to_cart"
             aria-label="Add To Cart"
           >

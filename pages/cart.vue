@@ -2,16 +2,16 @@
 <div>
 	<div class="mx-auto max-w-7xl px-5 h-full pt-10">
 		<div>
-			<h1 class="font-bold text-3xl pb-10">{{$store.state.cart.length}} Product(s) in your Cart</h1>
+			<h1 class="font-bold text-3xl pb-10">{{cart.length}} Product(s) in your Cart</h1>
 		</div>
-		<div v-if="$store.state.cart.length == 0" class="w-full h-96 p-5 mb-6 rounded flex items-center justify-center ring-1 ring-gray-200 bg-white">
+		<div v-if="cart.length == 0" class="w-full h-96 p-5 mb-6 rounded flex items-center justify-center ring-1 ring-gray-200 bg-white">
 			<h2 class="font-bold text-3xl text-center">There seems to be nothing in your cart, yet!</h2>
 		</div>
-		<div v-else class="w-full p-2 mb-6 rounded flex flex-col md:flex-row ring-1 ring-gray-200 bg-white" v-for="item in $store.state.cart" :key="item.id">
+		<div v-else class="w-full p-2 mb-6 rounded flex flex-col md:flex-row ring-1 ring-gray-200 bg-white" v-for="item in cart" :key="item.id">
 			<div class="h-48 w-full md:w-48 flex-none rounded bg-gray-200 flex items-center justify-center overflow-hidden">
 				<img :src="require(`~/assets/${item.image}.jpg`)" class="w-full"/>
 			</div>
-			<div class="flex flex-row py-5 md:pt-5">
+			<div class="w-full flex flex-row py-5 md:pt-5">
 				<div class="px-5 space-y-2 w-full">
 					<h1 class="text-2xl font-bold truncate">{{item.name}}</h1>
 					<p>Color: {{item.color}}</p>
@@ -31,7 +31,7 @@
 		<div>
 			<p class="w-full text-right text-2xl font-bold py-5">Subtotal: ${{total}}</p>
 			<div class="flex items-center justify-end">
-				<button class="mt-4 px-4 py-2 rounded bg-blue-500 text-white">
+				<button class="mt-4 px-4 py-2 rounded bg-babyBlue text-white">
 					Check out
 				</button>
 			</div>
@@ -43,16 +43,19 @@
 export default {
 	data(){
 		return{
-			total: 0
+			total: 0,
+			cart: []
 		}
 	},
 	created(){
+		this.setCart()
 		this.calculatePrice()
 		this.$store.watch(
 			(state)=>{
 				return this.$store.state.cart
 			},
 			()=>{
+				this.setCart()
 				this.calculatePrice()
 			}
 		)
@@ -60,7 +63,7 @@ export default {
 	
 	methods:{
 		removeFromCart(e){
-			let cart = this.$store.state.cart
+			let cart = this.cart
 			let tempCart = [];
 			for(let i = 0; i < cart.length; i++){
 				if(cart[i].id != e){
@@ -70,7 +73,8 @@ export default {
 			this.$store.commit('REPLACE_CART',tempCart)
 		},
 		calculatePrice(){
-			const cart = this.$store.state.cart
+			const cart = this.cart
+			console.log(cart)
 			this.total = 0
 			let tempTotal = 0
 			for(let i = 0; i < cart.length; i++){
@@ -78,6 +82,9 @@ export default {
 				this.total += tempTotal
 				tempTotal = 0
 			}
+		},
+		setCart(){
+			this.cart = JSON.parse(localStorage.getItem('cart'))
 		}
 	}
 }

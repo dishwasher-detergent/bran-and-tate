@@ -23,7 +23,7 @@
         <div
           class="w-full h-14 flex items-center justify-center absolute bottom-0 border-t-2 border-gray-200 bg-gray-100"
         >
-          <button class="px-4 py-1 rounded bg-blue-500 text-white">
+          <button class="px-4 py-1 rounded bg-babyBlue text-white">
             Logout
           </button>
         </div>
