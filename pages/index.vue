@@ -63,18 +63,11 @@ export default {
       .from('products')
       .select('*')
     // const product = await this.$content('shop.product').fetch()
-<<<<<<< Updated upstream
-    const product = await fetch(this.api + "/products").then((res) =>
-      res.json()
-    );
-    this.products = product
-=======
     // const product = await fetch(this.api + "/products").then((res) =>
     //   res.json()
     // );
     // console.log(product)
     this.products = products
->>>>>>> Stashed changes
   },
   created(){
     this.$store.commit('SET_CART')
