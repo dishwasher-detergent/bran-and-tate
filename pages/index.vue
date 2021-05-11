@@ -45,21 +45,36 @@
   </div>
 </template>
 <script>
+import { createClient } from '@supabase/supabase-js'
+
 export default {
   data() {
     return {
       products: [],
       search: '',
       filter: [],
-      api: process.env.NUXT_ENV_API_URL
+      api: process.env.NUXT_ENV_API_URL,
+      key: process.env.NUXT_ENV_API_KEY
     };
   },
   async fetch(){
+    const supabase = createClient(this.api, this.key)
+    let { data: products, error } = await supabase
+      .from('products')
+      .select('*')
     // const product = await this.$content('shop.product').fetch()
+<<<<<<< Updated upstream
     const product = await fetch(this.api + "/products").then((res) =>
       res.json()
     );
     this.products = product
+=======
+    // const product = await fetch(this.api + "/products").then((res) =>
+    //   res.json()
+    // );
+    // console.log(product)
+    this.products = products
+>>>>>>> Stashed changes
   },
   created(){
     this.$store.commit('SET_CART')
