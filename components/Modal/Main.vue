@@ -50,32 +50,22 @@
 
 <template>
   <transition name="slide" v-on:after-enter="afterEnter" v-on:before-leave="afterLeave">
-    <div class="top-0 bottom-0 left-0 right-0 fixed flex flex-col justify-end z-50">
+    <div class="top-0 bottom-0 left-0 right-0 fixed flex flex-row justify-end z-50">
 		<transition name="fade">
-	  		<div class="relative w-full md:h-2/5 h-1/5 bg-gray-900 bg-opacity-10" v-show="secondary" @click="close"></div>
+	  		<div class="relative h-full w-full bg-gray-900 bg-opacity-10" v-show="secondary" @click="close"></div>
 		</transition>
-      <div class="relative overflow-hidden w-full md:h-3/5 h-4/5 flex flex-col rounded shadow-t bg-gray-50 border-t border-gray-300"
+      <div class="relative overflow-hidden h-full w-full md:w-96 flex-none flex flex-col rounded-l-xl shadow-t bg-gray-50 border-t border-gray-300"
         role="dialog"
         aria-labelledby="Add To Cart"
         aria-describedby="Choose what color and how many you want then add to cart"
       >
         <section
-          class="w-full h-full pb-20 flex flex-col md:flex-row text-md md:text-xl"
+          class="w-full h-full pb-20 flex flex-col text-md md:text-xl"
         >
-		<div class="w-full h-1/2 md:w-1/2 md:h-full bg-gray-700 flex items-center justify-center">
+		<div class="w-full h-96 flex-none bg-gray-200 flex items-center justify-center">
           <slot name="img"></slot>
 		</div>
-		<div class="w-full md:w-3/5 md:h-full h-1/2 p-5 space-y-2 md:space-y-5 overflow-y-scroll relative">
-			<button
-			type="button"
-			class="h-6 w-6 mt-5 mr-5 flex items-center justify-center absolute top-0 right-0"
-			@click="close"
-			aria-label="Close modal"
-			>
-				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-				</svg>
-			</button>
+		<div class="w-full h-full p-5 space-y-2 md:space-y-5 overflow-y-scroll relative -mt-10 bg-white rounded-xl">
 			<h1 class="font-bold text-4xl md:text-5xl">
 				<slot name="header"></slot>
 			</h1>
@@ -118,7 +108,7 @@
         <footer class="w-full h-20 absolute bottom-0">
           <button
             type="button"
-            class="w-full h-full bg-babyBlue text-white font-bold"
+            class="w-full h-full bg-blue-500 text-white font-bold"
             @click="add_to_cart"
             aria-label="Add To Cart"
           >
@@ -139,10 +129,10 @@
 		transition: .15s;
 	}
 	.slide-enter {
-		transform: translate(0,100%);
+		transform: translate(100%,0);
 	}
 	.slide-leave-to {
-		transform: translate(0,100%);
+		transform: translate(100%,0);
 	}
 
 	.fade-leave-active,

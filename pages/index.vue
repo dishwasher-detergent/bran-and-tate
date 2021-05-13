@@ -5,7 +5,7 @@
         <h1 class="font-bold text-7xl md:text-9xl text-center">Bran & Tate Co.</h1>
       </div>
     </div>
-    <div class="w-full md:h-16 border-b border-gray-300 shadow sticky top-0 bg-white">
+    <div class="w-full md:h-16 border-b border-gray-300 shadow sticky top-0 bg-white z-50">
       <div class="mx-auto max-w-7xl px-5 h-full flex flex-col md:flex-row">
         <div class="w-full md:w-2/5 lg:w-1/2">
           <NavSearch 
@@ -37,7 +37,7 @@
           :size="product.size"
           :colors="product.colors"
           :price="product.price"
-          :id="product._id"
+          :id="product.id"
           :image="product.image"
         />
       </div>
@@ -62,12 +62,8 @@ export default {
     let { data: products, error } = await supabase
       .from('products')
       .select('*')
-    // const product = await this.$content('shop.product').fetch()
-    // const product = await fetch(this.api + "/products").then((res) =>
-    //   res.json()
-    // );
-    // console.log(product)
     this.products = products
+    this.$store.commit('SET_CLIENT',supabase)
   },
   created(){
     this.$store.commit('SET_CART')

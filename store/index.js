@@ -1,6 +1,7 @@
 export const state = () => ({
     dashboard: 'add_or_edit',
-    cart: []
+    cart: [],
+    client: ''
 })
 
 export const mutations = {
@@ -19,6 +20,9 @@ export const mutations = {
     REPLACE_CART(state,value){
         state.cart = value
         localStorage.setItem('cart', JSON.stringify(state.cart))
+    },
+    SET_CLIENT(state,value){
+        state.client = value
     }
 }
 

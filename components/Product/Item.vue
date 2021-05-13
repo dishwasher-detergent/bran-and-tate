@@ -1,10 +1,10 @@
 <template>
-	<div class="w-full h-96 rounded shadow ring-1 ring-gray-200 bg-white overflow-hidden">
-		<div class="w-full h-2/5 bg-gray-200 flex items-center justify-center overflow-hidden">
-			<!-- <img class="w-full" :src="require(`~/assets/${image}.jpg`)" /> -->
+	<div class="w-full rounded-xl shadow ring-1 ring-gray-200 bg-white overflow-hidden">
+		<div class="w-full h-72 bg-gray-200 flex items-center justify-center overflow-hidden relative z-10">
+			<img class="w-full" :src="image" />
 		</div>
-		<div class="h-3/5 grid grid-rows-4 ">
-			<div class="h-full w-full p-2 px-4 overflow-y-hidden row-span-3">
+		<div class="h-60 rounded-xl -mt-10 py-5 grid grid-rows-4 relative bg-white z-20">
+			<div class="h-full w-full px-4 overflow-y-hidden row-span-3">
 				<h1 class="font-bold text-3xl truncate">
 					{{title}}
 				</h1>
@@ -18,7 +18,7 @@
 			<div class="w-full flex items-center justify-center">
 				<transition name="fade">
 					<button v-if="addedToCart" class="px-4 py-2 rounded bg-green-500 text-white text-sm">In Cart!</button>
-					<button v-else class="px-4 py-2 rounded bg-babyBlue text-white text-sm" @click="showModal()">Quick View</button>
+					<button v-else class="px-4 py-2 rounded bg-blue-500 text-white text-sm" @click="showModal()">Quick View</button>
 				</transition>
 			</div>
 		</div>
@@ -33,7 +33,7 @@
 			@close="closeModal"
 			>
 			<template v-slot:img>
-				<!-- <img :src="require(`~/assets/${image}.jpg`)" class="h-full"/> -->
+				<img class="w-full" :src="image" />
 			</template>
 			<template v-slot:header>
 				{{title}}
@@ -59,14 +59,14 @@ export default {
 		'colors',
 		'size',
 		'price',
-		'id',
-		'image'
+		'id'
 	],
 	data() {
       return {
         isModalVisible: false,
 		addedToCart: false,
-      };
+		image: ''
+      }
     },
 	mounted(){
 		window.addEventListener('keyup', this.closeModal)
@@ -79,6 +79,21 @@ export default {
 				this.checkCart()
 			}
 		)
+	},
+	async fetch(){
+		try {
+			const { data, error } = await this.$store.state.client
+			.storage
+			.from('product-images')
+			.download(this.id + '.png')
+		if (error) {
+			throw error
+		}
+			const url = URL.createObjectURL(data)
+			this.image = url
+		} catch (error) {
+			console.log('Error downloading image: ', error.message)
+		}
 	},
     methods: {
       showModal() {
