@@ -26,3 +26,8 @@ export const mutations = {
     }
 }
 
+export const getters = {
+    GET_CLIENT(state) {
+      return state.client
+    }
+  }

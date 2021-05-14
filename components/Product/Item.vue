@@ -17,8 +17,8 @@
 			</div>
 			<div class="w-full flex items-center justify-center">
 				<transition name="fade">
-					<button v-if="addedToCart" class="px-4 py-2 rounded bg-green-500 text-white text-sm">In Cart!</button>
-					<button v-else class="px-4 py-2 rounded bg-blue-500 text-white text-sm" @click="showModal()">Quick View</button>
+					<button v-if="addedToCart" class="px-4 py-2 rounded-xl bg-green-500 text-white">In Cart!</button>
+					<button v-else class="px-4 py-2 rounded-xl bg-blue-500 text-white" @click="showModal()">Quick View</button>
 				</transition>
 			</div>
 		</div>

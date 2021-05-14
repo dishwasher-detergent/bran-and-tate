@@ -3,7 +3,11 @@
     <Nuxt />
   </div>
 </template>
-
+<script>
+  export default {
+    middleware: 'authenticate'
+  }
+</script>
 <style>
 html {
   font-family:

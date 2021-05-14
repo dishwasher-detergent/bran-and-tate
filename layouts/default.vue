@@ -18,7 +18,21 @@
     <footer class="w-full h-48 absolute bottom-0 bg-gray-900"></footer>
   </div>
 </template>
-
+<script>
+import { createClient } from '@supabase/supabase-js'
+export default {
+  data(){
+    return{
+      api: process.env.NUXT_ENV_API_URL,
+      key: process.env.NUXT_ENV_API_KEY
+    }
+  },
+  created(){
+    const supabase = createClient(this.api, this.key)
+    this.$store.commit('SET_CLIENT',supabase)
+  }
+}
+</script>
 <style>
 html {
   font-family:
