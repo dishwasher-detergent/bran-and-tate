@@ -45,7 +45,8 @@ export default {
         {
             src: '~/plugins/vue-grid.js',
             ssr: false
-        }
+        },
+        '@/plugins/supabase.client.js'
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components

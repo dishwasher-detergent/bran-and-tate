@@ -45,30 +45,19 @@
   </div>
 </template>
 <script>
-import { createClient } from '@supabase/supabase-js'
-import {  mapGetters } from 'vuex'
 export default {
   data() {
     return {
       products: [],
       search: '',
       filter: [],
-      api: process.env.NUXT_ENV_API_URL,
-      key: process.env.NUXT_ENV_API_KEY
     };
   },
-  // computed: {
-  //   ...mapGetters({
-  //     GET_CLIENT: 'GET_CLIENT'
-  //   })
-  // },
   async fetch(){
-    const supabase = createClient(this.api, this.key)
-    // console.log(this.GET_CLIENT)
-    // let { data: products, error } = await supabase
-    //   .from('products')
-    //   .select('*')
-    // this.products = products
+    let { data: products, error } = await this.$supabase
+      .from('products')
+      .select('*')
+    this.products = products
   },
   created(){
     this.$store.commit('SET_CART')
