@@ -61,8 +61,44 @@ export default {
     modules: [
         '@nuxt/content',
         '@nuxtjs/dotenv',
+        '@nuxtjs/axios',
+        '@nuxtjs/auth-next'
     ],
     // router : {},
     // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {}
+    build: {},
+    auth: {
+    strategies: {
+        social: {
+        scheme: 'oauth2',
+        endpoints: {
+            authorization: 'https://accounts.google.com/o/oauth2/auth',
+            token: undefined,
+            userInfo: 'https://www.googleapis.com/oauth2/v3/userinfo',
+            logout: 'https://example.com/logout'
+        },
+        token: {
+            property: 'access_token',
+            type: 'Bearer',
+            maxAge: 1800
+        },
+        refreshToken: {
+            property: 'refresh_token',
+            maxAge: 60 * 60 * 24 * 30
+        },
+        responseType: 'token',
+        grantType: 'authorization_code',
+        accessType: undefined,
+        redirectUri: undefined,
+        logoutRedirectUri: undefined,
+        clientId: 'SET_ME',
+        scope: ['openid', 'profile', 'email'],
+        state: 'UNIQUE_AND_NON_GUESSABLE',
+        codeChallengeMethod: '',
+        responseMode: '',
+        acrValues: '',
+        // autoLogout: false
+        }
+    }
+    }
 }

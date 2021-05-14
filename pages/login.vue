@@ -46,7 +46,8 @@ export default {
   },
   methods: {
     async handleAuth() {
-        await this.signIn()
+        this.$auth.loginWith('social')
+        // await this.signIn()
     },
     async signIn() {
         const { email, password } = this;
