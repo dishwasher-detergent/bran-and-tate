@@ -4,7 +4,7 @@ export default {
 
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
-        title: 'dashboard',
+        title: 'Bran and Tate',
         htmlAttrs: {
             lang: 'en'
         },
@@ -42,10 +42,6 @@ export default {
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins : [
-        {
-            src: '~/plugins/vue-grid.js',
-            ssr: false
-        },
         '@/plugins/supabase.client.js'
     ],
 
@@ -64,6 +60,9 @@ export default {
         '@nuxtjs/axios',
         '@nuxtjs/auth-next'
     ],
+    axios: {
+        baseURL: 'https://branandtate.com'
+      },
     // router : {},
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {},
