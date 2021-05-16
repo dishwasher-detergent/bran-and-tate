@@ -45,7 +45,8 @@ export default {
         {
             src: '~/plugins/vue-grid.js',
             ssr: false
-        }
+        },
+        '@/plugins/supabase.client.js'
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
@@ -60,8 +61,28 @@ export default {
     modules: [
         '@nuxt/content',
         '@nuxtjs/dotenv',
+        '@nuxtjs/axios',
+        '@nuxtjs/auth-next'
     ],
     // router : {},
     // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {}
+    build: {},
+    auth: {
+        strategies: {
+          local: {
+            token: {
+              property: 'token',
+              // required: true,
+              // type: 'Bearer'
+            },
+            user: {
+              property: 'user',
+              // autoFetch: true
+            },
+            endpoints: {
+              login: { url: '/login', method: 'post' },
+            }
+          }
+        }
+      }
 }

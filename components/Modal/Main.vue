@@ -6,7 +6,8 @@
 		'title',
 		'price',
 		'id',
-		'image'
+		'image',
+		'editing'
 	],
 	data(){
 		return{
@@ -50,11 +51,11 @@
 
 <template>
   <transition name="slide" v-on:after-enter="afterEnter" v-on:before-leave="afterLeave">
-    <div class="top-0 bottom-0 left-0 right-0 fixed flex flex-row justify-end z-50">
+    <div class="top-0 bottom-0 left-0 right-0 fixed flex flex-col md:flex-row justify-end z-50">
 		<transition name="fade">
-	  		<div class="relative h-full w-full bg-gray-900 bg-opacity-10" v-show="secondary" @click="close"></div>
+	  		<div class="relative h-1/5 md:h-full w-full bg-gray-900 bg-opacity-10" v-show="secondary" @click="close"></div>
 		</transition>
-      <div class="relative overflow-hidden h-full w-full md:w-96 flex-none flex flex-col rounded-l-xl shadow-t bg-gray-50 border-t border-gray-300"
+      <div class="relative overflow-hidden h-4/5 md:h-full w-full md:w-96 flex-none flex flex-col rounded-l-xl shadow-t bg-gray-50 border-t border-gray-300"
         role="dialog"
         aria-labelledby="Add To Cart"
         aria-describedby="Choose what color and how many you want then add to cart"
@@ -75,19 +76,9 @@
 			<div v-if="colors.length > 0">
 				<h4 class="mb-2 font-bold text-xl md:text-2xl">Colors</h4>
 				<div class="inline-block">
-					<ProductColorContainer>
-						<ProductColor v-for="color in colors" :key="color.id" 
-							:color="color"
-						/>
-					</ProductColorContainer>
-				</div>
-			</div>
-			<div>
-				<h4 class="mb-2 font-bold text-xl md:text-2xl">Quantity</h4>
-				<div class="w-24 h-8 md:w-40 md:h-10 bg-gray-100 ring-1 ring-gray-200 rounded flex flex-row">
-					<button class="w-3/5 h-full bg-gray-200" @click="dcrsCnt()">-</button>
-					<p class="w-full flex items-center justify-center bold md:text-xl">{{count}}</p>
-					<button class="w-3/5 h-full bg-gray-200" @click="incCnt()">+</button>
+					<ProductColor
+						:colors="colors"
+					/>
 				</div>
 			</div>
 			<div>
@@ -105,15 +96,33 @@
 		</div>
         </section>
 
-        <footer class="w-full h-20 absolute bottom-0">
+        <footer class="w-full h-20 absolute bottom-0 flex">
           <button
             type="button"
-            class="w-full h-full bg-blue-500 text-white font-bold"
+            class="w-3/5 h-full bg-blue-500 text-white font-bold"
             @click="add_to_cart"
             aria-label="Add To Cart"
+			:disabled="!!editing"
           >
             Add to Cart
           </button>
+		  <div class="h-full w-2/5 bg-gray-50 flex flex-row">
+			<div class="w-1/2 ring-1 ring-gray-300 flex items-center justify-center">
+				<h2 class="text-4xl font-bold">{{count}}</h2>
+			</div>
+			<div class="flex flex-col w-1/2 ring-1 ring-gray-300">
+				<button class="w-full h-1/2 bg-gray-200 flex items-center justify-center" @click="incCnt()">
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+					</svg>
+				</button>
+				<button class="w-full h-1/2 bg-gray-200 flex items-center justify-center" @click="dcrsCnt()">
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />
+					</svg>
+				</button>
+			</div>
+		  </div>
         </footer>
       </div>
     </div>
