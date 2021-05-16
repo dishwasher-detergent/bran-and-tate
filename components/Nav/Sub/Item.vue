@@ -6,18 +6,16 @@
 	</nuxt-link>
 	<button @click="toggleModal()" v-else-if="type == 'drop'" class="relative flex items-center justify-center h-full md:px-16 text-lg">
 		<p class="rounded-full py-2 px-4 hover:bg-babyBlue">
-			<slot></slot>
+			<slot name="icon"></slot>
 		</p>
 		<NavDrop
 			v-show="isModalVisible"
 			@close="closeModal"
-			>
-			<NavSubItem type="Porch" value="Porch" @sort="alter_filter">Porch</NavSubItem>
-			<NavSubItem type="Wall" value="Wall" @sort="alter_filter">Wall</NavSubItem>
-			<NavSubItem type="Seasonal" value="Seasonal" @sort="alter_filter">Seasonal</NavSubItem>
+		>
+			<slot name="content"></slot>
 		</NavDrop>
 	</button>
-	<div v-else class="flex items-center justify-center h-full w-2 px-16 text-lg">
+	<div v-else class="flex items-center justify-center py-2 w-full text-center text-lg">
 		<input @input="search" :id="value" :value="value" type="checkbox" class="hidden"/>
 		<label :for="value" class="cursor-pointer rounded-full py-2 px-4 hover:bg-babyBlue relative">
 			<slot></slot>	

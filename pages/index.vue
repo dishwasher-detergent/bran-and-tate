@@ -18,9 +18,18 @@
           class="w-full flex flex-row justify-center md:justify-end space-between h-full md:pb-0 "
         >
          <NavSubItem type="drop">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-            </svg>
+            <template v-slot:icon>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                </svg>
+            </template>
+            <template v-slot:content>
+              <div class="w-full h-full overflow-y-auto flex flex-col">
+                <NavSubItem type="Porch" value="Porch" @sort="alter_filter">Porch</NavSubItem>
+                <NavSubItem type="Wall" value="Wall" @sort="alter_filter">Wall</NavSubItem>
+                <NavSubItem type="Seasonal" value="Seasonal" @sort="alter_filter">Seasonal</NavSubItem>
+              </div>
+            </template>
           </NavSubItem>
           <NavSubItem type="cart">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -57,20 +66,23 @@ export default {
       filter: [],
     };
   },
-  async fetch(){
-    let { data: products, error } = await this.$supabase
-      .from('products')
-      .select('*')
-      if(error){
-        console.error(error)
-      } else {
-        this.products = products
-      }
-  },
   created(){
     this.$store.commit('SET_CART')
   },
+  mounted(){
+    this.getProducts()
+  },
   methods:{
+    async getProducts(){
+      let { data: products, error } = await this.$supabase
+        .from('products')
+        .select('*')
+        if(error){
+          console.error(error)
+        } else {
+          this.products = products
+        }
+    },
     sorting(e){
       this.search = e
     },
@@ -90,7 +102,15 @@ export default {
     },
     itemFilter(e){
       if(this.filter.length == 0) return true
-      if(this.filter.indexOf(e.type) > -1) return true
+      // if(this.filter.indexOf(e.type) > -1) return true
+      let in_array = 0;
+      if(e.type == null) return
+      for(let i = 0; i < this.filter.length; i++){
+        for(let j = 0; j < e.type.length; j++){
+          if(this.filter[i].toLowerCase().includes(e.type[j].toLowerCase())) in_array++
+        }
+      }
+      if(in_array > 0) return true
     }
   }
 }
