@@ -69,17 +69,7 @@ export default {
     build: {},
     auth: {
         strategies: {
-          local: {
-            token: {
-              property: 'token',
-              // required: true,
-              // type: 'Bearer'
-            },
-            user: {
-              property: 'user',
-              // autoFetch: true
-            }
-          }
+          local:{}
         }
       }
 }
