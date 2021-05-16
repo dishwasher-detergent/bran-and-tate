@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen pb-56 relative bg-gray-50">
+  <div class="min-h-screen pb-56 relative bg-white">
     <nav
       class="w-full md:h-20 bg-white shadow border-b border-gray-300 relative z-10"
     >
@@ -18,7 +18,10 @@
     <footer class="w-full h-48 absolute bottom-0 bg-gray-900"></footer>
   </div>
 </template>
-
+<script>
+export default {
+}
+</script>
 <style>
 html {
   font-family:

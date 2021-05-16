@@ -1,7 +1,7 @@
 export const state = () => ({
     dashboard: 'add_or_edit',
     cart: [],
-    client: ''
+    session: null
 })
 
 export const mutations = {
@@ -21,8 +21,8 @@ export const mutations = {
         state.cart = value
         localStorage.setItem('cart', JSON.stringify(state.cart))
     },
-    SET_CLIENT(state,value){
-        state.client = value
+    SET_SESSION(state,value){
+        state.session = value
+        localStorage.setItem('session', JSON.stringify(value))
     }
 }
-

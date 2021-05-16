@@ -8,22 +8,18 @@
         <!-- NOTE Logo Area -->
         <Logo image="" alt="" />
         <Sidebar-group>
-          <Sidebar-title>Single Product</Sidebar-title>
-          <Sidebar-item stage="add_or_edit">Add or Edit</Sidebar-item>
+          <Sidebar-title>Product</Sidebar-title>
+          <Sidebar-item stage="add_or_edit">Add Product</Sidebar-item>
           <Sidebar-item stage="product_statistics">Product Statistics</Sidebar-item>
 
-          <Sidebar-divider />
-          <Sidebar-title>Database</Sidebar-title>
-          <Sidebar-item stage="update_database">Update Database</Sidebar-item>
-
-          <Sidebar-divider />
+          <!-- <Sidebar-divider />
           <Sidebar-title>Users</Sidebar-title>
-          <Sidebar-item stage="user_management">User Management</Sidebar-item>
+          <Sidebar-item stage="user_management">User Management</Sidebar-item> -->
         </Sidebar-group>
         <div
           class="w-full h-14 flex items-center justify-center absolute bottom-0 border-t-2 border-gray-200 bg-gray-100"
         >
-          <button class="px-4 py-1 rounded bg-babyBlue text-white">
+          <button class="px-4 py-1 rounded bg-blue-500 text-white">
             Logout
           </button>
         </div>
@@ -84,7 +80,7 @@
 export default {
   data() {
     return {
-      sidebarToggle: true,
+      sidebarToggle: false,
     };
   },
 };
