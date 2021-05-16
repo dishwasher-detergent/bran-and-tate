@@ -1,7 +1,7 @@
 <template>
 	<div class="w-full rounded-xl shadow ring-1 ring-gray-200 bg-white overflow-hidden">
 		<div class="w-full h-72 bg-gray-200 flex items-center justify-center overflow-hidden relative z-10">
-			<img class="w-full" :src="image" />
+			<img class="w-full" :src="(image_editing ? image_editing : image)" />
 		</div>
 		<div class="h-60 rounded-xl -mt-10 py-5 grid grid-rows-4 relative bg-white z-20">
 			<div class="h-full w-full px-4 overflow-y-hidden row-span-3">
