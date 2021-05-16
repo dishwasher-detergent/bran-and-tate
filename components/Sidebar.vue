@@ -10,8 +10,10 @@
         <Sidebar-group>
           <Sidebar-title>Product</Sidebar-title>
           <Sidebar-item stage="add_or_edit">Add Product</Sidebar-item>
-          <Sidebar-item stage="product_statistics">Product Statistics</Sidebar-item>
-
+          <!-- <Sidebar-item stage="product_statistics">Product Statistics</Sidebar-item> -->
+          <Sidebar-divider />
+          <Sidebar-title>User Management</Sidebar-title>
+          <Sidebar-item stage="add_user">Add User</Sidebar-item>
           <!-- <Sidebar-divider />
           <Sidebar-title>Users</Sidebar-title>
           <Sidebar-item stage="user_management">User Management</Sidebar-item> -->
@@ -77,7 +79,9 @@
   </div>
 </template>
 <script>
+import SidebarTitle from './Sidebar-title.vue';
 export default {
+  components: { SidebarTitle },
   data() {
     return {
       sidebarToggle: false,

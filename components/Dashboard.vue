@@ -2,6 +2,7 @@
   <div class="w-full h-screen p-5 overflow-y-auto">
     <div>
       <WidgetAdd v-if='layout == "add_or_edit"'/>
+      <WidgetUser v-if='layout == "add_user"'/>
     </div>
   </div>
 </template>

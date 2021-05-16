@@ -1,7 +1,7 @@
 <template>
   <div class="px-8">
     <div class="w-full h-96 flex items-center justify-center pt-8 pb-2">
-      <div id="landing-banner" class="w-full h-full bg-gray-200 flex items-center justify-center rounded-xl overflow-hidden">
+      <div id="landing-banner" class="w-full h-full bg-gray-200 flex items-center justify-center rounded-xl overflow-hidden ring-1 ring-gray-300">
         <div class="h-full w-full flex items-center justify-center bg-gray-500 bg-opacity-10">
           <h1 class="font-bold text-7xl md:text-9xl text-center">Bran & Tate Co.</h1>
         </div>
@@ -42,7 +42,7 @@
     </div>
     <div class="w-full py-10">
       <div
-        class="max-w-7xl px-5 mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 items-center justify-items-center gap-5"
+        class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 items-center justify-items-center gap-5"
       >
         <ProductItem v-show="itemSearch(product) && itemFilter(product)" v-for="product in products" :key="product.id" 
           :title="product.title"

@@ -53,9 +53,9 @@
   <transition name="slide" v-on:after-enter="afterEnter" v-on:before-leave="afterLeave">
     <div class="top-0 bottom-0 left-0 right-0 fixed flex flex-col md:flex-row justify-end z-50">
 		<transition name="fade">
-	  		<div class="relative h-1/5 md:h-full w-full bg-gray-900 bg-opacity-10" v-show="secondary" @click="close"></div>
+	  		<div class="relative h-1/6 md:h-full w-full bg-gray-900 bg-opacity-10" v-show="secondary" @click="close"></div>
 		</transition>
-      <div class="relative overflow-hidden h-4/5 md:h-full w-full md:w-96 flex-none flex flex-col rounded-l-xl shadow-t bg-gray-50 border-t border-gray-300"
+      <div class="relative overflow-hidden h-5/6 md:h-full w-full md:w-96 flex-none flex flex-col rounded-l-xl shadow-t bg-gray-50 border-t border-gray-300"
         role="dialog"
         aria-labelledby="Add To Cart"
         aria-describedby="Choose what color and how many you want then add to cart"
@@ -64,6 +64,11 @@
           class="w-full h-full pb-20 flex flex-col text-md md:text-xl"
         >
 		<div class="w-full h-96 flex-none bg-gray-200 flex items-center justify-center">
+			<button @click='close' class="h-6 w-6 absolute top-0 right-0 mt-2 mr-4 ring-1 ring-red-500 p-1 bg-red-200 text-red-500 rounded-full">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full" viewBox="0 0 20 20" fill="currentColor">
+					<path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+				</svg>
+			</button>
           <slot name="img"></slot>
 		</div>
 		<div class="w-full h-full p-5 space-y-2 md:space-y-5 overflow-y-scroll relative -mt-10 bg-white rounded-xl">
