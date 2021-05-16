@@ -69,7 +69,10 @@ export default {
     build: {},
     auth: {
         strategies: {
-          local:{}
+          cookie: {
+            cookie: {
+            },
+          },
         }
       }
 }
