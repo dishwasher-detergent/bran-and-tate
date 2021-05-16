@@ -3,10 +3,12 @@
     <transition name="slide">
       <div
         v-if="sidebarToggle"
-        class="h-screen pb-14 w-60 bg-white border-r-2 border-gray-300 relative"
+        class="h-screen pb-14 w-60 bg-white border-r border-gray-300 relative"
       >
         <!-- NOTE Logo Area -->
-        <Logo image="" alt="" />
+        <div class="flex items-center justify-center w-full py-2 bg-gray-50 border-b border-gray-300">
+        <NavLogo />
+        </div>
         <Sidebar-group>
           <Sidebar-title>Product</Sidebar-title>
           <Sidebar-item stage="add_or_edit">Add Product</Sidebar-item>
@@ -19,7 +21,7 @@
           <Sidebar-item stage="user_management">User Management</Sidebar-item> -->
         </Sidebar-group>
         <div
-          class="w-full h-14 flex items-center justify-center absolute bottom-0 border-t-2 border-gray-200 bg-gray-100"
+          class="w-full h-14 flex items-center justify-center absolute bottom-0 border-t border-gray-300 bg-gray-100"
         >
           <button class="px-4 py-1 rounded bg-blue-500 text-white">
             Logout
@@ -48,13 +50,13 @@
     <transition name="slide">
       <div
         v-if="!sidebarToggle"
-        class="h-screen w-6 bg-gray-50 border-r-2 border-gray-300 relative"
+        class="h-screen w-6 bg-gray-50 border-r border-gray-300 relative"
       >
         <div
-          class="flex items-center justify-center w-full h-24 mb-5 bg-gray-100 border-b-2 border-gray-200"
+          class="flex items-center justify-center w-full h-24 mb-5 bg-gray-100 border-b border-gray-300"
         ></div>
         <div
-          class="w-full h-14 flex items-center justify-center absolute bottom-0 border-t-2 border-gray-200 bg-gray-100"
+          class="w-full h-14 flex items-center justify-center absolute bottom-0 border-t border-gray-300 bg-gray-100"
         ></div>
         <button
           @click="sidebarToggle = !sidebarToggle"
