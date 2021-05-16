@@ -145,8 +145,8 @@ export default {
 </script>
 <style scoped>
 input[type="text"],input[type="tel"],textarea{
-    @apply ring-1;
-    @apply ring-gray-300;
+    @apply border;
+    @apply border-gray-300;
     @apply p-2;
     @apply rounded-xl;
     @apply w-full

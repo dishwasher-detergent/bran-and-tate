@@ -61,17 +61,17 @@ export default {
         '@nuxtjs/auth-next'
     ],
     axios: {
-        baseURL: 'https://branandtate.com'
+        // baseURL: 'https://branandtate.com'
       },
     // router : {},
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {},
     auth: {
         strategies: {
-          cookie: {
-            cookie: {
-            },
-          },
+            supabase: {
+                scheme: '~/schemes/supabaseScheme',
+                /* ... */
+              }
         }
       }
 }
