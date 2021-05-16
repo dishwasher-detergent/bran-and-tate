@@ -1,11 +1,13 @@
 <template>
-  <div>
-    <div id="landing-banner" class="bg-gray-200 w-full h-96 flex items-center justify-center">
-      <div class="h-full w-full flex items-center justify-center bg-gray-500 bg-opacity-10">
-        <h1 class="font-bold text-7xl md:text-9xl text-center">Bran & Tate Co.</h1>
+  <div class="px-8">
+    <div class="w-full h-96 flex items-center justify-center py-8">
+      <div id="landing-banner" class="w-full h-full bg-gray-200 flex items-center justify-center rounded-xl overflow-hidden">
+        <div class="h-full w-full flex items-center justify-center bg-gray-500 bg-opacity-10">
+          <h1 class="font-bold text-7xl md:text-9xl text-center">Bran & Tate Co.</h1>
+        </div>
       </div>
     </div>
-    <div class="w-full md:h-16 border-b border-gray-300 shadow sticky top-0 bg-white z-50">
+    <div class="w-full md:h-16 ring-1 ring-gray-300 rounded-xl sticky top-0 bg-white z-50">
       <div class="mx-auto max-w-7xl px-5 h-full flex flex-col md:flex-row">
         <div class="w-full md:w-2/5 lg:w-1/2">
           <NavSearch 
@@ -57,7 +59,11 @@ export default {
     let { data: products, error } = await this.$supabase
       .from('products')
       .select('*')
-    this.products = products
+      if(error){
+        console.error(error)
+      } else {
+        this.products = products
+      }
   },
   created(){
     this.$store.commit('SET_CART')

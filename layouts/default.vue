@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen pb-56 relative bg-gray-50">
+  <div class="min-h-screen pb-56 relative bg-white">
     <nav
       class="w-full md:h-20 bg-white shadow border-b border-gray-300 relative z-10"
     >

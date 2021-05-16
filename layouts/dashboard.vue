@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <Nuxt />
+  <div class="h-screen bg-white text-gray-700 relative flex flex-row">
+    <Sidebar />
+    <Dashboard />
   </div>
 </template>
 <script>

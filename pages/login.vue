@@ -1,18 +1,18 @@
 <template>
     <div class="w-full">
         <form @submit.stop.prevent="handleAuth" class="h-full w-1/3 p-16">
-            <div class="w-full h-full rounded-xl shadow ring-1 ring-gray-200 p-8 bg-white">
+            <div class="w-full h-full rounded-xl shadow ring-1 ring-gray-300 p-8 bg-white">
                 <h1 class="font-bold text-3xl pb-8">Login</h1>
                 <label for="username" class="pb-4 block">
                     <p class="pb-4">Email</p>
-                    <input v-model="email" type='text' id="username" class="py-2 px-4 rounded-xl ring-2 ring-gray-200 shadow w-full focus:ring-babyBlue" required/>
+                    <input v-model="email" type='text' id="username" class="py-2 px-4 rounded-xl ring-2 ring-gray-300 shadow w-full focus:ring-babyBlue" required/>
                 </label>
                 <label for="password" class="pb-8 block">
                     <p class="pb-4">Password</p>
-                    <input v-model="password" type='password' id="password" class="py-2 px-4 rounded-xl ring-2 ring-gray-200 shadow w-full focus:ring-babyBlue" required/>
+                    <input v-model="password" type='password' id="password" class="py-2 px-4 rounded-xl ring-2 ring-gray-300 shadow w-full focus:ring-babyBlue" required/>
                 </label>
                 <div class="w-full flex items-center justify-center">
-                    <button @click="handleAuth" class="px-4 py-2 rounded-xl bg-blue-500 text-white">
+                    <button class="px-4 py-2 rounded-xl bg-blue-500 text-white">
                         Login
                     </button>
                 </div>
@@ -22,17 +22,16 @@
 </template>
 <script>
 export default {
-  data() {
-    return {
-      type: 'signIn',
-      email: null,
-      password: null,
-      passwordConfirm: null
-    }
-  },
+    data(){
+        return{
+            type: 'signIn',
+            password: '',
+            email: ''
+        }
+    },
   created () {
     this.$supabase.auth.onAuthStateChange(async (event, session) => {
-      await this.request({ event, session })
+        this.request({ event, session })
     })
   },
   async mounted() {
@@ -46,17 +45,16 @@ export default {
   },
   methods: {
     async handleAuth() {
-        this.$auth.loginWith('social')
-        // await this.signIn()
+        await this.signIn()
     },
     async signIn() {
         const { email, password } = this;
-        const { session, error } = await this.$supabase.auth.signIn({ email, password })
+        const { user, session, error } = await this.$supabase.auth.signIn({ email, password })
         if (error) {
             // Handle error
             console.error(error)
         } else {
-            this.$store.commit('SET_SESSION', session)
+            this.$auth.strategy.token.set(session.access_token)
         }
     },
     async signOut() {
@@ -65,7 +63,7 @@ export default {
             // Handle error
             console.error(error)
         } else {
-            this.$store.commit('SET_SESSION')
+            this.$auth.strategy.token.reset()
         }
     },
     handleRedirect(event) {
@@ -81,7 +79,7 @@ export default {
                 break;
         }
     },
-    async request({ event, session }) {
+    request({ event, session }) {
         if (!event) { throw new Error('Missing event') }
         this.handleRedirect(event)
     }
