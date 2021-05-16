@@ -78,9 +78,6 @@ export default {
             user: {
               property: 'user',
               // autoFetch: true
-            },
-            endpoints: {
-              login: { url: '/login', method: 'post' },
             }
           }
         }
