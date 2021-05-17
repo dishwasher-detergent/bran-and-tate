@@ -11,7 +11,7 @@
 
 <template>
     <transition name="fade">
-        <div class="absolute w-48 md:w-96 h-80 p-2 top-20 md:top-24 right-5 md:right-0 bottom-0 rounded shadow-md bg-white border border-gray-200"
+        <div class="absolute w-48 md:w-96 h-80 p-2 top-20 md:top-24 right-5 md:right-0 bottom-0 rounded-xl shadow-md bg-white border border-gray-200"
             role="location"
             aria-labelledby="Locations"
             aria-describedby="List of brick and mortar locations"

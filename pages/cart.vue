@@ -4,11 +4,11 @@
 		<div>
 			<h1 class="font-bold text-3xl pb-10">{{cart.length}} Product(s) in your Cart</h1>
 		</div>
-		<div v-if="cart.length == 0" class="w-full h-96 p-5 mb-6 rounded flex items-center justify-center ring-1 ring-gray-300 bg-white">
+		<div v-if="cart.length == 0" class="w-full h-96 p-5 mb-6 rounded-xl flex items-center justify-center ring-1 ring-gray-300 bg-white">
 			<h2 class="font-bold text-3xl text-center">There seems to be nothing in your cart, yet!</h2>
 		</div>
-		<div v-else class="w-full p-2 mb-6 rounded flex flex-col md:flex-row ring-1 ring-gray-300 bg-white" v-for="item in cart" :key="item.id">
-			<div class="h-48 w-full md:w-48 flex-none rounded bg-gray-200 flex items-center justify-center overflow-hidden">
+		<div v-else class="w-full p-2 mb-6 rounded-xl flex flex-col md:flex-row ring-1 ring-gray-300 bg-white" v-for="item in cart" :key="item.id">
+			<div class="h-48 w-full md:w-48 flex-none rounded-xl bg-gray-200 flex items-center justify-center overflow-hidden">
 				<img class="w-full" :src="item.image" />
 			</div>
 			<div class="w-full flex flex-row py-5 md:pt-5">
@@ -31,7 +31,7 @@
 		<div>
 			<p class="w-full text-right text-2xl font-bold py-5">Subtotal: ${{total}}</p>
 			<div class="flex items-center justify-end">
-				<button class="mt-4 px-4 py-2 rounded bg-babyBlue text-white">
+				<button class="mt-4 px-4 py-2 rounded-xl bg-blue-500 text-white">
 					Check out
 				</button>
 			</div>

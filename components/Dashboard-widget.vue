@@ -2,7 +2,7 @@
   <div class="p-4">
     <div
       v-if="type == 'table'"
-      class="ring-1 ring-gray-300 rounded overflow-hidden"
+      class="ring-1 ring-gray-300 rounded-xl overflow-hidden"
     >
       <table class="w-full">
         <thead>

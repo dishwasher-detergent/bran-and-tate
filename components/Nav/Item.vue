@@ -1,18 +1,18 @@
 <template>
 	<nuxt-link :to="link" v-if="type == 'link'" class="flex items-center justify-center h-full w-2 px-16 text-lg">
-		<p class="rounded-full py-2 px-4 hover:bg-babyBlue">
+		<p class="rounded-xl py-2 px-4 hover:bg-babyBlue">
 			<slot></slot>
 		</p>
 	</nuxt-link>
 	<button @click="toggleModal()" v-else-if="type == 'drop'" class="relative flex items-center justify-center h-full w-2 px-16 text-lg">
-		<p class="rounded-full py-2 px-4 hover:bg-babyBlue">
+		<p class="rounded-xl py-2 px-4 hover:bg-babyBlue">
 			<slot></slot>
 		</p>
 		<NavDrop
 			v-show="isModalVisible"
 			@close="closeModal"
 			>
-				<h1 class="bg-gray-100 rounded font-bold">MainStreet MarketPlace</h1>
+				<h1 class="bg-gray-100 rounded-xl font-bold">MainStreet MarketPlace</h1>
 				<p class="mt-2 text-sm w-full text-center"><b>Address</b></p>
 				<p class="text-left text-sm">429 W Main St, Yukon, OK 73099</p>
 				<p class="mt-2 text-sm w-full text-center"><b>Time</b></p>
@@ -28,7 +28,7 @@
 		</NavDrop>
 	</button>
 	<button v-else class="flex items-center justify-center h-full w-2 px-16 text-lg">
-		<p class="rounded-full py-2 px-4 hover:bg-babyBlue">
+		<p class="rounded-xl py-2 px-4 hover:bg-babyBlue">
 			<slot></slot>
 		</p>
 	</button>
