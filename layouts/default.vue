@@ -17,11 +17,13 @@
     <Nuxt />
     <footer class="w-full h-48 absolute bottom-0 bg-gray-900">
       <div
-        class="mx-auto max-w-7xl px-5 grid grid-cols-1 md:grid-cols-2 items-center justify-items-center md:justify-items-stretch"
+        class="mx-auto max-w-7xl h-full px-5 grid grid-cols-1 md:grid-cols-2 items-center justify-items-center md:justify-items-stretch"
       >
         <NavLogo />
         <div class="flex flex-row justify-end space-between h-16 md:h-full">
-          <FooterItem type="link" link="/Dashboard">Dashboard</FooterItem>
+          <FooterItem v-if="this.$auth.loggedIn" type="link" link="/Dashboard">Dashboard</FooterItem>
+          <FooterItem v-if="this.$auth.loggedIn" type="link" link="/Login?type=signOut">Logout</FooterItem>
+          <FooterItem v-else type="link" link="/Login">Login</FooterItem>
         </div>
       </div>
     </footer>

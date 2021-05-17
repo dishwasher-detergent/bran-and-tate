@@ -1,5 +1,6 @@
 <template>
   <div class="px-8">
+    <BannersBanner/>
     <div class="w-full h-96 flex items-center justify-center pt-6">
       <div id="landing-banner" class="w-full h-full bg-gray-200 flex items-center justify-center rounded-xl overflow-hidden ring-1 ring-gray-300">
         <div class="h-full w-full flex items-center justify-center bg-gray-500 bg-opacity-10">
@@ -70,6 +71,18 @@ export default {
   },
   created(){
     this.$store.commit('SET_CART')
+    this.$supabase
+    .from('products')
+    .on('DELETE', payload => {
+      this.getProducts()
+    })
+    .on('INSERT', payload => {
+      this.getProducts()
+    })
+    .on('UPDATE', payload => {
+      this.getProducts()
+    })
+    .subscribe()
   },
   mounted(){
     this.getProducts()

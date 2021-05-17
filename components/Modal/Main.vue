@@ -93,7 +93,7 @@
 				</p>
 			</div>
 			<div class="pb-10">
-				<h4 class="font-bold text-xl md:text-2xl">Demensions</h4>
+				<h4 class="font-bold text-xl md:text-2xl">Dimensions</h4>
 				<p>
 					<slot name="size"></slot>
 				</p>

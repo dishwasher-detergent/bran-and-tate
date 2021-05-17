@@ -1,11 +1,9 @@
 <template>
-	<button v-if="type == 'link'" class="flex items-center justify-center h-full w-2 px-16 text-lg">
+	<nuxt-link :to="link" v-if="type == 'link'" class="flex items-center justify-center h-full w-2 px-16 text-lg">
 		<p class="rounded-full py-2 px-4 hover:bg-babyBlue">
-			<nuxt-link :to="link">
-				<slot></slot>
-			</nuxt-link>
+			<slot></slot>
 		</p>
-	</button>
+	</nuxt-link>
 	<button @click="toggleModal()" v-else-if="type == 'drop'" class="relative flex items-center justify-center h-full w-2 px-16 text-lg">
 		<p class="rounded-full py-2 px-4 hover:bg-babyBlue">
 			<slot></slot>

@@ -44,7 +44,6 @@ export default {
     async userLogin() {
       try {
         let response = await this.$auth.loginWith('supabase', this.login)
-        console.log(response)
       } catch (err) {
         console.log(err)
       }
@@ -52,7 +51,6 @@ export default {
     async signOut() {
        try {
         let response = await this.$auth.logout('supabase')
-        console.log(response)
       } catch (err) {
         console.log(err)
       }

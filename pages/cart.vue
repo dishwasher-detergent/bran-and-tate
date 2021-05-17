@@ -74,7 +74,6 @@ export default {
 		},
 		calculatePrice(){
 			const cart = this.cart
-			console.log(cart)
 			this.total = 0
 			let tempTotal = 0
 			for(let i = 0; i < cart.length; i++){
@@ -84,7 +83,8 @@ export default {
 			}
 		},
 		setCart(){
-			this.cart = JSON.parse(localStorage.getItem('cart'))
+			if(localStorage.getItem('cart'))
+				this.cart = JSON.parse(localStorage.getItem('cart'))
 		}
 	}
 }
