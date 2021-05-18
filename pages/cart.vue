@@ -91,13 +91,16 @@ export default {
 				this.cart = JSON.parse(localStorage.getItem('cart'))
 		},
 		async stripe_checkout() {
-			let items = {
-				name: this.cart.title,
-				description: this.cart.description,
-				images: this.cart.image,
-				amount: this.cart.price,
-				currency: 'USD',
-				quantity: this.cart.quantity,
+			let items;
+			for(let i = 0; i <  this.cart.length; i++){
+				items = {
+					name: this.cart[i].title,
+					description: this.cart[i].description,
+					images: this.cart[i].image,
+					amount: this.cart[i].price,
+					currency: 'USD',
+					quantity: this.cart[i].quantity,
+				}
 			}
 			console.log(items)
 		try {
