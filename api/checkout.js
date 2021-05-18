@@ -2,7 +2,6 @@ const stripe = require("stripe")(process.env.NUXT_STRIPE_SECRET_KEY);
 const hostUrl = process.env.NUXT_WEBSITE;
 
 export default async (req, res) => {
-	console.log('test')
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     line_items: [req.body.order],
