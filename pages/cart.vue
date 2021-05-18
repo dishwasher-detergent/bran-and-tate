@@ -32,7 +32,7 @@
 			<p class="w-full text-right text-2xl font-bold py-5">Subtotal: ${{total}}</p>
 			<div class="flex items-center justify-end">
 				<button class="mt-4 px-4 py-2 rounded-xl bg-blue-500 text-white" @click="stripe_checkout">
-					Check out test
+					Check out
 				</button>
 			</div>
 		</div>
