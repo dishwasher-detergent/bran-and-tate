@@ -1,5 +1,11 @@
 <template>
-	<div v-if="message" class="mt-6 w-full bg-blue-100 text-gray-700 ring-1 ring-blue-300 rounded-xl py-2 px-4">
+	<div v-else-if="type == 'normal'" class="mt-6 w-full bg-blue-100 text-gray-700 ring-1 ring-blue-300 rounded-xl py-2 px-4">
+		<p>{{message}}</p>
+	</div>
+	<div v-else-if="type == 'important'" class="mt-6 w-full bg-blue-100 text-gray-700 ring-1 ring-blue-300 rounded-xl py-2 px-4">
+		<p>{{message}}</p>
+	</div>
+	<div v-else-if="type == 'warning'" class="mt-6 w-full bg-blue-100 text-gray-700 ring-1 ring-blue-300 rounded-xl py-2 px-4">
 		<p>{{message}}</p>
 	</div>
 </template>
