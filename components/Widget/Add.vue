@@ -103,8 +103,9 @@ export default {
         },
         async upload(){
             let data = await this.upload_product()
-            if(data != '')
+            if(data != ''){
                 await this.upload_image(data)
+            }
         },
         async upload_product(){
             const { data, error } = await this.$supabase

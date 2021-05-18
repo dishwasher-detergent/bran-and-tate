@@ -33,6 +33,7 @@
 			:title="title"
 			:price="price"
 			:id="id"
+			:description="description"
 			:image="image"
 			:editing="editing"
 

@@ -34,6 +34,11 @@ export default {
                 rel: "stylesheet",
                 href: "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
             }
+        ],
+        script: [
+            {
+                src: "https://js.stripe.com/v3/"
+            }
         ]
     },
 
@@ -50,7 +55,7 @@ export default {
 
     // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
     buildModules: [
-        '@nuxtjs/tailwindcss'
+        '@nuxtjs/tailwindcss',
     ],
 
     // Modules: https://go.nuxtjs.dev/config-modules
@@ -58,10 +63,32 @@ export default {
         '@nuxt/content',
         '@nuxtjs/dotenv',
         '@nuxtjs/axios',
-        '@nuxtjs/auth-next'
+        '@nuxtjs/auth-next',
+        ['nuxt-lazy-load', {
+            // These are the default values
+            images: true,
+            videos: true,
+            audios: true,
+            iframes: true,
+            native: false,
+            polyfill: true,
+            directiveOnly: false,
+            
+            // Default image must be in the static folder
+            defaultImage: '/B&TLogo.png',
+
+            // To remove class set value to false
+            loadingClass: 'isLoading',
+            loadedClass: 'isLoaded',
+            appendClass: 'lazyLoad',
+            
+            observerConfig: {
+            // See IntersectionObserver documentation
+            }
+        }]
     ],
     axios: {
-        baseURL: 'https://branandtate.com'
+        // baseURL: 'https://branandtate.com'
       },
     // router : {},
     // Build Configuration: https://go.nuxtjs.dev/config-build

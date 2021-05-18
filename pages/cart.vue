@@ -31,8 +31,8 @@
 		<div>
 			<p class="w-full text-right text-2xl font-bold py-5">Subtotal: ${{total}}</p>
 			<div class="flex items-center justify-end">
-				<button class="mt-4 px-4 py-2 rounded-xl bg-blue-500 text-white">
-					Check out
+				<button class="mt-4 px-4 py-2 rounded-xl bg-blue-500 text-white" @click="stripe_checkout">
+					Check out test
 				</button>
 			</div>
 		</div>
@@ -44,7 +44,9 @@ export default {
 	data(){
 		return{
 			total: 0,
-			cart: []
+			cart: [],
+			stripe: null,
+			publish_key: process.env.NUXT_STRIPE_PUBLISH_KEY
 		}
 	},
 	created(){
@@ -60,7 +62,9 @@ export default {
 			}
 		)
 	},
-	
+	mounted(){
+		this.stripe = Stripe(this.publish_key);
+	},
 	methods:{
 		removeFromCart(e){
 			let cart = this.cart
@@ -85,7 +89,25 @@ export default {
 		setCart(){
 			if(localStorage.getItem('cart'))
 				this.cart = JSON.parse(localStorage.getItem('cart'))
+		},
+		async stripe_checkout() {
+		try {
+			const { data } = await this.$axios.post("/api/checkout", {
+			order: {
+				name: this.cart.title,
+				description: this.cart.description,
+				images: this.cart.image,
+				amount: this.cart.price,
+				currency: 'USD',
+				quantity: this.cart.quantity,
+			}
+			});
+			console.log(data)
+			this.stripe.redirectToCheckout({ sessionId: data.id });
+		} catch (err) {
+			alert(err);
 		}
+	},
 	}
 }
 </script>
