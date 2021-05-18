@@ -1,5 +1,6 @@
 <template>
 	<div>
+		{{data}}
 		<div v-for="item in data" :key="item.id">
 			<div v-if="item.type == 'normal'" class="mt-6 w-full bg-blue-100 text-gray-700 ring-1 ring-blue-300 rounded-xl py-2 px-4">
 				<p>{{item.message}}</p>
