@@ -91,9 +91,7 @@ export default {
 				this.cart = JSON.parse(localStorage.getItem('cart'))
 		},
 		async stripe_checkout() {
-		try {
-			const { data } = await this.$axios.post("/api/checkout", {
-			order: {
+			let items = {
 				name: this.cart.title,
 				description: this.cart.description,
 				images: this.cart.image,
@@ -101,6 +99,10 @@ export default {
 				currency: 'USD',
 				quantity: this.cart.quantity,
 			}
+			console.log(items)
+		try {
+			const { data } = await this.$axios.post("/api/checkout", {
+			order: items
 			});
 			console.log(data)
 			this.stripe.redirectToCheckout({ sessionId: data.id });
