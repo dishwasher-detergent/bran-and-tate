@@ -88,7 +88,7 @@ export default {
         }]
     ],
     axios: {
-        // baseURL: 'https://branandtate.com'
+        baseURL: 'https://branandtate.com'
       },
     // router : {},
     // Build Configuration: https://go.nuxtjs.dev/config-build
