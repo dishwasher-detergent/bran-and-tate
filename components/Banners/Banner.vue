@@ -24,7 +24,7 @@ export default {
 	async fetch(){
 		let { data, error } = await this.$supabase
         .from('banners')
-        .select('message')
+        .select('message,type')
 		.eq('active', true)
         if(error){
           console.error(error)
