@@ -20,7 +20,7 @@ module.exports = {
             // Build your palette here
             transparent: 'transparent',
             current: 'currentColor',
-            gray: colors.blueGray,
+            gray: colors.warmGray,
             red: colors.rose,
             green: colors.green,
             indigo : colors.indigo,
