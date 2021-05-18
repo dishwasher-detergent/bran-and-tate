@@ -96,7 +96,6 @@ export default {
 				items = {
 					name: this.cart[i].name,
 					description: this.cart[i].description,
-					images: this.cart[i].image,
 					amount: this.cart[i].price,
 					currency: 'USD',
 					quantity: this.cart[i].quantity,
