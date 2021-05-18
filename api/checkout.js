@@ -1,5 +1,5 @@
 const stripe = require("stripe")(process.env.NUXT_STRIPE_SECRET_KEY);
-const hostUrl = "https://branandtate.com";
+const hostUrl = process.env.NUXT_WEBSITE;
 
 export default async (req, res) => {
 	console.log('test')
