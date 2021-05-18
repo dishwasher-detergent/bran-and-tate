@@ -94,7 +94,7 @@ export default {
 			let items;
 			for(let i = 0; i <  this.cart.length; i++){
 				items = {
-					name: this.cart[i].title,
+					name: this.cart[i].name,
 					description: this.cart[i].description,
 					images: this.cart[i].image,
 					amount: this.cart[i].price,

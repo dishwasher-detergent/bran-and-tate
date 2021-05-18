@@ -7,7 +7,8 @@
 		'price',
 		'id',
 		'image',
-		'editing'
+		'editing',
+		'description'
 	],
 	data(){
 		return{
