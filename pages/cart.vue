@@ -96,7 +96,7 @@ export default {
 				items = {
 					name: this.cart[i].name,
 					description: this.cart[i].description,
-					amount: this.cart[i].price,
+					amount: (this.cart[i].price).toFixed(2),
 					currency: 'USD',
 					quantity: this.cart[i].quantity,
 				}
