@@ -44,7 +44,7 @@ export default {
   opacity: 0;
 }
 #image-background {
-	background-image: url('~assets/banner.svg');
+	background-image: url('~/static/placeHolder.png');
 	background-position: center;
 	background-size: cover;
 }
