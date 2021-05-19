@@ -1,6 +1,7 @@
 <template>
 	<div>
-		<img class="w-full" :src="image">
+		<img v-if="!image" class="w-full" src="~/static/placeHolder.png"> 
+		<img v-else class="w-full" :src="image">
 	</div>
 </template>
 <script>
@@ -10,7 +11,7 @@ export default {
 	],
 	data(){
 		return{
-			image: "~/static/placeHolder.png"
+			image: null
 		}
 	},
 	async fetch(){
