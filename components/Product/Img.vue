@@ -1,9 +1,10 @@
 <template>
 	<div>
-		<img v-if="!image" class="w-full" src="~/static/placeHolder.png"> 
-		<transition name="fade">
-			<img v-if="image" class="w-full" :src="image">
-		</transition>
+		<div class="w-full h-full" id="image-background"> 
+			<transition name="fade">
+				<img v-if="image" class="w-full" :src="image">
+			</transition>
+		</div>
 	</div>
 </template>
 <script>
@@ -41,5 +42,10 @@ export default {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+#image-background {
+	background-image: url('~assets/banner.svg');
+	background-position: center;
+	background-size: cover;
 }
 </style>
