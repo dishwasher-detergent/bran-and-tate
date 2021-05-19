@@ -46,7 +46,6 @@ export default {
 			total: 0,
 			cart: [],
 			stripe: null,
-			publish_key: process.env.NUXT_STRIPE_PUBLISH_KEY
 		}
 	},
 	created(){
@@ -61,6 +60,9 @@ export default {
 				this.calculatePrice()
 			}
 		)
+	},
+	mounted(){
+		this.stripe = Stripe(process.env.NUXT_STRIPE_PUBLISH_KEY);
 	},
 	methods:{
 		removeFromCart(e){
@@ -88,8 +90,6 @@ export default {
 				this.cart = JSON.parse(localStorage.getItem('cart'))
 		},
 		async stripe_checkout() {
-			this.stripe = Stripe(this.publish_key);
-
 			let items =[]
 			for(let i = 0; i <  this.cart.length; i++){
 				items.push({
