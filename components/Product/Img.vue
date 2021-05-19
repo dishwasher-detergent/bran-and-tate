@@ -1,7 +1,9 @@
 <template>
 	<div>
-		<img v-if="!image" class="w-full" src="~/static/placeHolder.png"> 
-		<img v-else class="w-full" :src="image">
+		<transition name="fade">
+			<img v-if="!image" class="w-full" src="~/static/placeHolder.png"> 
+			<img v-else class="w-full" :src="image">
+		</transition>
 	</div>
 </template>
 <script>
@@ -31,3 +33,13 @@ export default {
 	},
 }
 </script>
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
