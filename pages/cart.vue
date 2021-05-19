@@ -62,7 +62,7 @@ export default {
 		)
 	},
 	mounted(){
-		this.stripe = Stripe(process.env.NUXT_STRIPE_PUBLISH_KEY);
+		this.stripe = Stripe(process.env.NUXT_STRIPE_KEY);
 	},
 	methods:{
 		removeFromCart(e){
