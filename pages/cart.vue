@@ -63,7 +63,7 @@ export default {
 		)
 	},
 	mounted(){
-		this.stripe = Stripe("pk_test_51IiON5C61AYwWLSuQni6q9RcG2Mix22PiFlTsCcLMvql67mv6BtmTVdOpnqM6WaUjuiTY0gvo58ux3ATul53tUvg00ZeJfgCbQ");
+		this.stripe = Stripe(this.publish_key);
 	},
 	methods:{
 		removeFromCart(e){
