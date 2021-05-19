@@ -1,7 +1,8 @@
 <template>
 	<div class="w-full rounded-xl shadow ring-1 ring-gray-300 bg-white overflow-hidden">
 		<div class="w-full h-72 bg-gray-200 flex items-center justify-center overflow-hidden relative z-10">
-			<img class="w-full" :src="(image_editing ? image_editing : image)" />
+			<img v-if="image-editing" class="w-full" :src="image_editing" />
+			<ProductImg v-else :id="id"/>
 			<button v-if="this.$auth.loggedIn" @click='deleteProduct(id)' class="h-6 w-6 absolute top-0 right-0 mt-2 mr-2 ring-1 ring-red-500 p-1 bg-red-200 text-red-500 rounded-full">
 				<svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -34,13 +35,13 @@
 			:price="price"
 			:id="id"
 			:description="description"
-			:image="image"
 			:editing="editing"
 
 			@close="closeModal"
 			>
 			<template v-slot:img>
-				<img class="w-full" :src="image" />
+				<img v-if="image-editing" class="w-full" :src="image_editing" />
+				<ProductImg v-else :id="id"/>
 			</template>
 			<template v-slot:header>
 				{{title}}
@@ -89,22 +90,6 @@ export default {
 				this.checkCart()
 			}
 		)
-	},
-	async fetch(){
-		if(this.editing == true) return;
-		try {
-			const { data, error } = await this.$supabase
-			.storage
-			.from('product-images')
-			.download(this.id + '.png')
-		if (error) {
-			throw error
-		}
-			const url = URL.createObjectURL(data)
-			this.image = url
-		} catch (error) {
-			console.log('Error downloading image: ', error.message)
-		}
 	},
     methods: {
       showModal() {

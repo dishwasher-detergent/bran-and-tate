@@ -9,7 +9,7 @@
 		</div>
 		<div v-else class="w-full p-2 mb-6 rounded-xl flex flex-col md:flex-row ring-1 ring-gray-300 bg-white" v-for="item in cart" :key="item.id">
 			<div class="h-48 w-full md:w-48 flex-none rounded-xl bg-gray-200 flex items-center justify-center overflow-hidden">
-				<img class="w-full" :src="item.image" />
+				<ProductImg :id="item.id"/>
 			</div>
 			<div class="w-full flex flex-row py-5 md:pt-5">
 				<div class="px-5 space-y-2 w-full">
