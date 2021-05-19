@@ -1,8 +1,8 @@
 <template>
 	<div>
+		<img v-if="!image" class="w-full" src="~/static/placeHolder.png"> 
 		<transition name="fade">
-			<img v-if="!image" class="w-full" src="~/static/placeHolder.png"> 
-			<img v-else class="w-full" :src="image">
+			<img v-if="image" class="w-full" :src="image">
 		</transition>
 	</div>
 </template>
