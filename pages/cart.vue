@@ -50,6 +50,8 @@ export default {
 		}
 	},
 	created(){
+		this.stripe = Stripe(this.publish_key);
+
 		this.setCart()
 		this.calculatePrice()
 		this.$store.watch(
@@ -61,11 +63,6 @@ export default {
 				this.calculatePrice()
 			}
 		)
-	},
-	mounted(){
-		let key = this.publish_key
-		console.log(key)
-		this.stripe = Stripe(key);
 	},
 	methods:{
 		removeFromCart(e){
