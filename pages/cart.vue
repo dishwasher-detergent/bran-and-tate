@@ -50,8 +50,6 @@ export default {
 		}
 	},
 	created(){
-		this.stripe = Stripe(this.publish_key);
-
 		this.setCart()
 		this.calculatePrice()
 		this.$store.watch(
@@ -90,6 +88,8 @@ export default {
 				this.cart = JSON.parse(localStorage.getItem('cart'))
 		},
 		async stripe_checkout() {
+			this.stripe = Stripe(this.publish_key);
+
 			let items =[]
 			for(let i = 0; i <  this.cart.length; i++){
 				items.push({
