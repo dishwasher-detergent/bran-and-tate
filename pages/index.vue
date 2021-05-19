@@ -47,7 +47,6 @@
       <div
         class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 items-center justify-items-center gap-5"
       >
-      <transition name="fade">
         <ProductItem v-show="itemSearch(product) && itemFilter(product)" v-for="product in products" :key="product.id" 
           :title="product.title"
           :description="product.description"
@@ -56,7 +55,6 @@
           :price="product.price"
           :id="product.id"
         />
-      </transition>
       </div>
     </div>
   </div>
@@ -136,12 +134,5 @@ export default {
   background-image: url("~/assets/background.jpg");
   background-position: center;
   background-size: cover;
-}
-.fade-leave-active,
-.fade-enter-active {
-  transition: .15s;
-}
-.fade-enter,.fade-leave-to {
-  opacity:0
 }
 </style>
