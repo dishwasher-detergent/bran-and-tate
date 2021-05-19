@@ -73,9 +73,6 @@ export default {
             native: false,
             polyfill: true,
             directiveOnly: false,
-            
-            // Default image must be in the static folder
-            defaultImage: '/B&TLogo.png',
 
             // To remove class set value to false
             loadingClass: 'isLoading',
