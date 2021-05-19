@@ -6,8 +6,8 @@
 		'title',
 		'price',
 		'id',
-		'image',
-		'editing'
+		'editing',
+		'description'
 	],
 	data(){
 		return{
@@ -40,7 +40,7 @@
 				price: this.price,
 				quantity: this.count,
 				id: this.id,
-				image: this.image
+				description: this.description
 			}
 			this.$store.commit('UPDATE_CART',product)
 			this.close()

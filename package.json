@@ -16,6 +16,8 @@
     "@supabase/supabase-js": "^1.11.10",
     "core-js": "^3.9.1",
     "nuxt": "^2.15.3",
+    "nuxt-lazy-load": "^1.2.6",
+    "stripe": "^8.148.0",
     "vue-grid-layout": "^2.3.12",
     "vue-js-modal": "^2.0.0-rc.6"
   },

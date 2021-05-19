@@ -9,7 +9,7 @@
 		</div>
 		<div v-else class="w-full p-2 mb-6 rounded-xl flex flex-col md:flex-row ring-1 ring-gray-300 bg-white" v-for="item in cart" :key="item.id">
 			<div class="h-48 w-full md:w-48 flex-none rounded-xl bg-gray-200 flex items-center justify-center overflow-hidden">
-				<img class="w-full" :src="item.image" />
+				<ProductImg :id="item.id"/>
 			</div>
 			<div class="w-full flex flex-row py-5 md:pt-5">
 				<div class="px-5 space-y-2 w-full">
@@ -31,7 +31,7 @@
 		<div>
 			<p class="w-full text-right text-2xl font-bold py-5">Subtotal: ${{total}}</p>
 			<div class="flex items-center justify-end">
-				<button class="mt-4 px-4 py-2 rounded-xl bg-blue-500 text-white">
+				<button class="mt-4 px-4 py-2 rounded-xl bg-blue-500 text-white" @click="stripe_checkout">
 					Check out
 				</button>
 			</div>
@@ -44,7 +44,8 @@ export default {
 	data(){
 		return{
 			total: 0,
-			cart: []
+			cart: [],
+			stripe: null,
 		}
 	},
 	created(){
@@ -60,7 +61,9 @@ export default {
 			}
 		)
 	},
-	
+	mounted(){
+		this.stripe = Stripe(process.env.NUXT_ENV_STRIPE_KEY);
+	},
 	methods:{
 		removeFromCart(e){
 			let cart = this.cart
@@ -85,7 +88,29 @@ export default {
 		setCart(){
 			if(localStorage.getItem('cart'))
 				this.cart = JSON.parse(localStorage.getItem('cart'))
+		},
+		async stripe_checkout() {
+			let items =[]
+			for(let i = 0; i <  this.cart.length; i++){
+				items.push({
+					name: this.cart[i].name,
+					description: this.cart[i].description,
+					amount: this.cart[i].price * 100,
+					currency: 'USD',
+					quantity: this.cart[i].quantity,
+				})
+			}
+			console.log(items)
+		try {
+			const { data } = await this.$axios.post("/api/checkout", {
+			order: items
+			});
+			console.log(data)
+			this.stripe.redirectToCheckout({ sessionId: data.id });
+		} catch (err) {
+			alert(err);
 		}
+	},
 	}
 }
 </script>
