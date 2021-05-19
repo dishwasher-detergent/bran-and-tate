@@ -9,6 +9,7 @@ export default async (req, res) => {
     shipping_address_collection: {
       allowed_countries: ['US'],
     },
+    mode: 'payment',
     success_url: `${hostUrl}?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${hostUrl}?failed=true`
   });
