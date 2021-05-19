@@ -64,6 +64,7 @@ export default {
 	},
 	mounted(){
 		let key = this.publish_key
+		console.log(key)
 		this.stripe = Stripe(key);
 	},
 	methods:{
