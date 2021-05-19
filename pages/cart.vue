@@ -63,7 +63,8 @@ export default {
 		)
 	},
 	mounted(){
-		this.stripe = Stripe(this.publish_key);
+		let key = this.publish_key
+		this.stripe = Stripe(key);
 	},
 	methods:{
 		removeFromCart(e){
