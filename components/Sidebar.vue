@@ -16,9 +16,9 @@
           <Sidebar-divider />
           <Sidebar-title>User Management</Sidebar-title>
           <Sidebar-item stage="add_user">Add User</Sidebar-item>
-          <!-- <Sidebar-divider />
-          <Sidebar-title>Users</Sidebar-title>
-          <Sidebar-item stage="user_management">User Management</Sidebar-item> -->
+          <Sidebar-divider />
+          <Sidebar-title>Page</Sidebar-title>
+          <Sidebar-item stage="banner">Banners</Sidebar-item>
         </Sidebar-group>
         <div
           class="w-full h-14 flex items-center justify-center absolute bottom-0 border-t border-gray-300 bg-gray-100"

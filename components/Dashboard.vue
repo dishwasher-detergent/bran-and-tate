@@ -3,6 +3,7 @@
     <div>
       <WidgetAdd v-if='layout == "add_or_edit"'/>
       <WidgetUser v-if='layout == "add_user"'/>
+      <WidgetBanner v-if='layout == "banner"'/>
     </div>
   </div>
 </template>
