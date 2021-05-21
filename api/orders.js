@@ -5,5 +5,5 @@ export default async (req, res) => {
 		status_transitions: "paid"
 	});
 
-	return res.status(200).json(session)
+	return res.status(200).json(orders)
 };
