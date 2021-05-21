@@ -11,6 +11,7 @@
         </div>
         <Sidebar-group>
           <Sidebar-title>Product</Sidebar-title>
+          <Sidebar-item stage="orders">Orders</Sidebar-item>
           <Sidebar-item stage="add_or_edit">Add Product</Sidebar-item>
           <!-- <Sidebar-item stage="product_statistics">Product Statistics</Sidebar-item> -->
           <Sidebar-divider />
