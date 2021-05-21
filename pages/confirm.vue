@@ -44,12 +44,12 @@ export default {
 	},
 	methods:{
 		async retrieve_lineitems() {
-			const { type = null } = this.$route.query;
-			const { test } = await this.$axios.post("/api/lineitems", {
-				id: type
+			const { session_id = null } = this.$route.query;
+			const { data } = await this.$axios.post("/api/lineitems", {
+				id: session_id
 			});
-			console.log(test)
-			this.items = test
+			console.log(data)
+			this.items = data
 	},
 	}
 }
