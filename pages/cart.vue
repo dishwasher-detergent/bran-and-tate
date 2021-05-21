@@ -93,11 +93,15 @@ export default {
 			let items =[]
 			for(let i = 0; i <  this.cart.length; i++){
 				items.push({
-					name: this.cart[i].name,
-					description: this.cart[i].description,
-					amount: this.cart[i].price * 100,
-					currency: 'USD',
-					quantity: this.cart[i].quantity,
+					price_data: {
+						currency: 'usd',
+						product_data: {
+							name: this.cart[i].name,
+							description: this.cart[i].description
+						},
+						unit_amount: this.cart[i].price * 100,
+					},
+					quantity: this.cart[i].quantity
 				})
 			}
 			console.log(items)
