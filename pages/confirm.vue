@@ -1,6 +1,6 @@
 <template>
 <div>
-	<div class="mx-auto max-w-7xl px-5 h-full pt-10">
+	<!-- <div class="mx-auto max-w-7xl px-5 h-full pt-10">
 		<div>
 			<h1 class="font-bold text-3xl pb-10">{{items.length}} Product(s) Purchased!</h1>
 		</div>
@@ -25,7 +25,8 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
+	{{items}}
 </div>
 </template>
 <script>
@@ -44,7 +45,7 @@ export default {
 			const { data } = await this.$axios.post("/api/lineitems", {
 				id: session_id
 			});
-			this.items = data.data
+			this.items = data
 	},
 	}
 }
