@@ -1,14 +1,10 @@
 <template>
 <div>
-	{{items}}
-	<!-- <div class="mx-auto max-w-7xl px-5 h-full pt-10">
+	<div class="mx-auto max-w-7xl px-5 h-full pt-10">
 		<div>
-			<h1 class="font-bold text-3xl pb-10">{{cart.length}} Product(s) in your Cart</h1>
+			<h1 class="font-bold text-3xl pb-10">{{items.length}} Product(s) Purchased!</h1>
 		</div>
-		<div v-if="cart.length == 0" class="w-full h-96 p-5 mb-6 rounded-xl flex items-center justify-center ring-1 ring-gray-300 bg-white">
-			<h2 class="font-bold text-3xl text-center">There seems to be nothing in your cart, yet!</h2>
-		</div>
-		<div v-else class="w-full p-2 mb-6 rounded-xl flex flex-col md:flex-row ring-1 ring-gray-300 bg-white" v-for="item in cart" :key="item.id">
+		<div class="w-full p-2 mb-6 rounded-xl flex flex-col md:flex-row ring-1 ring-gray-300 bg-white" v-for="item in items" :key="item.id">
 			<div class="h-48 w-full md:w-48 flex-none rounded-xl bg-gray-200 flex items-center justify-center overflow-hidden">
 				<ProductImg :id="item.id"/>
 			</div>
@@ -29,7 +25,7 @@
 				</div>
 			</div>
 		</div>
-	</div> -->
+	</div>
 </div>
 </template>
 <script>
@@ -48,8 +44,7 @@ export default {
 			const { data } = await this.$axios.post("/api/lineitems", {
 				id: session_id
 			});
-			console.log(data)
-			this.items = data
+			this.items = data.data
 	},
 	}
 }
