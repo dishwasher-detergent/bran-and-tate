@@ -21,7 +21,7 @@ export default {
 			const { data } = await this.$axios.post("/api/success", {
 				id: session_id
 			});
-			this.items = data
+			this.id = data
 	},
 	}
 }
