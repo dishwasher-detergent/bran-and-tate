@@ -23,7 +23,7 @@ export default {
 	methods:{
 		async retrieve_lineitems() {
 			const { session_id = null } = this.$route.query;
-			const { data } = await this.$axios.post("/api/success", {
+			const { data } = await this.$axios.post("/api/orders", {
 				id: session_id
 			});
 			this.id = data
