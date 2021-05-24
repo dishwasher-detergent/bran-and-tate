@@ -98,19 +98,17 @@ export default {
 						product_data: {
 							name: this.cart[i].name,
 							description: this.cart[i].description,
-							metadata: {'id': this.cart[i].id}
+							metadata: {'order_id': '6735'}
 						},
 						unit_amount: this.cart[i].price * 100,
 					},
 					quantity: this.cart[i].quantity
 				})
 			}
-			console.log(items)
 		try {
 			const { data } = await this.$axios.post("/api/checkout", {
-			order: items
+				order: items
 			});
-			console.log(data)
 			this.stripe.redirectToCheckout({ sessionId: data.id });
 		} catch (err) {
 			alert(err);
