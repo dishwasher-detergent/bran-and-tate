@@ -23,7 +23,6 @@ export default class SupabaseScheme extends LocalScheme {
 
   async login(options) {
     const supabase = this.$auth.ctx.$supabase.auth
-    console.log(options)
     const { user, error } = await supabase.signIn(options)
 
     if (error) {
