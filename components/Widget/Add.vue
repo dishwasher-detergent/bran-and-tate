@@ -60,7 +60,7 @@
                     </label>
                 </div>
             </div>
-            <button class="w-full px-4 py-2 rounded-xl bg-blue-500 text-white">Add Product</button>
+            <button aria-label="Add to cart" class="w-full px-4 py-2 rounded-xl bg-blue-500 text-white">Add Product</button>
         </form>
     </div>
     <div class="w-full md:w-96">

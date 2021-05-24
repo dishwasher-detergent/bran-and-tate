@@ -24,11 +24,12 @@
         <div
           class="w-full h-14 flex items-center justify-center absolute bottom-0 border-t border-gray-300 bg-gray-100"
         >
-          <button class="px-4 py-1 rounded-xl bg-blue-500 text-white">
+          <button aria-label="Logout" class="px-4 py-1 rounded-xl bg-blue-500 text-white">
             Logout
           </button>
         </div>
         <button
+          aria-label="Open/Close Sidebar"
           @click="sidebarToggle = !sidebarToggle"
           class="w-6 h-6 p-1 absolute bottom-0 -right-3 mb-11 flex items-center justify-center rounded-full ring-2 ring-blue-300 bg-blue-50"
         >

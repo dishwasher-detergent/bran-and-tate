@@ -19,7 +19,7 @@
 					</div>
 				</div>
                 <div class="w-full flex items-center justify-center">
-                    <button class="px-4 py-2 rounded-xl bg-blue-500 text-white">
+                    <button aria-label="Create Banner" class="px-4 py-2 rounded-xl bg-blue-500 text-white">
                         Create Banner
                     </button>
                 </div>
