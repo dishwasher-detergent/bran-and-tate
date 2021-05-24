@@ -4,7 +4,7 @@
 			<slot></slot>
 		</p>
 	</nuxt-link>
-	<button @click="toggleModal()" v-else-if="type == 'drop'" class="relative flex items-center justify-center h-full md:px-16 text-lg">
+	<button aria-label="Close Modal" @click="toggleModal()" v-else-if="type == 'drop'" class="relative flex items-center justify-center h-full md:px-16 text-lg">
 		<p class="rounded-xl py-2 px-4 hover:bg-babyBlue">
 			<slot name="icon"></slot>
 		</p>

@@ -64,7 +64,7 @@
           class="w-full h-full pb-20 flex flex-col text-md md:text-xl"
         >
 		<div class="w-full h-96 flex-none bg-gray-200 flex items-center justify-center">
-			<button @click='close' class="h-6 w-6 absolute top-0 right-0 mt-2 mr-4 ring-1 ring-red-500 p-1 bg-red-200 text-red-500 rounded-full">
+			<button aria-label="Close Modal" @click='close' class="h-6 w-6 absolute top-0 right-0 mt-2 mr-4 ring-1 ring-red-500 p-1 bg-red-200 text-red-500 rounded-full">
 				<svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full" viewBox="0 0 20 20" fill="currentColor">
 					<path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
 				</svg>
@@ -116,12 +116,12 @@
 				<h2 class="text-4xl font-bold">{{count}}</h2>
 			</div>
 			<div class="flex flex-col w-1/2 ring-1 ring-gray-300">
-				<button class="w-full h-1/2 bg-gray-200 flex items-center justify-center" @click="incCnt()">
+				<button aria-label="Increase Quantity" class="w-full h-1/2 bg-gray-200 flex items-center justify-center" @click="incCnt()">
 					<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
 					</svg>
 				</button>
-				<button class="w-full h-1/2 bg-gray-200 flex items-center justify-center" @click="dcrsCnt()">
+				<button aria-label="Decrease Quantity" class="w-full h-1/2 bg-gray-200 flex items-center justify-center" @click="dcrsCnt()">
 					<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />
 					</svg>
