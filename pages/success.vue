@@ -6,6 +6,7 @@
 			<h1 class="font-bold text-4xl md:text-6xl text-center">It seems there was an issue with the checkout process.</h1>
 			<p>If you have any questions please email support@branandtate.com</p>
 		</div>
+		{{id}}
 	</div>
 </div>
 </template>
