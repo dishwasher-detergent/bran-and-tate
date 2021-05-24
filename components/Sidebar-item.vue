@@ -1,5 +1,5 @@
 <template>
-	<button @click="setDashboard()" class="block w-full pl-8 pr-4 py-.5 text-lg truncate text-left border-l-4 border-transparent hover:bg-blue-100 hover:border-blue-300">
+	<button :aria-label="'Go to' + stage" @click="setDashboard()" class="block w-full pl-8 pr-4 py-.5 text-lg truncate text-left border-l-4 border-transparent hover:bg-blue-100 hover:border-blue-300">
 		<slot></slot>
 	</button>
 </template>

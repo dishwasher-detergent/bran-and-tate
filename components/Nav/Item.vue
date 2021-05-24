@@ -4,7 +4,7 @@
 			<slot></slot>
 		</p>
 	</nuxt-link>
-	<button @click="toggleModal()" v-else-if="type == 'drop'" class="relative flex items-center justify-center h-full w-2 px-16 text-lg">
+	<button aria-label="Close Modal" @click="toggleModal()" v-else-if="type == 'drop'" class="relative flex items-center justify-center h-full w-2 px-16 text-lg">
 		<p class="rounded-xl py-2 px-4 hover:bg-babyBlue">
 			<slot></slot>
 		</p>
@@ -27,7 +27,7 @@
 				</div>
 		</NavDrop>
 	</button>
-	<button v-else class="flex items-center justify-center h-full w-2 px-16 text-lg">
+	<button aria-label="Button" v-else class="flex items-center justify-center h-full w-2 px-16 text-lg">
 		<p class="rounded-xl py-2 px-4 hover:bg-babyBlue">
 			<slot></slot>
 		</p>

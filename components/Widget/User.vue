@@ -14,7 +14,7 @@
                     <input v-model="login.password" type='password' id="password" class="py-2 px-4 rounded-xl border border-gray-300 bg-gray-50 w-full focus:ring-babyBlue" required/>
                 </label>
                 <div class="w-full flex items-center justify-center">
-                    <button class="px-4 py-2 rounded-xl bg-blue-500 text-white">
+                    <button aria-label="Create Account" class="px-4 py-2 rounded-xl bg-blue-500 text-white">
                         Create Account
                     </button>
                 </div>
