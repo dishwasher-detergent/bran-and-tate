@@ -97,7 +97,8 @@ export default {
 						currency: 'usd',
 						product_data: {
 							name: this.cart[i].name,
-							description: this.cart[i].description
+							description: this.cart[i].description,
+							metadata: {id: this.cart[i].id}
 						},
 						unit_amount: this.cart[i].price * 100,
 					},
