@@ -1,9 +1,12 @@
 <template>
 	<div>
 		<div class="w-full h-full" id="image-background"> 
-			<transition name="fade">
-				<img v-if="image" class="w-full" :src="image" alt="Product Image">
-			</transition>
+			<client-only>
+				<ik-image 
+					v-if="image" 
+					src="~/static/B&TLogo.png" 
+				/>
+			</client-only>
 		</div>
 	</div>
 </template>

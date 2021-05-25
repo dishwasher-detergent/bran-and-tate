@@ -48,7 +48,8 @@ export default {
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins : [
-        '@/plugins/supabase.client.js'
+        '@/plugins/supabase.client.js',
+        { src: '~/plugins/imagekitio', mode: 'client' }
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
@@ -65,25 +66,6 @@ export default {
         '@nuxtjs/dotenv',
         '@nuxtjs/axios',
         '@nuxtjs/auth-next',
-        ['nuxt-lazy-load', {
-            // These are the default values
-            images: true,
-            videos: true,
-            audios: true,
-            iframes: true,
-            native: false,
-            polyfill: true,
-            directiveOnly: false,
-
-            // To remove class set value to false
-            loadingClass: 'isLoading',
-            loadedClass: 'isLoaded',
-            appendClass: 'lazyLoad',
-            
-            observerConfig: {
-            // See IntersectionObserver documentation
-            }
-        }]
     ],
     axios: {
         baseURL: process.env.NUXT_WEBSITE
