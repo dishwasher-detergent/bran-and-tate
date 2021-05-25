@@ -9,8 +9,8 @@
 				</svg>
 			</button>
 		</div>
-		<div class="h-72 rounded-xl -mt-10 py-5 flex flex-col relative bg-white z-20 ring-1 ring-gray-300">
-			<div class="h-full w-full px-4 overflow-y-hidden flex-1 mb-4">
+		<div class="h-60 rounded-xl -mt-10 py-5 grid grid-rows-4 relative bg-white z-20 ring-1 ring-gray-300">
+			<div class="h-full w-full px-4 overflow-y-hidden row-span-3">
 				<h1 class="font-bold text-3xl truncate">
 					{{title}}
 				</h1>
@@ -21,10 +21,10 @@
 					{{description}}
 				</p>
 			</div>
-			<div class="w-full flex items-center justify-center px-4 flex-none">
+			<div class="w-full flex items-center justify-center px-4">
 				<transition name="fade">
-					<button aria-label="Disabled" v-if="addedToCart" class="btn btn-wide bg-green-500">In Cart!</button>
-					<button aria-label="Quick View" v-else class="btn btn-wide bg-blue-500" @click="showModal()">Quick View</button>
+					<button aria-label="Disabled" v-if="addedToCart" class="w-full px-4 py-2 rounded-xl bg-green-500 text-white">In Cart!</button>
+					<button aria-label="Quick View" v-else class="w-full px-4 py-2 rounded-xl bg-blue-500 text-white" @click="showModal()">Quick View</button>
 				</transition>
 			</div>
 		</div>
