@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen pb-96 relative bg-white" data-theme="light">
+  <div class="min-h-screen pb-96 relative bg-white" data-theme="bt">
     <nav
       class="w-full md:h-20 bg-white shadow border-b border-gray-300 relative z-10"
     >
@@ -12,7 +12,7 @@
           <div class="dropdown dropdown-hover dropdown-end">
             <div tabindex="0" class="m-1 btn btn-ghost text-gray-900">Location</div>
             <ul class="ring-1 ring-gray-300 shadow menu dropdown-content bg-base-100 rounded-box w-52 text-gray-900 p-2">
-                <h1 class="bg-gray-100 rounded-xl font-bold">MainStreet MarketPlace</h1>
+                <h1 class="bg-gray-100 rounded-2xl font-bold">MainStreet MarketPlace</h1>
                 <p class="mt-2 text-sm w-full text-center"><b>Address</b></p>
                 <p class="text-left text-sm">429 W Main St, Yukon, OK 73099</p>
                 <p class="mt-2 text-sm w-full text-center"><b>Time</b></p>

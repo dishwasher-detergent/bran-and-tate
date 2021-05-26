@@ -1,5 +1,5 @@
 <template>
-	<div class="w-full rounded-xl shadow ring-1 ring-gray-300 bg-white overflow-hidden">
+	<div class="w-full rounded-2xl shadow ring-1 ring-gray-300 bg-white overflow-hidden shadow">
 		<div class="w-full h-72 bg-gray-200 flex items-center justify-center overflow-hidden relative z-10">
 			<img v-if="image-editing" class="w-full" :src="image_editing" />
 			<ProductImg v-else :id="id"/>
@@ -9,7 +9,7 @@
 				</svg>
 			</button>
 		</div>
-		<div class="h-72 rounded-xl -mt-10 py-5 flex flex-col relative bg-white z-20 ring-1 ring-gray-300">
+		<div class="h-72 rounded-2xl -mt-10 py-5 flex flex-col relative bg-white z-20 ring-1 ring-gray-300">
 			<div class="h-full w-full px-4 overflow-y-hidden flex-1 mb-4">
 				<h1 class="font-bold text-3xl truncate">
 					{{title}}
@@ -23,8 +23,8 @@
 			</div>
 			<div class="w-full flex items-center justify-center px-4 flex-none">
 				<transition name="fade">
-					<button aria-label="Disabled" v-if="addedToCart" class="btn btn-wide bg-green-500">In Cart!</button>
-					<button aria-label="Quick View" v-else class="btn btn-wide bg-blue-500" @click="showModal()">Quick View</button>
+					<button aria-label="Disabled" v-if="addedToCart" class="btn btn-wide btn-primary">In Cart!</button>
+					<button aria-label="Quick View" v-else class="btn btn-wide btn-primary" @click="showModal()">Quick View</button>
 				</transition>
 			</div>
 		</div>

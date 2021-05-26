@@ -2,14 +2,14 @@
   <div class="px-8">
     <BannersBanner/>
     <section class="w-full h-96 flex items-center justify-center pt-6">
-      <div id="landing-banner" class="w-full h-full bg-gray-200 flex items-center justify-center rounded-xl overflow-hidden ring-1 ring-gray-300">
+      <div id="landing-banner" class="w-full h-full bg-gray-200 flex items-center justify-center rounded-2xl overflow-hidden ring-1 ring-gray-300">
         <div class="h-full w-full flex items-center justify-center bg-gray-500 bg-opacity-10">
           <h1 class="font-bold text-7xl md:text-9xl text-center">Bran & Tate Co.</h1>
         </div>
       </div>
     </section>
     <!-- Sub Nav Bar -->
-    <nav class="navbar mb-2 bg-white ring-1 ring-gray-300 text-neutral-content rounded-box sticky top-0 mt-6 px-3 z-50">
+    <nav class="navbar mb-2 bg-white ring-1 ring-gray-300 text-neutral-content rounded-box sticky top-0 mt-6 px-3 z-50 shadow">
       <div class="flex-1">
         <div class="form-control w-full md:mr-8">
           <input v-model="search" type="text" placeholder="Search" class="input input-bordered bg-gray-100 text-gray-900">

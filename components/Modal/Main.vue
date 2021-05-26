@@ -70,7 +70,7 @@
 					</button>
 				<slot name="img"></slot>
 				</div>
-				<div class="w-full h-full p-5 space-y-2 md:space-y-5 overflow-y-scroll relative -mt-10 bg-white rounded-xl">
+				<div class="w-full h-full p-5 space-y-2 md:space-y-5 overflow-y-scroll relative -mt-10 bg-white rounded-2xl">
 					<h1 class="font-bold text-4xl md:text-5xl">
 						<slot name="header"></slot>
 					</h1>
