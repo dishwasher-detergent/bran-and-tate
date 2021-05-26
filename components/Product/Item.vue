@@ -23,8 +23,8 @@
 			</div>
 			<div class="w-full flex items-center justify-center px-4 flex-none">
 				<transition name="fade">
-					<button aria-label="Disabled" v-if="addedToCart" class="btn btn-wide btn-primary">In Cart!</button>
-					<button aria-label="Quick View" v-else class="btn btn-wide btn-primary" @click="showModal()">Quick View</button>
+					<button aria-label="Disabled" disabled="disabled" v-if="addedToCart" class="btn w-full btn-primary">In Cart!</button>
+					<button aria-label="Quick View" v-else class="btn w-full btn-primary" @click="showModal()">Quick View</button>
 				</transition>
 			</div>
 		</div>
@@ -78,7 +78,7 @@ export default {
 		image: ''
       }
     },
-	mounted(){
+	created(){
 		if(this.image_editing) this.image = this.image_editing
 		window.addEventListener('keyup', this.closeModal)
 		this.checkCart()
@@ -105,8 +105,12 @@ export default {
       },
 	  checkCart(){
 		  const cart = this.$store.state.cart
-		  for(let i = 0; i < cart.length; i++){
-			  if(cart[i].id == this.id) this.addedToCart = true
+		  if(cart.length != 0){
+			for(let i = 0; i < cart.length; i++){
+				if(cart[i].id == this.id) this.addedToCart = true
+			}
+		  } else {
+			  this.addedToCart = false
 		  }
 	  },
 	  async deleteProduct(){
@@ -118,7 +122,6 @@ export default {
 			if (error) {
 				throw error
 			}
-			
 		} catch (error) {
 			console.log('Error Deleting: ', error.message)
 		}

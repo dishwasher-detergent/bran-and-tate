@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen pb-96 relative bg-white" data-theme="bt">
+  <div ref="main" class="min-h-screen relative bg-white" data-theme="bt">
     <nav
       class="w-full md:h-20 bg-white shadow border-b border-gray-300 relative z-10"
     >
@@ -31,7 +31,7 @@
       </div>
     </nav>
     <Nuxt />
-    <footer class="text-gray-600 bg-gray-50 border-t border-gray-300 body-font absolute bottom-0 w-full">
+    <footer ref="footer" class="text-gray-600 bg-gray-50 border-t border-gray-300 body-font absolute bottom-0 w-full">
       <div class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
         <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
           <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
@@ -93,6 +93,20 @@
 </template>
 <script>
 export default {
+  created() {
+    window.addEventListener("resize", this.footer);
+  },
+  mounted(){
+    this.footer()
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.footer);
+  },
+  methods: {
+    footer() {
+      this.$refs.main.style.paddingBottom = this.$refs.footer.clientHeight + "px"
+    }
+  }
 }
 </script>
 <style>
