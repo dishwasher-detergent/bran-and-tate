@@ -1,13 +1,25 @@
 <template>
-	<button :aria-label="'Go to' + stage" @click="setDashboard()" class="block w-full pl-8 pr-4 py-.5 text-lg truncate text-left border-l-4 border-transparent hover:bg-blue-100 hover:border-blue-300">
-		<slot></slot>
-	</button>
+	<li>
+		<a :aria-label="'Go to' + stage" @click="setDashboard()" :class="(layout == stage ? 'bg-blue-500' : '')">
+			<slot></slot>
+		</a>
+	</li>
 </template>
 <script>
 export default {
 	props: [
 		'stage'
 	],
+	data(){
+		return{
+			layout: 'add_or_edit'
+		}
+	},
+	watch: {
+		'$store.state.dashboard': function() {
+			this.layout = this.$store.state.dashboard
+		},
+	},
 	methods: {
 		setDashboard() {
 			this.$store.commit('SET_DASHBOARD',this.stage)
