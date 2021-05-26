@@ -1,7 +1,7 @@
 <template>
   <div class="px-8">
     <BannersBanner/>
-    <div class="w-full h-96 flex items-center justify-center pt-6">
+    <section class="w-full h-96 flex items-center justify-center pt-6">
       <div id="landing-banner" class="w-full h-full bg-gray-200 flex items-center justify-center rounded-xl overflow-hidden ring-1 ring-gray-300">
         <div class="h-full w-full flex items-center justify-center bg-gray-500 bg-opacity-10">
           <h1 class="font-bold text-7xl md:text-9xl text-center">Bran & Tate Co.</h1>
@@ -34,7 +34,7 @@
             </div>
           </ul>
         </div>
-      </div> 
+      </div>
       <div class="flex-none">
         <nuxt-link to="/cart" class="btn btn-square btn-ghost relative text-gray-900">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -58,7 +58,7 @@
           :id="product.id"
         />
       </div>
-    </div>
+    </section>
   </div>
 </template>
 <script>
