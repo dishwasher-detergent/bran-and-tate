@@ -28,10 +28,10 @@
 				</div>
 			</div>
 		</div>
-		<div>
+		<div v-if="cart.length">
 			<p class="w-full text-right text-2xl font-bold py-5">Subtotal: ${{total}}</p>
 			<div class="flex items-center justify-end">
-				<button aria-label="Check Out" class="mt-4 px-4 py-2 rounded-2xl bg-blue-500 text-white" @click="stripe_checkout">
+				<button aria-label="Check Out" class="btn btn-primary" @click="stripe_checkout">
 					Check out
 				</button>
 			</div>
