@@ -6,3 +6,46 @@
 .my-page-leave-to {
   opacity: 0;
 }
+
+[data-theme='bt'] {
+  --p: 217 91% 60%; /* Primary color */
+  --pf: 224 76% 48%; /* Primary color - focused */
+  --pc: 0 0% 100%; /* Foreground content color to use on primary color */
+
+  --s: 262 52% 56%; /* Secondary color */
+  --sf: 262 52% 46%; /* Secondary color - focused */
+  --sc: 0 0% 100%; /* Foreground content color to use on secondary color */
+
+  --a: 199 98% 58%; /* Accent color */
+  --af: 199 98% 48%; /* Accent color - focused */
+  --ac: 0 0% 100%; /* Foreground content color to use on accent color */
+
+  --n: 215 28% 17%; /* Neutral color */
+  --nf: 221 39% 11%; /* Neutral color - focused */
+  --nc: 0 0% 100%; /* Foreground content color to use on neutral color */
+
+  --b1: 0 0% 100%; /* Base color of page, used for blank backgrounds */
+  --b2: 210 20% 98%; /* Base color, a little darker */
+  --b3: 216 12% 84%; /* Base color, even more darker */
+  --bc: 215 28% 17%; /* Foreground content color to use on base color */
+
+  --in: 207 90% 54%; /* Info */
+  --su: 174 100% 29%; /* Success */
+  --wa: 36 100% 50%; /* Warning */
+  --er: 14 100% 57%; /* Error */
+}
+
+/* Let's add a second theme */
+[data-theme='dark'] {
+  --b1: 219 14% 28%;
+  --b2: 222 13% 19%;
+  --b3: 223 14% 10%;
+  --bc: 228 14% 93%;
+
+  --n: 222 13% 19%%;
+  --nf: 223 14% 10%%;
+  --nc: 0 0% 100%%;
+
+  --p: 259 94% 61%;
+  --pf: 259 94% 51%;
+}

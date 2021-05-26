@@ -1,105 +1,25 @@
 <template>
-  <div class="relative">
-    <transition name="slide">
-      <div
-        v-if="sidebarToggle"
-        class="h-screen pb-14 w-60 bg-white border-r border-gray-300 relative"
-      >
-        <!-- NOTE Logo Area -->
-        <div class="flex items-center justify-center w-full py-2 bg-gray-50 border-b border-gray-300">
-        <NavLogo />
-        </div>
-        <Sidebar-group>
-          <Sidebar-title>Product</Sidebar-title>
-          <Sidebar-item stage="orders">Orders</Sidebar-item>
-          <Sidebar-item stage="add_or_edit">Add Product</Sidebar-item>
-          <!-- <Sidebar-item stage="product_statistics">Product Statistics</Sidebar-item> -->
-          <Sidebar-divider />
-          <Sidebar-title>User Management</Sidebar-title>
-          <Sidebar-item stage="add_user">Add User</Sidebar-item>
-          <Sidebar-divider />
-          <Sidebar-title>Page</Sidebar-title>
-          <Sidebar-item stage="banner">Banners</Sidebar-item>
-        </Sidebar-group>
-        <div
-          class="w-full h-14 flex items-center justify-center absolute bottom-0 border-t border-gray-300 bg-gray-100"
-        >
-          <button aria-label="Logout" class="px-4 py-1 rounded-xl bg-blue-500 text-white">
-            Logout
-          </button>
-        </div>
-        <button
-          aria-label="Open/Close Sidebar"
-          @click="sidebarToggle = !sidebarToggle"
-          class="w-6 h-6 p-1 absolute bottom-0 -right-3 mb-11 flex items-center justify-center rounded-full ring-2 ring-blue-300 bg-blue-50"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
-            />
-          </svg>
-        </button>
-      </div>
-    </transition>
-    <transition name="slide">
-      <div
-        v-if="!sidebarToggle"
-        class="h-screen w-6 bg-gray-50 border-r border-gray-300 relative"
-      >
-        <div
-          class="flex items-center justify-center w-full h-24 mb-5 bg-gray-100 border-b border-gray-300"
-        ></div>
-        <div
-          class="w-full h-14 flex items-center justify-center absolute bottom-0 border-t border-gray-300 bg-gray-100"
-        ></div>
-        <button
-          @click="sidebarToggle = !sidebarToggle"
-          class="w-6 h-6 p-1 absolute bottom-0 -right-3 mb-11 flex items-center justify-center rounded-full ring-2 ring-blue-300 bg-blue-50"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M13 5l7 7-7 7M5 5l7 7-7 7"
-            />
-          </svg>
-        </button>
-      </div>
-    </transition>
+<div class="rounded-lg shadow bg-base-200 drawer drawer-mobile h-full">
+  <input id="my-drawer-2" type="checkbox" class="drawer-toggle"> 
+  <div class="drawer-content">
+    <nav class="border-b border-gray-300 w-full h-16 bg-white flex justify-between items-center px-4 lg:hidden">
+      <h1>Bran & Tate</h1>
+      <label for="my-drawer-2" class="btn btn-square btn-md drawer-button lg:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </label> 
+    </nav>
+    <slot></slot>
+  </div> 
+  <div class="drawer-side border-r border-gray-300">
+    <label for="my-drawer-2" class="drawer-overlay"></label> 
+    <ul class="menu p-4 w-80 bg-base-100 text-base-content">
+      <Sidebar-item stage="orders">Orders</Sidebar-item>
+      <Sidebar-item stage="add_or_edit">Add Product</Sidebar-item>
+      <Sidebar-item stage="add_user">Add User</Sidebar-item>
+      <Sidebar-item stage="banner">Banners</Sidebar-item>
+    </ul>
   </div>
+</div>
 </template>
-<script>
-import SidebarTitle from './Sidebar-title.vue';
-export default {
-  components: { SidebarTitle },
-  data() {
-    return {
-      sidebarToggle: false,
-    };
-  },
-};
-</script>
-<style scoped>
-.slide-enter-active,
-.slide-leave-active {
-  transition: all 0.15s;
-}
-.slide-enter,
-.slide-leave-active {
-  transform: translateX(-99%);
-}
-</style>

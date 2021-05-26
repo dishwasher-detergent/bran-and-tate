@@ -1,7 +1,8 @@
 <template>
-  <div class="h-screen bg-white text-gray-700 relative flex flex-row">
-    <Sidebar />
-    <Dashboard />
+  <div class="h-screen" data-theme="bt">
+    <Sidebar>
+      <Dashboard />
+    </Sidebar>
   </div>
 </template>
 <script>
