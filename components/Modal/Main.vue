@@ -54,13 +54,13 @@
     <div class="top-0 bottom-0 left-0 right-0 fixed flex flex-col md:flex-row justify-end z-50 bg-gray-900 bg-opacity-10">
 		<div @click='close' class="relative h-1/6 md:h-full w-full"></div>
 		<transition name="slide">
-			<div v-show="secondary" class="relative overflow-hidden h-5/6 md:h-full w-full md:w-96 flex-none flex flex-col rounded-l-xl shadow-t bg-gray-50 border-t border-gray-300"
+			<div v-show="secondary" class="relative overflow-hidden h-5/6 md:h-full w-full md:w-96 flex-none flex flex-col rounded-t-2xl md:rounded-l-2xl md:rounded-t-none shadow-t bg-gray-50 border-t border-gray-300"
 				role="dialog"
 				aria-labelledby="Add To Cart"
 				aria-describedby="Choose what color and how many you want then add to cart"
 			>
 				<section
-				class="w-full h-full pb-20 flex flex-col text-md md:text-xl"
+				class="w-full h-full pb-20 flex flex-col text-md md:text-xl relative"
 				>
 				<div class="w-full h-96 flex-none bg-gray-200 flex items-center justify-center">
 					<button aria-label="Close Modal" @click='close' class="h-6 w-6 absolute top-0 right-0 mt-2 mr-4 ring-1 ring-red-500 p-1 bg-red-200 text-red-500 rounded-full">
@@ -70,36 +70,40 @@
 					</button>
 				<slot name="img"></slot>
 				</div>
-				<div class="w-full h-full p-5 space-y-2 md:space-y-5 overflow-y-scroll relative -mt-10 bg-white rounded-2xl">
-					<h1 class="font-bold text-4xl md:text-5xl">
-						<slot name="header"></slot>
-					</h1>
-					<h3 class="text-2xl md:text-3xl">
-						$<slot name="price"></slot>
-					</h3>
-					<div v-if="colors.length > 0">
-						<h4 class="mb-2 font-bold text-xl md:text-2xl">Colors</h4>
-						<div class="inline-block">
-							<ProductColor
-								:colors="colors"
-							/>
+				<div class="absolute top-0 h-full flex flex-col w-full">
+					<div class="w-full h-96">
+
+					</div>
+					<div style="min-height: 36rem" class="w-full h-full p-5 space-y-2 md:space-y-5 relative -mt-10 bg-white rounded-2xl">
+						<h1 class="font-bold text-4xl md:text-5xl">
+							<slot name="header"></slot>
+						</h1>
+						<h3 class="text-2xl md:text-3xl">
+							$<slot name="price"></slot>
+						</h3>
+						<div v-if="colors.length > 0">
+							<h4 class="mb-2 font-bold text-xl md:text-2xl">Colors</h4>
+							<div class="inline-block">
+								<ProductColor
+									:colors="colors"
+								/>
+							</div>
 						</div>
-					</div>
-					<div>
-						<h4 class="font-bold text-xl md:text-2xl">Description</h4>
-						<p class="break-words">
-							<slot name="description"></slot>
-						</p>
-					</div>
-					<div class="pb-10">
-						<h4 class="font-bold text-xl md:text-2xl">Dimensions</h4>
-						<p>
-							<slot name="size"></slot>
-						</p>
+						<div>
+							<h4 class="font-bold text-xl md:text-2xl">Description</h4>
+							<p class="break-words">
+								<slot name="description"></slot>
+							</p>
+						</div>
+						<div class="pb-10">
+							<h4 class="font-bold text-xl md:text-2xl">Dimensions</h4>
+							<p>
+								<slot name="size"></slot>
+							</p>
+						</div>
 					</div>
 				</div>
 				</section>
-
 				<footer class="w-full h-20 absolute bottom-0 flex">
 				<button
 					type="button"

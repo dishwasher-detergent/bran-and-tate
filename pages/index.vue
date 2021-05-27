@@ -1,7 +1,7 @@
 <template>
-  <div class="px-2 md:px-8">
+  <div class="px-4 md:px-8 space-y-4">
     <BannersBanner/>
-    <section class="w-full h-96 flex items-center justify-center pt-6">
+    <section class="w-full h-96 flex items-center justify-center">
       <div id="landing-banner" class="w-full h-full bg-gray-200 flex items-center justify-center rounded-2xl overflow-hidden ring-1 ring-gray-300">
         <div class="h-full w-full flex items-center justify-center bg-gray-500 bg-opacity-10">
           <h1 class="font-bold text-7xl md:text-9xl text-center">Bran & Tate Co.</h1>
@@ -9,7 +9,7 @@
       </div>
     </section>
     <!-- Sub Nav Bar -->
-    <nav class="navbar mb-2 bg-white ring-1 ring-gray-300 text-neutral-content rounded-box sticky top-0 mt-6 px-3 z-50 shadow">
+    <nav ref="subnav" style="top:-1px;" id="subnav" class="navbar bg-white ring-1 ring-gray-300 text-neutral-content rounded-box sticky top-0 px-3 z-50 shadow">
       <div class="flex-1">
         <div class="form-control w-full md:mr-8">
           <input v-model="search" type="text" placeholder="Search" class="input input-bordered bg-gray-100 text-gray-900">
@@ -84,7 +84,7 @@
       </div>
     </nav>
     <!-- Products -->
-    <section class="w-full py-10">
+    <section class="w-full px-2 md:px-0">
       <div
         class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 items-center justify-items-center gap-5"
       >
@@ -180,6 +180,7 @@ export default {
   mounted(){
     this.getProducts()
     this.getTypes()
+    this.getSticky()
   },
   methods:{
 		removeFromCart(e){
@@ -243,6 +244,15 @@ export default {
         }
       }
       if(in_array > 0) return true
+    },
+    getSticky(){
+      const el = this.$refs.subnav
+      const observer = new IntersectionObserver( 
+        ([e]) => e.target.classList.toggle("is-pinned", e.intersectionRatio < 1),
+        { threshold: [1] }
+      );
+      console.log(observer)
+      observer.observe(el);
     }
   }
 }
@@ -252,5 +262,11 @@ export default {
   background-image: url("~/assets/background.jpg");
   background-position: center;
   background-size: cover;
+}
+#subnav.is-pinned {
+  border-radius: 0px 0px 1rem 1rem !important;
+}
+#subnav {
+  transition: .25s;
 }
 </style>

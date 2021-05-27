@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div v-for="item in data" :key="item.id" class="mt-6">
+		<div v-for="item in data" :key="item.id" class="mt-4">
 			<div :class="'alert alert-' + item.type">
 				<div class="flex-1 flex w-full">
 					<button class="flex-none" aria-label="Delete Banner" v-if="editing" @click="deleteBanner(item.id)">

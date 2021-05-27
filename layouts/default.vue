@@ -1,7 +1,7 @@
 <template>
   <div ref="main" class="min-h-screen relative bg-white" data-theme="bt">
     <nav
-      class="w-full md:h-20 bg-white shadow border-b border-gray-300 relative z-10"
+      class="w-full md:h-20 bg-white border-b border-gray-300 relative z-10"
     >
       <div
         class="mx-auto max-w-7xl px-5 grid grid-cols-1 md:grid-cols-2 items-center justify-items-center md:justify-items-stretch"
@@ -12,7 +12,7 @@
           <div class="dropdown dropdown-hover dropdown-end">
             <div tabindex="0" class="m-1 btn btn-ghost text-gray-900">Location</div>
             <ul class="ring-1 ring-gray-300 shadow menu dropdown-content bg-base-100 rounded-box w-52 text-gray-900 p-2">
-                <h1 class="bg-gray-100 rounded-2xl font-bold">MainStreet MarketPlace</h1>
+                <h1 class="bg-gray-100 rounded-2xl font-bold text-center">MainStreet MarketPlace</h1>
                 <p class="mt-2 text-sm w-full text-center"><b>Address</b></p>
                 <p class="text-left text-sm">429 W Main St, Yukon, OK 73099</p>
                 <p class="mt-2 text-sm w-full text-center"><b>Time</b></p>
@@ -104,7 +104,7 @@ export default {
   },
   methods: {
     footer() {
-      this.$refs.main.style.paddingBottom = this.$refs.footer.clientHeight + "px"
+      this.$refs.main.style.paddingBottom = (this.$refs.footer.clientHeight + 75) / 16 + "rem"
     }
   }
 }
