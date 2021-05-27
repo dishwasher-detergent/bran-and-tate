@@ -70,11 +70,16 @@
 					</button>
 				<slot name="img"></slot>
 				</div>
-				<div class="absolute top-0 h-full flex flex-col w-full">
-					<div class="w-full h-96">
+				<div class="absolute top-0 h-full flex flex-col w-full overflow-y-auto">
+					<div class="w-full h-96 flex-none">
 
 					</div>
-					<div style="min-height: 36rem" class="w-full h-full p-5 space-y-2 md:space-y-5 relative -mt-10 bg-white rounded-2xl">
+					<div style="min-height: 36rem" class="w-full h-full p-5 space-y-2 md:space-y-5 relative -mt-10 bg-white rounded-2xl flex-1">
+						<div class="md:hidden w-full flex items-center justify-center text-gray-500">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+							</svg>
+						</div>
 						<h1 class="font-bold text-4xl md:text-5xl">
 							<slot name="header"></slot>
 						</h1>
