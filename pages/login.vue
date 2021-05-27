@@ -57,7 +57,12 @@ export default {
     async userLogin() {
       this.loading = true
       try {
-        let response = await this.$auth.loginWith('supabase', this.login)
+        let response = await this.$auth.loginWith('supabase', 
+          {
+            email: this.login.email.toLowerCase(),
+            password: this.login.password
+          }
+        )
       } catch (err) {
         this.error = err.message
       }
