@@ -1,8 +1,6 @@
 <template>
-    <div class="p-4 flex flex-col md:flex-row space-y-6 md:space-x-6 md:space-y-0">
-        <div
-            class="p-4 ring-1 ring-gray-300 rounded-2xl overflow-hidden bg-white w-full"
-        >
+    <div class="space-y-6">
+        <WidgetContainer>
             <form @submit.stop.prevent="createBanner" class="space-y-6">
                 <h1 class="font-bold text-3xl pb-8">Banners</h1>
                 <label for="message" class="pb-4 block">
@@ -27,15 +25,13 @@
                     </button>
                 </div>
             </form>
-        </div>
-		<div
-            class="p-4 ring-1 ring-gray-300 rounded-2xl overflow-hidden bg-white w-full"
-        >
+        </WidgetContainer>
+        <WidgetContainer>
             <h1 class="font-bold text-3xl pb-8">Active Banners</h1>
 			<BannersBanner
 				editing="true"
 			/>
-		</div>
+		</WidgetContainer>
     </div>
 </template>
 <script>

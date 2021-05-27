@@ -1,8 +1,6 @@
 <template>
-<div class="p-4 flex flex-col md:flex-row space-y-6 md:space-x-6 md:space-y-0">
-    <div
-      class="p-4 ring-1 ring-gray-300 rounded-2xl overflow-hidden bg-white w-full"
-    >
+<div class="space-y-6">
+    <WidgetContainer>
         <form @submit.stop.prevent="upload" class="space-y-6">
             <div v-if="error" class="alert alert-error">
                 <div class="flex-1">
@@ -94,7 +92,7 @@
             </div> 
             <button aria-label="Add to cart" :class="'btn ' + (success ? 'btn-success' : 'btn-primary') + ' ' + (loading ? 'loading' : '')">{{(success ? 'Added!' : 'Upload Product')}}</button>
         </form>
-    </div>
+    </WidgetContainer>
     <div class="w-full md:w-96">
         <h1 class="text-2xl font-bold mb-4">Preview</h1>
         <ProductItem

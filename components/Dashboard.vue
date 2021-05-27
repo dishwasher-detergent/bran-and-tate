@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full h-screen p-5 overflow-y-auto">
-    <div>
+  <div class="w-full h-screen p-5">
+    <div class="pb-4 md:p-4 flex flex-col md:flex-row space-y-6 md:space-x-6 md:space-y-0">
       <WidgetAdd v-if='layout == "add_or_edit"'/>
       <WidgetUser v-if='layout == "add_user"'/>
       <WidgetBanner v-if='layout == "banner"'/>
