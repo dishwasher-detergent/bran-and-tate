@@ -6,7 +6,10 @@
       <div
         class="mx-auto max-w-7xl h-full px-5 grid grid-cols-1 md:grid-cols-2 items-center justify-items-center md:justify-items-stretch"
       >
-        <NavLogo />
+        
+        <nuxt-link to="/">
+          <NavLogo />
+        </nuxt-link>
         <div class="flex flex-row items-center justify-end space-between h-16 md:h-full">
           <nuxt-link to="/" class="btn btn-ghost">Shop</nuxt-link>
           <div class="dropdown dropdown-hover dropdown-end">
@@ -32,12 +35,12 @@
     </nav>
     <Nuxt />
     <footer ref="footer" class="text-gray-600 bg-gray-50 border-t border-gray-300 body-font absolute bottom-0 w-full">
-      <div class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
+      <div class="container px-5 py-16 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
         <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-          <a class="flex title-font font-medium items-center md:justify-start justify-center">
+          <nuxt-link to="/" class="flex title-font font-medium items-center md:justify-start justify-center">
             <NavLogo />
-            <span class="ml-3 text-xl">Bran & Tate</span>
-          </a>
+          </nuxt-link>
+          <p class="mt-2 text-xl font-bold">Bran & Tate</p>
           <p class="mt-2 text-sm text-gray-500">Custom Home Decor</p>
         </div>
         <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
