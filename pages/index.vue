@@ -21,12 +21,12 @@
       </div>
       <div class="flex-none">
         <div class="dropdown dropdown-hover dropdown-end">
-          <div tabindex="0" class="m-1 btn btn-square btn-ghost">
+          <div tabindex="0" class="m-1 btn btn-square btn-ghost text-gray-800">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
             </svg> 
           </div> 
-          <ul class="ring-1 ring-gray-300 shadow menu dropdown-content bg-base-100 rounded-box w-5 p-2">
+          <ul class="ring-1 ring-gray-300 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2">
             <div class="form-control">
               <label class="cursor-pointer label" v-for="sort in sort_list" :key="sort.id">
                 <span class="label-text">{{sort.title}}</span> 
@@ -41,7 +41,7 @@
       </div> 
       <div class="flex-none">
         <div class="dropdown dropdown-hover dropdown-end">
-          <div tabindex="0" class="m-1 btn btn-square btn-ghost">
+          <div tabindex="0" class="m-1 btn btn-square btn-ghost text-gray-800">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
             </svg>  
@@ -61,7 +61,7 @@
       </div>
       <div class="flex-none">
         <div class="dropdown dropdown-hover dropdown-end">
-          <nuxt-link to="/cart" class="btn btn-square btn-ghost relative">
+          <nuxt-link to="/cart" class="btn btn-square btn-ghost relative text-gray-800">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
