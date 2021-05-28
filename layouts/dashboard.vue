@@ -10,7 +10,7 @@
     middleware: 'auth'
   }
 </script>
-<style>
+<style scoped>
 html {
   font-family:
     'Source Sans Pro',

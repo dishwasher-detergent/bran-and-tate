@@ -4,14 +4,14 @@
       class="w-full md:h-20 bg-white border-b border-gray-300 relative z-10"
     >
       <div
-        class="mx-auto max-w-7xl px-5 grid grid-cols-1 md:grid-cols-2 items-center justify-items-center md:justify-items-stretch"
+        class="mx-auto max-w-7xl h-full px-5 grid grid-cols-1 md:grid-cols-2 items-center justify-items-center md:justify-items-stretch"
       >
         <NavLogo />
         <div class="flex flex-row items-center justify-end space-between h-16 md:h-full">
           <nuxt-link to="/" class="btn btn-ghost">Shop</nuxt-link>
           <div class="dropdown dropdown-hover dropdown-end">
-            <div tabindex="0" class="m-1 btn btn-ghost text-gray-900">Location</div>
-            <ul class="ring-1 ring-gray-300 shadow menu dropdown-content bg-base-100 rounded-box w-52 text-gray-900 p-2">
+            <div tabindex="0" class="m-1 btn btn-ghost">Location</div>
+            <ul class="ring-1 ring-gray-300 shadow menu dropdown-content bg-base-100 rounded-box w-5 p-2">
                 <h1 class="bg-gray-100 rounded-2xl font-bold text-center">MainStreet MarketPlace</h1>
                 <p class="mt-2 text-sm w-full text-center"><b>Address</b></p>
                 <p class="text-left text-sm">429 W Main St, Yukon, OK 73099</p>
@@ -34,7 +34,7 @@
     <footer ref="footer" class="text-gray-600 bg-gray-50 border-t border-gray-300 body-font absolute bottom-0 w-full">
       <div class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
         <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-          <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+          <a class="flex title-font font-medium items-center md:justify-start justify-center">
             <NavLogo />
             <span class="ml-3 text-xl">Bran & Tate</span>
           </a>
@@ -42,7 +42,7 @@
         </div>
         <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
           <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-            <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">Admin</h2>
+            <h2 class="title-font font-medium tracking-widest text-sm mb-3">Admin</h2>
             <nav class="list-none mb-10">
               <li v-if="this.$auth.loggedIn">
                 <nuxt-link to="/Dashboard" class="text-gray-600 hover:text-gray-800">Dashboard</nuxt-link>
@@ -120,7 +120,7 @@ html {
     'Helvetica Neue',
     Arial,
     sans-serif;
-    @apply text-gray-900;
+    @apply text-gray-800;
 }
 h1 {
   font-family: 'Playfair Display', serif;

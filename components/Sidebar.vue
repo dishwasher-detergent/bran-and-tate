@@ -15,7 +15,11 @@
   <div class="drawer-side border-r border-gray-300">
     <label for="my-drawer-2" class="drawer-overlay"></label>
     <ul class="menu p-4 w-80 bg-base-100 text-base-content space-y-2">
-      <Logo />
+      <div class="w-full flex items-center justify-center">
+        <nuxt-link to="/">
+          <NavLogo />
+        </nuxt-link>
+      </div>
       <Sidebar-item stage="orders">
         <span class="mr-4">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

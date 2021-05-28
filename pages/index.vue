@@ -1,28 +1,32 @@
 <template>
   <div class="px-4 md:px-8 space-y-4">
     <BannersBanner/>
-    <section class="w-full h-96 flex items-center justify-center">
+    <section class="max-w-7xl mx-auto h-96 flex items-center justify-center">
       <div id="landing-banner" class="w-full h-full bg-gray-200 flex items-center justify-center rounded-2xl overflow-hidden ring-1 ring-gray-300">
-        <div class="h-full w-full flex items-center justify-center bg-gray-500 bg-opacity-10">
-          <h1 class="font-bold text-7xl md:text-9xl text-center">Bran & Tate Co.</h1>
+        <div class="h-full w-full flex flex-col items-center justify-center bg-gray-200 bg-opacity-50">
+          <h1 class="font-black text-7xl md:text-9xl text-center">Bran & Tate Co.</h1>
+          <h2 class="text-2xl md:text-3xl text-center">
+            Creating Unique Decor for your Home.
+          </h2>
+          <!-- <Logo/> -->
         </div>
       </div>
     </section>
     <!-- Sub Nav Bar -->
-    <nav ref="subnav" style="top:-1px;" id="subnav" class="navbar bg-white ring-1 ring-gray-300 text-neutral-content rounded-box sticky top-0 px-3 z-50 shadow">
+    <nav ref="subnav" style="top:-1px;" id="subnav" class="max-w-7xl mx-auto navbar bg-white ring-1 ring-gray-300 text-neutral-content rounded-box sticky top-0 px-3 z-50 shadow">
       <div class="flex-1">
         <div class="form-control w-full md:mr-8">
-          <input v-model="search" type="text" placeholder="Search" class="input input-bordered bg-gray-100 text-gray-900">
+          <input v-model="search" type="text" placeholder="Search" class="input input-bordered bg-gray-100">
         </div>
       </div>
       <div class="flex-none">
         <div class="dropdown dropdown-hover dropdown-end">
-          <div tabindex="0" class="m-1 btn btn-square btn-ghost text-gray-900">
+          <div tabindex="0" class="m-1 btn btn-square btn-ghost">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
             </svg> 
           </div> 
-          <ul class="ring-1 ring-gray-300 shadow menu dropdown-content bg-base-100 rounded-box w-52 text-gray-900 p-2">
+          <ul class="ring-1 ring-gray-300 shadow menu dropdown-content bg-base-100 rounded-box w-5 p-2">
             <div class="form-control">
               <label class="cursor-pointer label" v-for="sort in sort_list" :key="sort.id">
                 <span class="label-text">{{sort.title}}</span> 
@@ -37,12 +41,12 @@
       </div> 
       <div class="flex-none">
         <div class="dropdown dropdown-hover dropdown-end">
-          <div tabindex="0" class="m-1 btn btn-square btn-ghost text-gray-900">
+          <div tabindex="0" class="m-1 btn btn-square btn-ghost">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
             </svg>  
           </div> 
-          <ul class="ring-1 ring-gray-300 shadow menu dropdown-content bg-base-100 rounded-box w-52 text-gray-900 p-2">
+          <ul class="ring-1 ring-gray-300 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2">
             <div class="form-control">
               <label class="cursor-pointer label" v-for="type in types" :key="type.id">
                 <span class="label-text">{{type}}</span> 
@@ -57,13 +61,13 @@
       </div>
       <div class="flex-none">
         <div class="dropdown dropdown-hover dropdown-end">
-          <nuxt-link to="/cart" class="btn btn-square btn-ghost relative text-gray-900">
+          <nuxt-link to="/cart" class="btn btn-square btn-ghost relative">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
             <div class="top-0 right-0 absolute px-1.5 h-5 flex items-center justify-center text-sm bg-red-500 text-white text-bold rounded-full ">{{cart.length}}</div>
           </nuxt-link>
-          <ul v-if="cart.length" class="ring-1 ring-gray-300 shadow menu dropdown-content bg-base-100 rounded-box w-52 text-gray-900 p-2">
+          <ul v-if="cart.length" class="ring-1 ring-gray-300 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2">
             <div class="form-control">
               <div class="cursor-pointer label" v-for="item in cart" :key="item.id">
                 <div class="w-full py-2 px-4 rounded-2xl bg-gray-100">
