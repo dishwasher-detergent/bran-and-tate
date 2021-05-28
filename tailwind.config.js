@@ -15,7 +15,8 @@ module.exports = {
         ],
         options: {
             safelist: [
-                /data-theme$/,
+                'alert-warning',
+                'alert-info'
             ]
         },
     },
