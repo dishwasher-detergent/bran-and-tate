@@ -8,14 +8,16 @@ export default async (req, res) => {
 		stripe.checkout.sessions.listLineItems(
 			sessions.data[i].id,
 		function(err, lineItems) {
-			order.push({
-				information: {
-					id: sessions.data[i].id,
-					shipping: sessions.data[i].shipping,
-					total: sessions.data[i].amount_total
-				},
-				items: lineItems.data
-			})
+			if(err) return res.status(200).json(err)
+			else return res.status(200).json(lineItems)
+			// order.push({
+			// 	information: {
+			// 		id: sessions.data[i].id,
+			// 		shipping: sessions.data[i].shipping,
+			// 		total: sessions.data[i].amount_total
+			// 	},
+			// 	items: lineItems.data
+			// })
 		});
 	}
 	return res.status(200).json(order)
