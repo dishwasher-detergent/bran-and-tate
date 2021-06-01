@@ -4,7 +4,7 @@ export default async (req, res) => {
 	const event = req.body
 	await stripe.checkout.sessions.listLineItems(
 		event.data.object.id,
-		function(err, lineItems) {
+		async function(err, lineItems) {
 			try{
 				await this.$supabase
 				.from('orders')
