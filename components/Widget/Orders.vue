@@ -1,6 +1,6 @@
 <template>
   <WidgetContainer>
-    <button @click="retrieve_orders" class="btn btn-primary">Fetch</button>
+    <button @click="retrieve_orders" class="btn btn-primary">Fetch Orders</button>
     {{ data }}
   </WidgetContainer>
 </template>
