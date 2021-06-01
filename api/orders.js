@@ -5,6 +5,7 @@ export default async (req, res) => {
 	stripe.checkout.sessions.listLineItems(
 		event.data.object.id,
 		function(err, lineItems) {
+			console.log(err)
 			console.log(lineItems)
 		}
 	)
