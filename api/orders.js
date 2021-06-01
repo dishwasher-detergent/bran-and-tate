@@ -1,12 +1,11 @@
 const stripe = require('stripe')(process.env.NUXT_STRIPE_SECRET_KEY)
 
 export default async (req, res) => {
-	let order = []
   	const sessions = await stripe.checkout.sessions.list({})
 //   return res.status(200).json(sessions)
 	for(let i = 0; i < sessions.data.length; i++){
 		stripe.checkout.sessions.listLineItems(
-			sessions.data[i].id,
+			'"' + sessions.data[i].id + '"',
 		function(err, lineItems) {
 			if(err) return res.status(200).json(err)
 			else return res.status(200).json(lineItems)
@@ -20,5 +19,5 @@ export default async (req, res) => {
 			// })
 		});
 	}
-	return res.status(200).json(sessions.data[0])
+	return res.status(200).json(sessions.data.length)
 }
