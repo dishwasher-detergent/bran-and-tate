@@ -18,7 +18,7 @@ export default async (req, res) => {
 					order_id: event.data.object.id,
 					shipping: event.data.object.shipping,
 					payment_status: event.data.object.payment_status,
-					line_items: lineItems
+					line_items: lineItems.data
 				},
 			])
 
