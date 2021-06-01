@@ -1,4 +1,4 @@
 export default async (req, res) => {
 	console.log(req.body)
-	return
+	return res.status(200)
 }
