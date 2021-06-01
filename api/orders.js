@@ -20,5 +20,5 @@ export default async (req, res) => {
 			// })
 		});
 	}
-	return res.status(200).json(sessions)
+	return res.status(200).json(sessions.data[0])
 }
