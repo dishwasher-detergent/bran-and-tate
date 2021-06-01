@@ -1,6 +1,6 @@
 export default async (req, res) => {
 	const event = req.body
-	console.log(event)
+	console.log(event.data.object)
 	return res.status(200).json({received: true})
 
 	try{
