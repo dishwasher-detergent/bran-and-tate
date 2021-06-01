@@ -1,7 +1,8 @@
 export default async (req, res) => {
-	console.log(req)
+	const event = req.body
+	console.log(event.data.object)
 	return res.status(200).json({received: true})
-	
+
 	try{
 		const { data, error } = await this.$supabase
 		.from('orders')
