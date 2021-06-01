@@ -1,7 +1,10 @@
 <template>
   <WidgetContainer>
     <button @click="retrieve_orders" class="btn btn-primary">Fetch Orders</button>
-    {{ data }}
+    <p>{{ data.length }}</p>
+	<div>
+	{{ data }}
+	</div>
   </WidgetContainer>
 </template>
 <script>
