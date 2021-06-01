@@ -1,3 +1,3 @@
 export default async (req, res) => {
-	console.log(req)
+	console.log(req.body)
 }
