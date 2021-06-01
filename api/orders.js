@@ -10,21 +10,21 @@ export default async (req, res) => {
 			line = lineItems
 		}
 	);
-
-	try{
-		const { data, error } = await this.$supabase
-		.from('orders')
-		.insert([
-			{ 
-				order_id: event.data.object.id,
-				shipping: event.data.object.shipping,
-				payment_status: event.data.object.payment_status,
-				line_items: line
-			},
-		])
-		if(!error) return res.status(200).json({received: true})
-		throw error
-	} catch(error){
-		return res.status(200).json({received: false})
-	}
+	return res.status(200).json({received: true})
+	// try{
+	// 	const { data, error } = await this.$supabase
+	// 	.from('orders')
+	// 	.insert([
+	// 		{ 
+	// 			order_id: event.data.object.id,
+	// 			shipping: event.data.object.shipping,
+	// 			payment_status: event.data.object.payment_status,
+	// 			line_items: line
+	// 		},
+	// 	])
+	// 	if(!error) return res.status(200).json({received: true})
+	// 	throw error
+	// } catch(error){
+	// 	return res.status(200).json({received: false})
+	// }
 }
