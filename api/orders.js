@@ -1,3 +1,3 @@
 export default async (req, res) => {
-	return res.status(200).json(req.body)
+	return res.status(200).json({received: true})
 }
