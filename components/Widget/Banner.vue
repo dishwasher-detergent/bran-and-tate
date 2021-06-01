@@ -1,5 +1,5 @@
 <template>
-    <div class="space-y-6">
+    <div class="space-y-6 md:space-y-0 space-x-0 md:space-x-6 flex flex-col md:flex-row w-full">
         <WidgetContainer>
             <form @submit.stop.prevent="createBanner" class="space-y-6">
                 <h1 class="font-bold text-3xl pb-8">Banners</h1>

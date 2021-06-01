@@ -1,6 +1,6 @@
 <template>
-<div class="space-y-6">
-    <WidgetContainer>
+<div class="space-y-6 md:space-y-0 space-x-0 md:space-x-6 flex flex-col md:flex-row w-full">
+    <WidgetContainer class="flex-1">
         <form @submit.stop.prevent="upload" class="space-y-6">
             <div v-if="error" class="alert alert-error">
                 <div class="flex-1">
@@ -58,7 +58,7 @@
             </div>
             <div tabindex="0" class="collapse w-full md:w-96 rounded-box border border-base-300 collapse-arrow">
                 <input type="checkbox">
-                <div class="collapse-title text-xl font-medium">
+                <div class="collapse-title text-lg">
                     Colors
                 </div> 
                 <div class="collapse-content"> 
@@ -75,7 +75,7 @@
             </div> 
             <div tabindex="2" class="collapse w-full md:w-96 rounded-box border border-base-300 collapse-arrow">
                 <input type="checkbox">
-                <div class="collapse-title text-xl font-medium">
+                <div class="collapse-title text-lg">
                     Type
                 </div> 
                 <div class="collapse-content"> 
@@ -93,7 +93,7 @@
             <button aria-label="Add to cart" :class="'btn ' + (success ? 'btn-success' : 'btn-primary') + ' ' + (loading ? 'loading' : '')">{{(success ? 'Added!' : 'Upload Product')}}</button>
         </form>
     </WidgetContainer>
-    <div class="w-full md:w-96">
+    <div class="w-full md:w-96 flex-none">
         <h1 class="text-2xl font-bold mb-4">Preview</h1>
         <ProductItem
             :title="title"
