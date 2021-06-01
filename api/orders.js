@@ -4,7 +4,7 @@ export default async (req, res) => {
 	let order = []
   	const sessions = await stripe.checkout.sessions.list({})
 //   return res.status(200).json(sessions)
-	for(let i = 0; i < sessions.length; i++){
+	for(let i = 0; i < sessions.data.length; i++){
 		stripe.checkout.sessions.listLineItems(
 			sessions.data[i].id,
 		function(err, lineItems) {
