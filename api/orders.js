@@ -1,14 +1,25 @@
+const stripe = require("stripe")(process.env.NUXT_STRIPE_SECRET_KEY);
+
 export default async (req, res) => {
 	const event = req.body
-	console.log(event.data.object)
-	return res.status(200).json({received: true})
+	const line;
+	stripe.checkout.sessions.listLineItems(
+		event.data.object.id,
+		function(err, lineItems) {
+			if(err) return res.status(200).json({received: false})
+			line = lineItems
+		}
+	);
 
 	try{
 		const { data, error } = await this.$supabase
 		.from('orders')
 		.insert([
 			{ 
-				
+				order_id: event.data.object.id,
+				shipping: event.data.object.shipping,
+				payment_status: event.data.object.payment_status,
+				line_items: line
 			},
 		])
 		if(!error) return res.status(200).json({received: true})
