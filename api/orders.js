@@ -9,14 +9,12 @@ export default async (req, res) => {
 			sessions[i].data.id,
 		function(err, lineItems) {
 			order.push({
-				order: {
-					information: {
-						id: sessions[i].data.id,
-						shipping: sessions[i].data.shipping,
-						total: sessions[i].data.amount_total
-					},
-					items: lineItems.data
-				}
+				information: {
+					id: sessions[i].data.id,
+					shipping: sessions[i].data.shipping,
+					total: sessions[i].data.amount_total
+				},
+				items: lineItems.data
 			})
 		});
 	}
