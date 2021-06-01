@@ -19,7 +19,7 @@ export default async (req, res) => {
 				if(!error) return res.status(200).json({received: true})
 				throw error
 			} catch(error){
-				return res.status(200).json({received: false})
+				return res.status(200).json({received: error})
 			}
 		}
 	)
