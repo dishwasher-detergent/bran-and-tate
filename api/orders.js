@@ -6,7 +6,7 @@ export default async (req, res) => {
 		event.data.object.id,
 		async function(err, lineItems) {
 			try{
-				await this.$supabase
+				const { data, error } =  await this.$supabase
 				.from('orders')
 				.insert([
 					{ 
