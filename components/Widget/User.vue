@@ -1,6 +1,6 @@
 <template>
   <WidgetContainer>
-    <form @submit.stop.prevent="createUser" class="h-full w-full md:w-1/3 p-4 md:p-16">
+    <form @submit.stop.prevent="createUser" class="h-full w-full md:w-lg max-w-lg p-4 md:p-16">
         <h1 class="font-bold text-3xl pb-8">Create Account</h1>
         <label for="username" class="pb-4 block">
             <p class="pb-4">Email</p>

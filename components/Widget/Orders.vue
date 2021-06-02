@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col w-full space-y-4">
-    <nav ref="subnav" style="top:-1px;" id="subnav" class="w-full navbar bg-white ring-1 ring-gray-300 text-neutral-content rounded-box sticky top-0 px-3 z-50 justify-end">
+    <nav ref="subnav" style="top:-1px;" id="subnav" class="w-full navbar bg-white ring-1 ring-gray-300 text-neutral-content rounded-box px-3 z-20 justify-end">
       <div class="flex-none">
         <div class="dropdown dropdown-hover dropdown-end">
           <div tabindex="0" class="m-1 btn btn-square btn-ghost text-gray-800">
