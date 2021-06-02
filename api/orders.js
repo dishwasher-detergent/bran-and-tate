@@ -8,6 +8,7 @@ const supabase = createClient(supabaseUrl, supabaseKey)
 
 export default async (req, res) => {
 	const event = req.body
+	console.log(event)
 	await stripe.checkout.sessions.listLineItems(
 		event.data.object.id,
 		async function(err, lineItems) {
