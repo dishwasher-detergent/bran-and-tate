@@ -8,7 +8,6 @@ const supabase = createClient(supabaseUrl, supabaseKey)
 
 export default async (req, res) => {
 	const event = req.body
-	console.log(event)
 	await stripe.checkout.sessions.listLineItems(
 		event.data.object.id,
 		async function(err, lineItems) {
@@ -31,6 +30,7 @@ async function set_order(event){
 		{ 
 			order_id: event.data.object.id,
 			shipping: event.data.object.shipping,
+			contact: event.data.object.customer_details.email,
 			payment_status: event.data.object.payment_status,
 		},
 	])

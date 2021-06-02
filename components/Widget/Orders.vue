@@ -48,9 +48,18 @@
           <div :class="(order.completed ? 'bg-green-100' : 'bg-gray-100') + ' ring-1 ring-gray-300 rounded-t-2xl p-4 flex flex-col md:flex-row'">
             <div class="flex flex-col flex-1">
               <p class="text-gray-600 text-xs font-bold">Order # {{order.id}}</p>
-              <p class="font-bold text-lg">{{order.shipping.name}}</p>
-              <p>{{order.shipping.address.line1}}, {{order.shipping.address.line2}}</p>
-              <p>{{order.shipping.address.city}}, {{order.shipping.address.state}} {{order.shipping.address.postal_code}}</p>
+              <div class="flex flex-col md:flex-row">
+                <div class="pt-4 md:pt-0 md:pr-6">
+                  <h4 class="text-gray-600 text-xs font-bold">Shipping</h4>
+                  <p class="font-bold text-lg">{{order.shipping.name}}</p>
+                  <p>{{order.shipping.address.line1}}, {{order.shipping.address.line2}}</p>
+                  <p>{{order.shipping.address.city}}, {{order.shipping.address.state}} {{order.shipping.address.postal_code}}</p>
+                </div>
+                <div>
+                  <h4 class="text-gray-600 text-xs font-bold">Contact</h4>
+                  <p>{{order.details}}</p>
+                </div>
+              </div>
             </div>
             <div v-if="order.completed" class="flex items-center justify-center">
               <h3 class="font-bold text-2xl text-green-600">Completed</h3>
