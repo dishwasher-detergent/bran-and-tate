@@ -11,8 +11,12 @@ export default async (req, res) => {
 	await stripe.checkout.sessions.listLineItems(
 		event.data.object.id,
 		async function(err, lineItems) {
-			if(!await set_order(event)) return res.status(200).json({received: 'error'})
-			if(!await set_lineitems(event,lineItems)) return res.status(200).json({received: 'error'})
+
+			let order = await set_order(event)
+			if(order != true) return res.status(200).json({received: order})
+
+			let line_items = await set_lineitems(event,lineItems)
+			if(line_items != true) return res.status(200).json({received: line_items})
 
 			return res.status(200).json({received: true})
 		}
@@ -29,13 +33,13 @@ async function set_order(event){
 			payment_status: event.data.object.payment_status,
 		},
 	])
-	if(error) return false
+	if(error) return error
 	else return true
 }
 
 async function set_lineitems(event,lineItems){
 	let line = []
-	for(let i = 0; i < lineItems.length; i++){
+	for(let i = 0; i < lineItems.data.length; i++){
 		line.push({
 			order_id: event.data.object.id, 
 			item_name: lineItems.data[i].description,
@@ -49,6 +53,6 @@ async function set_lineitems(event,lineItems){
 	.insert([
 		line.join()
 	])
-	if(error) return false
+	if(error) return error
 	else return true
 }
