@@ -255,7 +255,6 @@ export default {
         ([e]) => e.target.classList.toggle("is-pinned", e.intersectionRatio < 1),
         { threshold: [1] }
       );
-      console.log(observer)
       observer.observe(el);
     }
   }

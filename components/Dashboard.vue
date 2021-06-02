@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       title: "",
-      layout: 'add_or_edit',
+      layout: 'orders',
     };
   },
   watch: {

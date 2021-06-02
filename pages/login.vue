@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <form @submit.stop.prevent="userLogin" class="h-full w-full md:w-1/3 p-4 md:p-16">
+        <form @submit.stop.prevent="userLogin" class="h-full w-full md:w-lg max-w-lg p-4 md:p-16">
             <div class="w-full h-full rounded-2xl shadow ring-1 ring-gray-300 p-8 bg-white">
                 <h1 class="font-bold text-3xl pb-8">Log In</h1>
                 <div v-if="error" class="alert alert-error">
