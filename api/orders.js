@@ -11,19 +11,36 @@ export default async (req, res) => {
 	await stripe.checkout.sessions.listLineItems(
 		event.data.object.id,
 		async function(err, lineItems) {
-			const { data, error } =  await supabase
+			let { data, error } =  await supabase
 			.from('orders')
 			.insert([
 				{ 
 					order_id: event.data.object.id,
 					shipping: event.data.object.shipping,
 					payment_status: event.data.object.payment_status,
-					line_items: lineItems.data
 				},
 			])
-
 			if(error) return res.status(200).json({received: error})
-			else return res.status(200).json({received: true})
+			
+			let line = [];
+
+			for(let i = 0; i < lineItems.length; i++){
+				line.push({
+					order_id: event.data.object.id, 
+					item_name: lineItems.data[i].description,
+					quantity: lineItems.data[i].quantity,
+					completed: false
+				})
+			}
+
+			let { info, err } =  await supabase
+			.from('line_item')
+			.insert([
+				line.join()
+			])
+			if(err) return res.status(200).json({received: err})
+
+			return res.status(200).json({received: true})
 		}
 	)
 }
