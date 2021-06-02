@@ -24,7 +24,7 @@ export default async (req, res) => {
 }
 
 async function set_order(event){
-	let { data, error } =  await supabase
+	const { data, error } =  await supabase
 	.from('orders')
 	.insert([
 		{ 
@@ -48,7 +48,10 @@ async function set_lineitems(event,lineItems){
 		})
 	}
 
-	let { data, error } =  await supabase
+	console.log(line)
+	console.log(line.join())
+
+	const { data, error } = await supabase
 	.from('line_item')
 	.insert([
 		line.join()
