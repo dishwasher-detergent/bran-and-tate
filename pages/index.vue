@@ -71,7 +71,7 @@
             <div class="form-control">
               <div class="cursor-pointer label" v-for="item in cart" :key="item.id">
                 <div class="w-full py-2 px-4 rounded-2xl bg-gray-100">
-                  <p class="flex w-full">
+                  <p class="flex w-full text-gray-700">
                     <span class="flex-none font-bold">{{item.quantity}}</span>
                     <span class="px-1 truncate flex-1">{{item.name}}</span>
                     <button class="flex-none text-red-500 btn btn-ghost btn-square btn-xs" @click="removeFromCart(item.id)">

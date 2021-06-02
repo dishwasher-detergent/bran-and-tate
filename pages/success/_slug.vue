@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-7xl mx-auto flex flex-col space-y-4 pt-6">
     <h1 class="font-bold text-xl pb-2">Your Order Contents:</h1>
-    <WidgetContainer>
+    <WidgetContainer v-if="data">
       <div v-for="order in data" :key="order.id" class="mb-4">
         <div class="flex flex-col">
           <div :class="(order.completed ? 'bg-green-100' : 'bg-gray-100') + ' ring-1 ring-gray-300 rounded-t-2xl p-4 flex flex-col md:flex-row'">
@@ -38,6 +38,9 @@
         </div>
       </div>
     </WidgetContainer>
+    <div v-else>
+      Loading
+    </div>
   </div>
 </template>
 <script>
@@ -47,6 +50,15 @@ export default {
       data: '',
       lineItem: '',
     }
+  },
+  created(){
+    this.$supabase
+    .from('products')
+    .on('*', payload => {
+      this.retrieve_orders()
+      this.retrieve_lineItems()
+    })
+    .subscribe()
   },
   async mounted() {
     await this.retrieve_orders()
