@@ -11,12 +11,8 @@ export default async (req, res) => {
 	await stripe.checkout.sessions.listLineItems(
 		event.data.object.id,
 		async function(err, lineItems) {
-			await set_order(event)
-			await set_lineitems(event,lineItems)
-			let line = [];
-
-			
-			if(err) return res.status(200).json({received: err})
+			if(!await set_order(event)) return res.status(200).json({received: 'error'})
+			if(!await set_lineitems(event,lineItems)) return res.status(200).json({received: 'error'})
 
 			return res.status(200).json({received: true})
 		}
@@ -33,6 +29,8 @@ async function set_order(event){
 			payment_status: event.data.object.payment_status,
 		},
 	])
+	if(error) return false
+	else return true
 }
 
 async function set_lineitems(event,lineItems){
@@ -46,9 +44,11 @@ async function set_lineitems(event,lineItems){
 		})
 	}
 
-	let { info, err } =  await supabase
+	let { data, error } =  await supabase
 	.from('line_item')
 	.insert([
 		line.join()
 	])
+	if(error) return false
+	else return true
 }
