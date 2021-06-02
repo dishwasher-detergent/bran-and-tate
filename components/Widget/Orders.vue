@@ -47,9 +47,10 @@
         <div class="flex flex-col">
           <div :class="(order.completed ? 'bg-green-100' : 'bg-gray-100') + ' ring-1 ring-gray-300 rounded-t-2xl p-4 flex flex-col md:flex-row'">
             <div class="flex flex-col flex-1">
-              <p class="text-gray-600 text-xs font-bold">Order # {{order.id}}</p>
+              <p class="text-gray-500 text-xs font-bold"> {{order.timestamp}}</p>
+              <p class="text-gray-600 text-xs font-bold pb-4">Order # {{order.id}}</p>
               <div class="flex flex-col md:flex-row">
-                <div class="pt-4 md:pt-0 md:pr-6">
+                <div class="pt-4 md:pt-0 md:pr-8">
                   <h4 class="text-gray-600 text-xs font-bold">Shipping</h4>
                   <p class="font-bold text-lg">{{order.shipping.name}}</p>
                   <p>{{order.shipping.address.line1}}, {{order.shipping.address.line2}}</p>
@@ -57,7 +58,7 @@
                 </div>
                 <div>
                   <h4 class="text-gray-600 text-xs font-bold">Contact</h4>
-                  <p>{{order.details}}</p>
+                  <p>{{order.contact}}</p>
                 </div>
               </div>
             </div>
@@ -91,7 +92,7 @@
         </div>
       </div>
       <div v-if="data.length == 0">
-        <h2 class="font-bold text-center text-2xl">There are no incomplete orders.</h2>
+        <h2 class="font-bold text-center text-2xl">There are no orders.</h2>
       </div>
     </WidgetContainer>
   </div>
@@ -122,7 +123,7 @@ export default {
           }
         }
       ],
-      sorted: 'new_to_old',
+      sorted: 'old_to_new',
     }
   },
   async mounted() {
