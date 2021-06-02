@@ -12,7 +12,7 @@ export default {
 	],
 	data(){
 		return{
-			layout: 'add_or_edit'
+			layout: 'orders'
 		}
 	},
 	watch: {
