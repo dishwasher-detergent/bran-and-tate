@@ -48,14 +48,11 @@ async function set_lineitems(event,lineItems){
 		})
 	}
 
-	console.log(line)
-	console.log(line.join())
-
 	const { data, error } = await supabase
 	.from('line_item')
-	.insert([
-		line.join()
-	])
+	.insert(
+		line
+	)
 	if(error) return error
 	else return true
 }
