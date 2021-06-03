@@ -1,6 +1,7 @@
 const ImageKit = require("imagekit");
 
 export default async (req, res) => {
+    console.log(req)
     const imagekit = new ImageKit({
         urlEndpoint: "https://ik.imagekit.io/branandtate/",
         publicKey: "public_3C3ZlEJz6tKgVa6Glcpb7YSQXe8=",

@@ -4,19 +4,27 @@
     <WidgetContainer v-if="data">
       <div v-for="order in data" :key="order.id" class="mb-4">
         <div class="flex flex-col">
-          <div :class="(order.completed ? 'bg-green-100' : 'bg-gray-100') + ' ring-1 ring-gray-300 rounded-t-2xl p-4 flex flex-col md:flex-row'">
+          <div
+            :class="
+              (order.completed ? 'bg-green-100' : 'bg-gray-100') +
+              ' ring-1 ring-gray-300 rounded-t-2xl p-4 flex flex-col md:flex-row'
+            "
+          >
             <div class="flex flex-col flex-1">
-              <p class="text-gray-500 text-xs font-bold"> {{order.timestamp}}</p>
+              <p class="text-gray-500 text-xs font-bold">{{ order.timestamp }}</p>
               <div class="flex flex-col md:flex-row">
                 <div class="pt-4 md:pt-0 md:pr-8">
                   <h4 class="text-gray-600 text-xs font-bold">Shipping</h4>
-                  <p class="font-bold text-lg">{{order.shipping.name}}</p>
-                  <p>{{order.shipping.address.line1}}, {{order.shipping.address.line2}}</p>
-                  <p>{{order.shipping.address.city}}, {{order.shipping.address.state}} {{order.shipping.address.postal_code}}</p>
+                  <p class="font-bold text-lg">{{ order.shipping.name }}</p>
+                  <p>{{ order.shipping.address.line1 }}, {{ order.shipping.address.line2 }}</p>
+                  <p>
+                    {{ order.shipping.address.city }}, {{ order.shipping.address.state }}
+                    {{ order.shipping.address.postal_code }}
+                  </p>
                 </div>
                 <div>
                   <h4 class="text-gray-600 text-xs font-bold">Contact</h4>
-                  <p>{{order.contact}}</p>
+                  <p>{{ order.contact }}</p>
                 </div>
               </div>
             </div>
@@ -29,8 +37,8 @@
             <div v-for="item in lineItem" :key="item.id">
               <div v-if="item.order_id == order.order_id" class="flex w-full">
                 <div class="flex-1">
-                  <p class="font-bold text-xl">{{item.item_name}}</p>
-                  <p>Quantity: {{item.quantity}}</p>
+                  <p class="font-bold text-xl">{{ item.item_name }}</p>
+                  <p>Quantity: {{ item.quantity }}</p>
                 </div>
               </div>
             </div>
@@ -38,9 +46,7 @@
         </div>
       </div>
     </WidgetContainer>
-    <div v-else>
-      Loading
-    </div>
+    <div v-else>Loading</div>
   </div>
 </template>
 <script>
@@ -49,16 +55,17 @@ export default {
     return {
       data: '',
       lineItem: '',
+      subscription: null,
     }
   },
-  created(){
-    this.$supabase
-    .from('products')
-    .on('*', payload => {
-      this.retrieve_orders()
-      this.retrieve_lineItems()
-    })
-    .subscribe()
+  created() {
+    this.subscription = this.$supabase
+      .from('products')
+      .on('*', (payload) => {
+        this.retrieve_orders()
+        this.retrieve_lineItems()
+      })
+      .subscribe()
   },
   async mounted() {
     await this.retrieve_orders()
@@ -73,25 +80,28 @@ export default {
       let { data: products, error } = await this.$supabase
         .from('orders')
         .select('*')
-        .eq('order_id',this.slug)
-        if(error){
-          console.error(error)
-        } else {
-          this.data = products
-        }
+        .eq('order_id', this.slug)
+      if (error) {
+        console.error(error)
+      } else {
+        this.data = products
+      }
     },
-    async retrieve_lineItems(){
-        let { data: products, error } = await this.$supabase
+    async retrieve_lineItems() {
+      let { data: products, error } = await this.$supabase
         .from('line_item')
         .select('*')
-        .order('id',{ascending: false})
-        .eq('order_id',this.slug)
-        if(error){
-          console.error(error)
-        } else {
-          this.lineItem = products
-        }
+        .order('id', { ascending: false })
+        .eq('order_id', this.slug)
+      if (error) {
+        console.error(error)
+      } else {
+        this.lineItem = products
+      }
     },
+  },
+  beforeDestroy() {
+    this.$supabase.removeSubscription(this.subscription)
   },
 }
 </script>
