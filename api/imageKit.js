@@ -1,4 +1,4 @@
-const ImageKit = require("imageimagekitio-vuekit");
+const ImageKit = require("imagekitio-vuekit");
 
 export default async (req, res) => {
     console.log(req)
