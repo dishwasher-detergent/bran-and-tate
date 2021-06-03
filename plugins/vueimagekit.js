@@ -5,5 +5,5 @@ const auth = `${hostUrl}/api/imageKit`
 Vue.use(ImageKit, {
   urlEndpoint: "https://ik.imagekit.io/branandtate/",
   publicKey: "public_3C3ZlEJz6tKgVa6Glcpb7YSQXe8=",
-  authenticationEndpoint: auth
+  authenticationEndpoint: 'https://betabt.vercel.app/api/imageKit'
 })
