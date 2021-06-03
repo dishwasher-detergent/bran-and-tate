@@ -35,7 +35,7 @@
     </nav>
     <Nuxt />
     <footer ref="footer" class="text-gray-600 bg-gray-50 border-t border-gray-300 body-font absolute bottom-0 w-full">
-      <div class="container px-5 py-16 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
+      <div class="container max-w-7xl px-5 py-16 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
         <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
           <nuxt-link to="/" class="flex title-font font-medium items-center md:justify-start justify-center">
             <NavLogo />
@@ -61,7 +61,7 @@
         </div>
       </div>
       <div class="bg-gray-100">
-        <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+        <div class="container max-w-7xl mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
           <p class="text-gray-500 text-sm text-center sm:text-left">© 2021 Bran And Tate LLC —
             <a href="https://twitter.com/knyttneve" rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank">@branandtate</a>
           </p>

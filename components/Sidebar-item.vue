@@ -1,8 +1,8 @@
 <template>
 	<li>
-		<a :aria-label="'Go to' + stage" @click="setDashboard()" :class="(layout == stage ? 'bg-blue-500 text-white' : '')">
+		<nuxt-link :to="stage" :aria-label="'Go to' + stage" :class="(slug == stage ? 'bg-blue-500 text-white' : '')">
 			<slot></slot>
-		</a>
+		</nuxt-link>
 	</li>
 </template>
 <script>
@@ -12,19 +12,17 @@ export default {
 	],
 	data(){
 		return{
-			layout: 'orders'
+			slug: ''
 		}
 	},
+	mounted() {
+        this.slug = this.$route.params.slug
+    },
 	watch: {
-		'$store.state.dashboard': function() {
-			this.layout = this.$store.state.dashboard
-		},
-	},
-	methods: {
-		setDashboard() {
-			this.$store.commit('SET_DASHBOARD',this.stage)
-		}
-	}
+  	'$route': function(newVal, oldVal) {
+    	this.slug = this.$route.params.slug
+    }
+  },
 }
 </script>
 <style scoped>

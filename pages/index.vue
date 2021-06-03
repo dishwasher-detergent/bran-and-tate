@@ -16,7 +16,7 @@
     <nav ref="subnav" style="top:-1px;" id="subnav" class="max-w-7xl mx-auto navbar bg-white ring-1 ring-gray-300 text-neutral-content rounded-box sticky top-0 px-3 z-50 shadow">
       <div class="flex-1">
         <div class="form-control w-full md:mr-8">
-          <input v-model="search" type="text" placeholder="Search" class="input input-bordered bg-gray-100">
+          <input v-model="search" type="text" placeholder="Search" class="input input-bordered bg-gray-50 text-gray-800">
         </div>
       </div>
       <div class="flex-none">
