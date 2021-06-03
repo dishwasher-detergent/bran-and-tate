@@ -1,4 +1,4 @@
-const ImageKit = require("imagekit");
+const ImageKit = require("imageimagekitio-vuekit");
 
 export default async (req, res) => {
     console.log(req)
@@ -9,5 +9,5 @@ export default async (req, res) => {
     })
 
     var result = imagekit.getAuthenticationParameters();
-    res.send(result);
+    return res.status(200).json(result);
 }
