@@ -1,5 +1,5 @@
 <template>
-	<div class="w-full rounded-2xl shadow ring-1 ring-gray-300 bg-white overflow-hidden shadow">
+	<div class="w-80 xl:w-72 rounded-2xl ring-1 ring-gray-300 bg-white overflow-hidden shadow">
 		<div class="w-full h-72 bg-gray-200 flex items-center justify-center overflow-hidden relative z-10">
 			<img v-if="image-editing" class="w-full" :src="image_editing" />
 			<ProductImg v-else :id="id"/>
