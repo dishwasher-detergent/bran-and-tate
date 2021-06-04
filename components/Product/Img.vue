@@ -1,11 +1,11 @@
 <template>
-	<div class="w-full h-72 relative"> 
+	<div :class="'w-full relative h-' + (height / 16) * 4"> 
 		<nuxt-img
 			provider="imagekit"
 			:src="id"
 			quality="80"
-			sizes="xl:320px 2xl:288px"
-			height="288"
+			:height="height"
+			class="w-full"
 		/>
 	</div>
 </template>
@@ -13,7 +13,15 @@
 export default {
 	props: [
 		'id',
-	]
+		'width',
+		'height',
+	],
+	data(){
+		return{
+			width: "xl:320px 2xl:288px",
+			height: "288"
+		}
+	}
 }
 </script>
 <style scoped>

@@ -28,7 +28,7 @@
 			</div>
 		</div>
 		<ModalMain
-			v-if="isModalVisible"
+			v-show="isModalVisible"
 			:colors="colors"
 			:title="title"
 			:price="price"
@@ -39,7 +39,7 @@
 			@close="closeModal"
 			>
 			<template v-slot:img>
-				<ProductImg v-if="image" :id="image"/>
+				<ProductImg v-if="image" :id="image" width="sm:100vw md:50vw lg:400px" height="384"/>
 			</template>
 			<template v-slot:header>
 				{{title}}
