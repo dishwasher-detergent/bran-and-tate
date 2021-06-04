@@ -10,13 +10,13 @@
 		</div>
 		<div class="h-72 rounded-2xl -mt-10 py-5 flex flex-col relative bg-white z-20 ring-1 ring-gray-300">
 			<div class="h-full w-full px-4 overflow-y-hidden flex-1 mb-4">
-				<h1 class="font-bold text-3xl truncate">
+				<h1 class="font-bold text-2xl truncate">
 					{{title}}
 				</h1>
-				<h3 class="text-xl">
+				<h3 class="text-3xl font-bold">
 					${{price}}
 				</h3>
-				<p class="break-words text-lg">
+				<p class="break-words">
 					{{description}}
 				</p>
 			</div>
@@ -40,7 +40,7 @@
 			@close="closeModal"
 			>
 			<template v-slot:img>
-				<ProductImg v-if="image" :id="image" width="sm:100vw md:50vw lg:400px" height="384"/>
+				<ProductImg v-if="image" :id="image" width="500" height="550"/>
 			</template>
 			<template v-slot:header>
 				{{title}}
