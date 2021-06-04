@@ -45,7 +45,6 @@
               <ik-upload
                 :onError="onError"
                 :onSuccess="onSuccess"
-                path="product/"
               />
             </label>
           </div>
@@ -208,10 +207,7 @@ export default {
     async upload() {
       this.loading = true
       let product_data = await this.upload_product()
-      let image_data = ''
-      if (product_data != '') image_data = await this.upload_image(product_data)
-      else this.error = 'There was an error uploading your product'
-      if (image_data == '') this.error = 'There was an error uploading your image.'
+      if (product_data = '') this.error = 'There was an error uploading your product'
       this.loading = false
       this.success = true
       setTimeout(() => {
