@@ -1,7 +1,6 @@
 import ImageKit from "imagekitio-vue"
 
 export default async (req, res) => {
-    console.log(req)
     const imagekit = new ImageKit({
         urlEndpoint: "https://ik.imagekit.io/branandtate/",
         publicKey: "public_3C3ZlEJz6tKgVa6Glcpb7YSQXe8=",
@@ -9,5 +8,6 @@ export default async (req, res) => {
     })
 
     var result = imagekit.getAuthenticationParameters();
+    console.log(result)
     return res.status(200).json(result);
 }
