@@ -179,7 +179,7 @@
         :colors="colors"
         :price="price"
         :id="0"
-        :image_editing="image"
+        :image="image"
         :editing="true"
       />
     </div>

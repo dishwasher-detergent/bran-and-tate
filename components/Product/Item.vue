@@ -75,11 +75,6 @@ export default {
 		addedToCart: false,
       }
     },
-	watch: {
-		image: function (newVal, oldVal) {
-			this.image = newVal
-		},
-	},
 	created(){
 		window.addEventListener('keyup', this.closeModal)
 		this.checkCart()
