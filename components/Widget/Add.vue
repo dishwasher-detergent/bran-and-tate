@@ -198,7 +198,6 @@ export default {
       type_list: ['Wall', 'Porch', 'Seasonal'],
       price: '10',
       image: '',
-      image_raw: '',
       error: null,
       loading: false,
       success: false,
@@ -228,6 +227,7 @@ export default {
             colors: this.colors,
             price: this.price,
             type: this.types,
+            image: this.image_path,
           },
         ])
         if (!error) return data
@@ -241,7 +241,8 @@ export default {
       console.log(err)
     },
     onSuccess(res) {
-      this.image_raw = res.filePath
+      this.image_path = res.filePath
+      this.image = res.filePath
     },
   },
 }
