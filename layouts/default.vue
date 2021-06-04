@@ -46,7 +46,7 @@
         <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
           <div class="lg:w-1/4 md:w-1/2 w-full px-4">
             <h2 class="title-font font-medium tracking-widest text-sm mb-3">Admin</h2>
-            <nav class="list-none mb-10">
+            <ul class="list-none mb-10">
               <li v-if="this.$auth.loggedIn">
                 <nuxt-link to="/Dashboard" class="text-gray-600 hover:text-gray-800">Dashboard</nuxt-link>
               </li>
@@ -56,7 +56,7 @@
               <li v-else>
                 <nuxt-link to="/Login" class="text-gray-600 hover:text-gray-800">Log In</nuxt-link>
               </li>
-            </nav>
+            </ul>
           </div>
         </div>
       </div>

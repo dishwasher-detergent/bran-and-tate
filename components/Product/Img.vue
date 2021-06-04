@@ -5,6 +5,7 @@
 			:lqip="{active:true}"
 			:transformation="[{q:75,c:'fo-auto',height:height,width:width}]"
 			class="w-full h-full"
+			:alt="alt"
 		/>
 	</div>
 </template>
@@ -12,6 +13,10 @@
 export default {
 	props: {
 		id: {
+			type: String,
+			default: ""
+		},
+		alt: {
 			type: String,
 			default: ""
 		},
