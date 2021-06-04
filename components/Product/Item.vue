@@ -35,6 +35,7 @@
 			:id="id"
 			:description="description"
 			:editing="editing"
+			:image="image"
 
 			@close="closeModal"
 			>
