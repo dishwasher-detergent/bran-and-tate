@@ -25,9 +25,4 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
-#image-background {
-	background-image: url('~/static/placeHolder.png');
-	background-position: center;
-	background-size: cover;
-}
 </style>

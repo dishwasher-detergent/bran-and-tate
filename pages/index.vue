@@ -183,6 +183,7 @@
           :colors="product.colors"
           :price="product.price"
           :id="product.id"
+          :image="product.image"
         />
       </div>
     </section>
