@@ -1,5 +1,5 @@
 export const state = () => ({
-    dashboard: 'add_or_edit',
+    dashboard: 'orders',
     cart: [],
     session: null
 })

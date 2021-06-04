@@ -1,19 +1,25 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-    purge: [
+    purge: {
+        content: [
+            './components/**/*.{vue,js}',
 
-        './components/**/*.{vue,js}',
+            './layouts/**/*.vue',
 
-        './layouts/**/*.vue',
+            './pages/**/*.vue',
 
-        './pages/**/*.vue',
+            './plugins/**/*.{js,ts}',
 
-        './plugins/**/*.{js,ts}',
-
-        './nuxt.config.{js,ts}',
-
-    ],
+            './nuxt.config.{js,ts}',
+        ],
+        options: {
+            safelist: [
+                'alert-warning',
+                'alert-info'
+            ]
+        },
+    },
     darkMode: false, // or 'media' or 'class'
     theme: {
         colors: {
@@ -34,5 +40,7 @@ module.exports = {
     variants: {
         extend: {}
     },
-    plugins: []
+    plugins: [
+        require('daisyui'),
+    ],
 }

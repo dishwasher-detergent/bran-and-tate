@@ -1,18 +1,28 @@
 <template>
-	<button :aria-label="'Go to' + stage" @click="setDashboard()" class="block w-full pl-8 pr-4 py-.5 text-lg truncate text-left border-l-4 border-transparent hover:bg-blue-100 hover:border-blue-300">
-		<slot></slot>
-	</button>
+	<li>
+		<nuxt-link :to="stage" :aria-label="'Go to' + stage" :class="(slug == stage ? 'bg-blue-500 text-white' : '')">
+			<slot></slot>
+		</nuxt-link>
+	</li>
 </template>
 <script>
 export default {
 	props: [
 		'stage'
 	],
-	methods: {
-		setDashboard() {
-			this.$store.commit('SET_DASHBOARD',this.stage)
+	data(){
+		return{
+			slug: ''
 		}
-	}
+	},
+	mounted() {
+        this.slug = this.$route.params.slug
+    },
+	watch: {
+  	'$route': function(newVal, oldVal) {
+    	this.slug = this.$route.params.slug
+    }
+  },
 }
 </script>
 <style scoped>
@@ -21,5 +31,8 @@ export default {
 	}
 	a:hover {
 		padding-left: 1.24rem;
+	}
+	.text-white {
+		color: white !important
 	}
 </style>

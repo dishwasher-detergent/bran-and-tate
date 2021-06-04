@@ -10,7 +10,7 @@ export default async (req, res) => {
       allowed_countries: ['US'],
     },
     mode: 'payment',
-    success_url: `${hostUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
+    success_url: `${hostUrl}/success/{CHECKOUT_SESSION_ID}`,
     cancel_url: `${hostUrl}`
   });
 
