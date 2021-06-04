@@ -1,37 +1,27 @@
 <template>
-	<div>
-		<div class="w-full h-full" id="image-background"> 
-			<transition name="fade">
-				<img v-if="image" class="w-full" :src="image" alt="Product Image">
-			</transition>
-		</div>
+	<div :class="'w-full relative h-' + (height / 16) * 4"> 
+		<nuxt-img
+			provider="imagekit"
+			:src="id"
+			quality="80"
+			:height="height"
+			class="w-full"
+		/>
 	</div>
 </template>
 <script>
 export default {
 	props: [
 		'id',
+		'width',
+		'height',
 	],
 	data(){
 		return{
-			image: null
+			width: "xl:320px 2xl:288px",
+			height: "288"
 		}
-	},
-	async fetch(){
-		try {
-			const { data, error } = await this.$supabase
-			.storage
-			.from('product-images')
-			.download(this.id + '.png')
-		if (error) {
-			throw error
-		}
-			const url = URL.createObjectURL(data)
-			this.image = url
-		} catch (error) {
-			console.log('Error downloading image: ', error.message)
-		}
-	},
+	}
 }
 </script>
 <style scoped>
@@ -42,10 +32,5 @@ export default {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
-}
-#image-background {
-	background-image: url('~/static/placeHolder.png');
-	background-position: center;
-	background-size: cover;
 }
 </style>

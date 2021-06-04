@@ -1,5 +1,5 @@
 {
-  "name": "dashboard",
+  "name": "branandtate",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -16,13 +16,13 @@
     "@supabase/supabase-js": "^1.11.10",
     "core-js": "^3.9.1",
     "daisyui": "^1.0.2",
+    "imagekit": "^3.1.2",
+    "imagekitio-vue": "^1.0.9",
     "nuxt": "^2.15.3",
-    "nuxt-lazy-load": "^1.2.6",
-    "stripe": "^8.148.0",
-    "vue-grid-layout": "^2.3.12",
-    "vue-js-modal": "^2.0.0-rc.6"
+    "stripe": "^8.148.0"
   },
   "devDependencies": {
+    "@nuxt/image": "^0.4.14",
     "@nuxtjs/tailwindcss": "^4.0.3",
     "@tailwindcss/postcss7-compat": "^2.1.0",
     "autoprefixer": "^9.8.6",
