@@ -43,11 +43,8 @@
           <div class="bg-gray-50 rounded-2xl ring-1 ring-gray-300 p-2">
             <label for="product_image">
               <ik-upload
-                :tags="['tag1','tag2']"
-                :responseFields="['tags']"
                 :onError="onError"
                 :onSuccess="onSuccess"
-                customCoordinates="10,10,100,100"
               />
             </label>
           </div>
@@ -208,12 +205,6 @@ export default {
     }
   },
   methods: {
-    uploadImage(input) {
-      if (input) {
-        this.image = URL.createObjectURL(input.target.files[0])
-        this.image_raw = input.target.files[0]
-      }
-    },
     async upload() {
       this.loading = true
       let product_data = await this.upload_product()
@@ -245,24 +236,12 @@ export default {
         return
       }
     },
-    async upload_image(product_data) {
-      try {
-        const { data, error } = await this.$supabase.storage
-          .from('product-images')
-          .upload(product_data[0].id + '.png', this.image_raw)
-        if (!error) return data
-        throw error
-      } catch (error) {
-        return
-      }
-    },
     onError(err) {
       console.log('Error')
       console.log(err)
     },
     onSuccess(res) {
-      console.log('Success')
-      console.log(res)
+      this.image_raw = res.filePath
     },
   },
 }
