@@ -1,7 +1,7 @@
 <template>
   <div ref="main" class="min-h-screen relative bg-white" data-theme="bt">
     <nav
-      class="w-full md:h-20 bg-white border-b border-gray-300 relative z-10"
+      class="w-full md:h-20 bg-white border-b border-gray-400 relative z-10"
     >
       <div
         class="mx-auto max-w-7xl h-full px-5 grid grid-cols-1 md:grid-cols-2 items-center justify-items-center md:justify-items-stretch"
@@ -14,7 +14,7 @@
           <nuxt-link to="/" class="btn btn-ghost">Shop</nuxt-link>
           <div class="dropdown dropdown-hover dropdown-end">
             <div tabindex="0" class="m-1 btn btn-ghost">Location</div>
-            <ul class="ring-1 ring-gray-300 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2">
+            <ul class="ring-1 ring-gray-400 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2">
                 <h1 class="bg-gray-100 rounded-2xl font-bold text-center">MainStreet MarketPlace</h1>
                 <p class="mt-2 text-sm w-full text-center"><b>Address</b></p>
                 <p class="text-left text-sm">429 W Main St, Yukon, OK 73099</p>
@@ -34,7 +34,7 @@
       </div>
     </nav>
     <Nuxt />
-    <footer ref="footer" class="text-gray-600 bg-gray-50 border-t border-gray-300 body-font absolute bottom-0 w-full">
+    <footer ref="footer" class="text-gray-600 bg-gray-50 border-t border-gray-400 body-font absolute bottom-0 w-full">
       <div class="container max-w-7xl px-5 py-16 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
         <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
           <nuxt-link to="/" class="flex title-font font-medium items-center md:justify-start justify-center">

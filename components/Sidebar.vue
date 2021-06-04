@@ -2,7 +2,7 @@
 <div class="rounded-lg shadow bg-base-200 drawer drawer-mobile h-full">
   <input id="my-drawer-2" type="checkbox" class="drawer-toggle"> 
   <div class="drawer-content">
-    <nav class="border-b border-gray-300 w-full h-16 bg-white flex justify-between items-center px-4 lg:hidden sticky top-0 z-50">
+    <nav class="border-b border-gray-400 w-full h-16 bg-white flex justify-between items-center px-4 lg:hidden sticky top-0 z-50">
       <NavLogo/>
       <label for="my-drawer-2" class="btn btn-square btn-md btn-ghost drawer-button lg:hidden">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -12,7 +12,7 @@
     </nav>
     <slot></slot>
   </div> 
-  <div class="drawer-side border-r border-gray-300">
+  <div class="drawer-side border-r border-gray-400">
     <label for="my-drawer-2" class="drawer-overlay"></label>
     <ul class="menu p-4 w-80 bg-base-100 text-base-content space-y-2">
       <div class="w-full flex items-center justify-center">

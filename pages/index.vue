@@ -4,7 +4,7 @@
     <section class="max-w-7xl mx-auto h-96 flex items-center justify-center">
       <div
         id="landing-banner"
-        class="w-full h-full bg-gray-200 flex items-center justify-center rounded-2xl overflow-hidden ring-1 ring-gray-300"
+        class="w-full h-full bg-gray-200 flex items-center justify-center rounded-2xl overflow-hidden ring-1 ring-gray-400"
       >
         <div
           class="h-full w-full flex flex-col items-center justify-center bg-gray-200 bg-opacity-50"
@@ -20,7 +20,7 @@
       ref="subnav"
       style="top: -1px"
       id="subnav"
-      class="max-w-7xl mx-auto navbar bg-white ring-1 ring-gray-300 text-neutral-content rounded-box sticky top-0 px-3 z-50 shadow"
+      class="max-w-7xl mx-auto navbar bg-white ring-1 ring-gray-400 text-neutral-content rounded-box sticky top-0 px-3 z-50"
     >
       <div class="flex-1">
         <div class="form-control w-full md:mr-8">
@@ -51,7 +51,7 @@
             </svg>
           </div>
           <ul
-            class="ring-1 ring-gray-300 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2"
+            class="ring-1 ring-gray-400 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2"
           >
             <div class="form-control">
               <label class="cursor-pointer label" v-for="sort in sort_list" :key="sort.id">
@@ -90,7 +90,7 @@
             </svg>
           </div>
           <ul
-            class="ring-1 ring-gray-300 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2"
+            class="ring-1 ring-gray-400 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2"
           >
             <div class="form-control">
               <label class="cursor-pointer label" v-for="type in types" :key="type.id">
@@ -135,7 +135,7 @@
           </nuxt-link>
           <ul
             v-if="cart.length"
-            class="ring-1 ring-gray-300 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2"
+            class="ring-1 ring-gray-400 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2"
           >
             <div class="form-control">
               <div class="cursor-pointer label" v-for="item in cart" :key="item.id">

@@ -56,7 +56,7 @@
     <div class="top-0 bottom-0 left-0 right-0 fixed flex flex-col md:flex-row justify-end z-50 bg-gray-900 bg-opacity-10">
 		<div @click='close' class="relative h-1/6 md:h-full w-full"></div>
 		<transition name="slide">
-			<div v-show="secondary" class="relative overflow-hidden h-5/6 md:h-full w-full md:w-96 flex-none flex flex-col rounded-t-2xl md:rounded-l-2xl md:rounded-t-none shadow-t bg-gray-50 border-t border-gray-300"
+			<div v-show="secondary" class="relative overflow-hidden h-5/6 md:h-full w-full md:w-96 flex-none flex flex-col rounded-t-2xl md:rounded-l-2xl md:rounded-t-none shadow-t bg-gray-50 border-t border-gray-400"
 				role="dialog"
 				aria-labelledby="Add To Cart"
 				aria-describedby="Choose what color and how many you want then add to cart"
@@ -122,10 +122,10 @@
 					Add to Cart
 				</button>
 				<div class="h-full w-2/5 bg-gray-50 flex flex-row">
-					<div class="w-1/2 ring-1 ring-gray-300 flex items-center justify-center">
+					<div class="w-1/2 ring-1 ring-gray-400 flex items-center justify-center">
 						<h2 class="text-4xl font-bold">{{count}}</h2>
 					</div>
-					<div class="flex flex-col w-1/2 ring-1 ring-gray-300">
+					<div class="flex flex-col w-1/2 ring-1 ring-gray-400">
 						<button aria-label="Increase Quantity" class="w-full h-1/2 bg-gray-200 flex items-center justify-center" @click="incCnt()">
 							<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />

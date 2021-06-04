@@ -2,7 +2,7 @@
 	<div class="p-3 h-16 md:h-full w-full flex items-center justify-center">
 		<div class="w-full h-full relative">
 		<label for="search">
-			<input v-model="search" type='text' id="search" class="h-full w-full rounded-xl bg-gray-50 border-gray-300 border pl-5 pr-10 truncate focus:bg-white focus:ring-blue-500" />
+			<input v-model="search" type='text' id="search" class="h-full w-full rounded-xl bg-gray-50 border-gray-400 border pl-5 pr-10 truncate focus:bg-white focus:ring-blue-500" />
 		</label>
 		<div class="absolute right-0 top-0 px-2 h-full flex items-center justify-center text-gray-500">
 			<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

@@ -7,7 +7,7 @@
           <div
             :class="
               (order.completed ? 'bg-green-100' : 'bg-gray-100') +
-              ' ring-1 ring-gray-300 rounded-t-2xl p-4 flex flex-col md:flex-row'
+              ' ring-1 ring-gray-400 rounded-t-2xl p-4 flex flex-col md:flex-row'
             "
           >
             <div class="flex flex-col flex-1">
@@ -32,7 +32,7 @@
               <h3 class="font-bold text-2xl text-green-600">Completed</h3>
             </div>
           </div>
-          <div class="rounded-b-2xl ring-1 ring-gray-300 p-4 space-y-6">
+          <div class="rounded-b-2xl ring-1 ring-gray-400 p-4 space-y-6">
             <!-- Line Items -->
             <div v-for="item in lineItem" :key="item.id">
               <div v-if="item.order_id == order.order_id" class="flex w-full">
