@@ -29,7 +29,7 @@
 			</div>
 		</div>
 		<ModalMain
-			v-show="isModalVisible"
+			v-if="isModalVisible"
 			:colors="colors"
 			:title="title"
 			:price="price"
