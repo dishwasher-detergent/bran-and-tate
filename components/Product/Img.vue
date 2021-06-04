@@ -1,25 +1,27 @@
 <template>
 	<div :class="'w-full relative h-' + (height / 16) * 4"> 
-		<nuxt-img
-			provider="imagekit"
-			:src="id"
-			quality="80"
-			:height="height"
-			class="w-full"
+		<ik-image
+			:path="id"
+			:lqip="{active:true}"
+			:transformation="[{q:75,c:'fo-auto',height:height,width:width}]"
+			class="w-full h-full"
 		/>
 	</div>
 </template>
 <script>
 export default {
-	props: [
-		'id',
-		'width',
-		'height',
-	],
-	data(){
-		return{
-			width: "xl:320px 2xl:288px",
-			height: "288"
+	props: {
+		id: {
+			type: String,
+			default: ""
+		},
+		width: {
+			type: String,
+			default: "320"
+		},
+		height: {
+			type: String,
+			default: "288"
 		}
 	}
 }
