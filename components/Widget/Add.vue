@@ -45,6 +45,7 @@
               <ik-upload
                 :onError="onError"
                 :onSuccess="onSuccess"
+                path="product/"
               />
             </label>
           </div>
