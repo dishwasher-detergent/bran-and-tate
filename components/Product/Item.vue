@@ -16,7 +16,7 @@
 				<h3 class="text-xl">
 					${{price}}
 				</h3>
-				<p class="break-words text-lg">
+				<p class="break-words pt-2 text-gray-700">
 					{{description}}
 				</p>
 			</div>
