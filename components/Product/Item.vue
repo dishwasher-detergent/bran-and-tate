@@ -40,7 +40,7 @@
 			@close="closeModal"
 			>
 			<template v-slot:img>
-				<img v-if="image-editing" class="w-full" :src="image_editing" />
+				<ProductImg v-if="image-editing" :id="image_editing" />
 				<ProductImg v-else :id="id"/>
 			</template>
 			<template v-slot:header>
