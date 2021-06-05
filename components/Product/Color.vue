@@ -1,5 +1,5 @@
 <template>
-	<div class="flex items-center p-2 space-x-4 bg-gray-100 ring-1 ring-gray-400 rounded-2xl">
+	<div class="flex items-center p-2 space-x-4 bg-gray-50 ring-1 ring-gray-400 rounded-2xl">
 		<div v-for="color in colors" :key="color.id" class="w-5 h-5 md:w-6 md:h-6 rounded-full ring-1 ring-gray-400 overflow-hidden">
 			<input v-model="checked_color" name="product-color" :id="color + id" type="radio" class="hidden" :value="color"/>
 			<label :for="color + id" class="block w-full h-full cursor-pointer" :style="'background-color:'+color" :title="color">

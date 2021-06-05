@@ -12,7 +12,7 @@
 			v-show="isModalVisible"
 			@close="closeModal"
 			>
-				<h1 class="bg-gray-100 rounded-2xl font-bold">MainStreet MarketPlace</h1>
+				<h1 class="bg-gray-50 rounded-2xl font-bold">MainStreet MarketPlace</h1>
 				<p class="mt-2 text-sm w-full text-center"><b>Address</b></p>
 				<p class="text-left text-sm">429 W Main St, Yukon, OK 73099</p>
 				<p class="mt-2 text-sm w-full text-center"><b>Time</b></p>

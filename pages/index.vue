@@ -4,10 +4,10 @@
     <section class="max-w-7xl mx-auto h-96 flex items-center justify-center">
       <div
         id="landing-banner"
-        class="w-full h-full bg-gray-200 flex items-center justify-center rounded-2xl overflow-hidden ring-1 ring-gray-400"
+        class="w-full h-full bg-gray-50 flex items-center justify-center rounded-2xl overflow-hidden ring-1 ring-gray-400"
       >
         <div
-          class="h-full w-full flex flex-col items-center justify-center bg-gray-200 bg-opacity-50"
+          class="h-full w-full flex flex-col items-center justify-center bg-gray-50 bg-opacity-50"
         >
           <h1 class="font-black text-7xl md:text-9xl text-center">Bran & Tate Co.</h1>
           <h2 class="text-2xl md:text-3xl text-center">Creating Unique Decor for your Home.</h2>
@@ -112,7 +112,7 @@
       </div>
       <div class="flex-none">
         <div class="dropdown dropdown-hover dropdown-end">
-          <nuxt-link to="/cart" class="btn btn-square btn-ghost relative text-gray-800">
+          <button class="btn btn-square btn-ghost relative text-gray-800">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6"
@@ -132,36 +132,41 @@
             >
               {{ cart.length }}
             </div>
-          </nuxt-link>
+          </button>
           <ul
             v-if="cart.length"
             class="ring-1 ring-gray-400 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2"
           >
             <div class="form-control">
-              <div class="cursor-pointer label" v-for="item in cart" :key="item.id">
-                <div class="w-full py-2 px-4 rounded-2xl bg-gray-100">
-                  <p class="flex w-full text-gray-700">
-                    <span class="flex-none font-bold">{{ item.quantity }}</span>
-                    <span class="px-1 truncate flex-1">{{ item.name }}</span>
-                    <button
-                      class="flex-none text-red-500 btn btn-ghost btn-square btn-xs"
-                      @click="removeFromCart(item.id)"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
+              <div class="max-h-48 overflow-hidden overflow-y-auto">
+                <div class="cursor-pointer label" v-for="item in cart" :key="item.id">
+                  <div class="w-full py-2 px-4 rounded-2xl bg-gray-50">
+                    <p class="flex w-full text-gray-700">
+                      <span class="flex-none font-bold">{{ item.quantity }}</span>
+                      <span class="px-1 truncate flex-1">{{ item.name }}</span>
+                      <button
+                        class="flex-none text-red-500 btn btn-ghost btn-square btn-xs"
+                        @click="removeFromCart(item.id)"
                       >
-                        <path
-                          fill-rule="evenodd"
-                          d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </button>
-                  </p>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-5 w-5"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                      </button>
+                    </p>
+                  </div>
                 </div>
+              </div>
+              <div class="mt-2 pt-2 border-t border-gray-400">
+                <nuxt-link to="/cart" class="btn btn-primary w-full">Checkout</nuxt-link>
               </div>
             </div>
           </ul>
@@ -169,8 +174,9 @@
       </div>
     </nav>
     <!-- Products -->
-    <section class="w-full px-2 md:px-0">
+    <section class="w-full px-2 md:px-0 pb-16">
       <div
+        v-if="products"
         class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center justify-items-center gap-5"
       >
         <ProductItem
@@ -185,6 +191,9 @@
           :id="product.id"
           :image="product.image"
         />
+      </div>
+      <div v-else>
+        <ProductPlaceholders/>
       </div>
     </section>
   </div>

@@ -33,6 +33,10 @@
   --su: 174 100% 29%; /* Success */
   --wa: 36 100% 50%; /* Warning */
   --er: 14 100% 57%; /* Error */
+
+  --rounded-box: 1rem;       /* border-radius for cards and other big elements */
+  --rounded-btn: 1rem;     /* border-radius for buttons and similar elements */
+  --rounded-badge: 1rem;    /* border-radius for badge and other small elements */
 }
 
 /* Let's add a second theme */

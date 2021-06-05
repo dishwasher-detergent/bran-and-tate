@@ -90,13 +90,13 @@
         <div class="flex flex-col">
           <div
             :class="
-              (order.completed ? 'bg-green-100' : 'bg-gray-100') +
+              (order.completed ? 'bg-green-100' : 'bg-gray-50') +
               ' ring-1 ring-gray-400 rounded-t-2xl p-4 flex flex-col md:flex-row'
             "
           >
             <div class="flex flex-col flex-1">
               <p class="text-gray-500 text-xs font-bold">{{ order.timestamp }}</p>
-              <p class="text-gray-600 text-xs font-bold pb-4">Order # {{ order.id }}</p>
+              <p class="text-gray-500 text-xs font-bold pb-4">Order # {{ order.id }}</p>
               <div class="flex flex-col md:flex-row">
                 <div class="pt-4 md:pt-0 md:pr-8">
                   <h4 class="text-gray-600 text-xs font-bold">Shipping</h4>
