@@ -3,13 +3,13 @@
     <div
       v-for="place in placeholders"
       :key="place.id"
-      class="w-80 xl:w-72 rounded-2xl ring-1 ring-gray-400 overflow-hidden"
+      class="w-80 xl:w-72 rounded-2xl ring-1 ring-base-300 overflow-hidden"
     >
       <div
         class="w-full h-72 bg-gray-100 flex items-center justify-center overflow-hidden relative z-10"
       ></div>
       <div
-        class="h-72 rounded-2xl -mt-10 py-5 flex flex-col relative bg-gray-50 z-20 ring-1 ring-gray-400"
+        class="h-72 rounded-2xl -mt-10 py-5 flex flex-col relative bg-gray-50 z-20 ring-1 ring-base-300"
       >
         <div class="h-full w-full px-4 overflow-y-hidden flex-1 mb-4 space-y-4">
           <div class="w-full h-6 bg-gray-100 rounded-2xl"></div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-screen relative bg-white" data-theme="bt">
+  <div class="flex flex-col h-screen relative text-base-content" data-theme="main">
     <ShopHeader />
       <Nuxt />
     <ShopFooter />
@@ -16,7 +16,6 @@ html {
     'Helvetica Neue',
     Arial,
     sans-serif;
-    @apply text-gray-800;
 }
 footer {
   margin-top: auto;

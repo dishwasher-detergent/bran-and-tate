@@ -6,13 +6,13 @@
       </div>
       <div
         v-if="cart.length == 0"
-        class="w-full h-96 p-5 mb-6 rounded-2xl flex items-center justify-center ring-1 ring-gray-400 bg-white"
+        class="w-full h-96 p-5 mb-6 rounded-2xl flex items-center justify-center ring-1 ring-base-300 bg-base-100"
       >
         <h2 class="font-bold text-3xl text-center">There seems to be nothing in your cart, yet!</h2>
       </div>
       <div
         v-else
-        class="w-full p-2 mb-6 rounded-2xl flex flex-col md:flex-row ring-1 ring-gray-400 bg-white"
+        class="w-full p-2 mb-6 rounded-2xl flex flex-col md:flex-row ring-1 ring-base-300 bg-base-100"
         v-for="item in cart"
         :key="item.id"
       >

@@ -9,7 +9,7 @@
                 </label>
 				<div>
                     <p class="text-lg">Type</p>
-                    <div class="form-control bg-gray-50 rounded-2xl ring-1 ring-gray-400 p-2">
+                    <div class="form-control bg-gray-50 rounded-2xl ring-1 ring-border p-2">
                         <label class="cursor-pointer label" v-for="type in type_list" :key="type.id">
                             <span class="label-text">{{type}}</span> 
                             <div>
@@ -78,7 +78,7 @@ export default {
 <style scoped>
 input[type="text"],input[type="tel"],textarea{
     @apply border;
-    @apply border-gray-400;
+    @apply border-base-300;
     @apply p-2;
     @apply rounded-2xl;
     @apply w-full

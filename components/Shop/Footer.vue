@@ -1,7 +1,7 @@
 <template>
   <footer
     ref="footer"
-    class="text-gray-600 bg-gray-50 border-t border-gray-400 body-font w-full"
+    class=" bg-base-200 border-t border-base-300 body-font w-full"
   >
     <div
       class="container max-w-7xl px-5 py-16 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col"
@@ -14,43 +14,43 @@
           <NavLogo />
         </nuxt-link>
         <p class="mt-2 text-xl font-bold">Bran & Tate</p>
-        <p class="mt-2 text-sm text-gray-500">Custom Home Decor</p>
+        <p class="mt-2 text-sm ">Custom Home Decor</p>
       </div>
       <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
         <div class="lg:w-1/4 md:w-1/2 w-full px-4">
           <h2 class="title-font font-medium tracking-widest text-sm mb-3">Admin</h2>
           <ul class="list-none mb-10">
             <li v-if="this.$auth.loggedIn">
-              <nuxt-link to="/Dashboard" class="text-gray-600 hover:text-gray-800"
+              <nuxt-link to="/Dashboard" class=" hover:"
                 >Dashboard</nuxt-link
               >
             </li>
             <li v-if="this.$auth.loggedIn">
-              <nuxt-link to="/Login?type=signOut" class="text-gray-600 hover:text-gray-800"
+              <nuxt-link to="/Login?type=signOut" class=" hover:"
                 >Log Out</nuxt-link
               >
             </li>
             <li v-else>
-              <nuxt-link to="/Login" class="text-gray-600 hover:text-gray-800">Log In</nuxt-link>
+              <nuxt-link to="/Login" class=" hover:">Log In</nuxt-link>
             </li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="bg-gray-100">
+    <div class="bg-base-300">
       <div class="container max-w-7xl mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
-        <p class="text-gray-500 text-sm text-center sm:text-left">
+        <p class=" text-sm text-center sm:text-left">
           © 2021 Bran And Tate LLC —
           <a
             href="https://twitter.com/knyttneve"
             rel="noopener noreferrer"
-            class="text-gray-600 ml-1"
+            class=" ml-1"
             target="_blank"
             >@branandtate</a
           >
         </p>
         <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
-          <a class="text-gray-500">
+          <a class="">
             <svg
               fill="currentColor"
               stroke-linecap="round"
@@ -62,7 +62,7 @@
               <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
             </svg>
           </a>
-          <a class="ml-3 text-gray-500">
+          <a class="ml-3 ">
             <svg
               fill="currentColor"
               stroke-linecap="round"
@@ -76,7 +76,7 @@
               ></path>
             </svg>
           </a>
-          <a class="ml-3 text-gray-500">
+          <a class="ml-3 ">
             <svg
               fill="none"
               stroke="currentColor"
@@ -90,7 +90,7 @@
               <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
             </svg>
           </a>
-          <a class="ml-3 text-gray-500">
+          <a class="ml-3 ">
             <svg
               fill="currentColor"
               stroke="currentColor"

@@ -1,6 +1,6 @@
 <template>
 <transition name="fade">
-  <div class="w-80 xl:w-72 rounded-2xl ring-1 ring-gray-400 bg-white overflow-hidden">
+  <div class="w-80 xl:w-72 rounded-2xl ring-1 ring-base-300 bg-base-100 overflow-hidden ">
       <div
         class="w-full h-72 bg-gray-50 flex items-center justify-center overflow-hidden relative z-10"
       >
@@ -28,14 +28,14 @@
         </button>
       </div>
       <div
-        class="h-72 rounded-2xl -mt-10 py-5 flex flex-col relative bg-white z-20 ring-1 ring-gray-400"
+        class="h-72 rounded-2xl -mt-10 py-5 flex flex-col relative bg-base-100 z-20 ring-1 ring-base-300"
       >
         <div class="h-full w-full px-4 overflow-y-hidden flex-1 mb-4">
           <h1 class="font-bold text-2xl truncate">
             {{ title }}
           </h1>
           <h3 class="text-3xl font-bold">${{ price }}</h3>
-          <p class="break-words pt-2 text-gray-600">
+          <p class="break-words pt-2 ">
             {{ description }}
           </p>
         </div>

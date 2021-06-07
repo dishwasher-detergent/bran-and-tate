@@ -3,12 +3,12 @@
     <WidgetContainer v-if="data">
       <div v-for="order in data" :key="order.id" class="mb-4">
         <div class="flex flex-col">
-          <div class="ring-1 bg-gray-50 ring-gray-400 rounded-t-2xl p-4 flex flex-col md:flex-row">
+          <div class="ring-1 bg-gray-50 ring-base-300 rounded-t-2xl p-4 flex flex-col md:flex-row">
             <div class="flex flex-col flex-1">
-              <p class="text-gray-500 text-xs font-bold">{{ order.timestamp }}</p>
+              <p class=" text-xs font-bold">{{ order.timestamp }}</p>
               <div class="flex flex-col md:flex-row pt-4">
                 <div class="md:pr-8">
-                  <h4 class="text-gray-600 text-xs font-bold">Shipping</h4>
+                  <h4 class=" text-xs font-bold">Shipping</h4>
                   <p class="font-bold text-lg">{{ order.shipping.name }}</p>
                   <p>{{ order.shipping.address.line1 }}, {{ order.shipping.address.line2 }}</p>
                   <p>
@@ -17,17 +17,17 @@
                   </p>
                 </div>
                 <div>
-                  <h4 class="text-gray-600 text-xs font-bold">Contact</h4>
+                  <h4 class=" text-xs font-bold">Contact</h4>
                   <p>{{ order.contact }}</p>
                 </div>
               </div>
             </div>
             <div class="flex flex-col items-center justify-center">
-              <h3 v-if="order.completed" class="font-bold text-2xl text-gray-500">Fully Crafted</h3>
-              <!-- <h3 v-if="order.completed" class="font-bold text-2xl text-gray-500">Fully Crafted</h3> -->
+              <h3 v-if="order.completed" class="font-bold text-2xl ">Fully Crafted</h3>
+              <!-- <h3 v-if="order.completed" class="font-bold text-2xl ">Fully Crafted</h3> -->
             </div>
           </div>
-          <div class="rounded-b-2xl ring-1 ring-gray-400 p-4 space-y-6">
+          <div class="rounded-b-2xl ring-1 ring-base-300 p-4 space-y-6">
             <!-- Line Items -->
             <div v-for="item in lineItem" :key="item.id">
               <div v-if="item.order_id == order.order_id" class="flex w-full">

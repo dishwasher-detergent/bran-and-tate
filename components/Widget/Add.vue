@@ -40,7 +40,7 @@
         </div>
         <div>
           <p class="text-lg">Image</p>
-          <div class="bg-gray-50 rounded-2xl ring-1 ring-gray-400 p-2">
+          <div class="bg-gray-50 rounded-2xl ring-1 ring-base-300 p-2">
             <label for="product_image">
               <ik-upload
                 :onError="onError"
@@ -70,7 +70,7 @@
         <div>
           <p class="text-lg">Size</p>
           <div
-            class="flex flex-col md:flex-row items-center space-x-2 bg-gray-50 rounded-2xl ring-1 ring-gray-400 p-2"
+            class="flex flex-col md:flex-row items-center space-x-2 bg-gray-50 rounded-2xl ring-1 ring-base-300 p-2"
           >
             <label for="product_size_w" class="w-full">
               <p>Width</p>

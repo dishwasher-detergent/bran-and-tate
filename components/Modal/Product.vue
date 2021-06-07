@@ -7,7 +7,7 @@
       <transition name="slide">
         <div
           v-show="secondary"
-          class="relative overflow-hidden h-5/6 md:h-full w-full md:w-96 flex-none flex flex-col rounded-t-2xl md:rounded-l-2xl md:rounded-t-none shadow-t bg-gray-50 border-t border-gray-400"
+          class="relative overflow-hidden h-5/6 md:h-full w-full md:w-96 flex-none flex flex-col rounded-t-2xl md:rounded-l-2xl md:rounded-t-none shadow-t bg-gray-50 border-t border-base-300"
           role="dialog"
           aria-labelledby="Add To Cart"
           aria-describedby="Choose what color and how many you want then add to cart"
@@ -38,9 +38,9 @@
               <div class="w-full h-96 flex-none"></div>
               <div
                 style="min-height: 36rem"
-                class="w-full h-full p-5 relative -mt-10 bg-white rounded-2xl flex-1"
+                class="w-full h-full p-5 relative -mt-10 bg-base-100 rounded-2xl flex-1"
               >
-                <div class="md:hidden w-full flex items-center justify-center text-gray-500">
+                <div class="md:hidden w-full flex items-center justify-center ">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="h-6 w-6"
@@ -71,7 +71,7 @@
                     {{description}}
                   </p>
                 </div>
-                <div class="mt-8 p-4 rounded-2xl bg-gray-50 text-gray-600">
+                <div class="mt-8 p-4 rounded-2xl bg-gray-50 ">
                   <h4 class="font-bold text-lg md:text-xl">Details</h4>
                   <p>
                     <slot name="size"></slot>
@@ -80,7 +80,7 @@
               </div>
             </div>
           </section>
-          <footer class="w-full h-20 absolute bottom-0 flex border-t border-gray-400">
+          <footer class="w-full h-20 absolute bottom-0 flex border-t border-base-300">
             <button
               type="button"
               class="w-3/5 h-full bg-blue-500 text-white font-bold"
@@ -97,7 +97,7 @@
               <div class="flex flex-col w-1/2">
                 <button
                   aria-label="Increase Quantity"
-                  class="w-full h-1/2 bg-gray-200 flex items-center justify-center ring-1 ring-gray-400"
+                  class="w-full h-1/2 bg-gray-200 flex items-center justify-center ring-1 ring-base-300"
                   @click="incCnt()"
                 >
                   <svg
@@ -117,7 +117,7 @@
                 </button>
                 <button
                   aria-label="Decrease Quantity"
-                  class="w-full h-1/2 bg-gray-200 flex items-center justify-center ring-1 ring-gray-400"
+                  class="w-full h-1/2 bg-gray-200 flex items-center justify-center ring-1 ring-base-300"
                   @click="dcrsCnt()"
                 >
                   <svg

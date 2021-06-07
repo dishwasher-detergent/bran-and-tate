@@ -1,9 +1,9 @@
 <template>
-  <nav class="w-full md:h-20 bg-white border-b border-gray-400 relative z-10">
+  <nav class="w-full md:h-20 bg-base-100 border-b border-base-300 relative z-10 ">
     <div
       class="mx-auto max-w-7xl h-full px-5 grid grid-cols-1 md:grid-cols-2 items-center justify-items-center md:justify-items-stretch"
     >
-      <nuxt-link to="/">
+      <nuxt-link to="/" class="py-2">
         <NavLogo />
       </nuxt-link>
       <div class="flex flex-row items-center justify-end space-between h-16 md:h-full">
@@ -11,7 +11,7 @@
         <div class="dropdown dropdown-hover dropdown-end">
           <div tabindex="0" class="m-1 btn btn-ghost">Location</div>
           <ul
-            class="ring-1 ring-gray-400 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2"
+            class="ring-1 ring-base-300 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2"
           >
             <h1 class="bg-gray-50 rounded-2xl font-bold text-center">MainStreet MarketPlace</h1>
             <p class="mt-2 text-sm w-full text-center"><b>Address</b></p>

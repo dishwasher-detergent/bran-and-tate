@@ -4,11 +4,11 @@
       ref="subnav"
       style="top: -1px"
       id="subnav"
-      class="w-full navbar bg-white ring-1 ring-gray-400 text-neutral-content rounded-box px-3 z-20 justify-end"
+      class="w-full navbar bg-base-100 ring-1 ring-base-300 text-neutral-content rounded-box px-3 z-20 justify-end"
     >
       <div class="flex-none">
         <div class="dropdown dropdown-hover dropdown-end">
-          <div tabindex="0" class="m-1 btn btn-square btn-ghost text-gray-800">
+          <div tabindex="0" class="m-1 btn btn-square btn-ghost ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6"
@@ -25,7 +25,7 @@
             </svg>
           </div>
           <ul
-            class="ring-1 ring-gray-400 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2"
+            class="ring-1 ring-base-300 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2"
           >
             <div class="form-control">
               <label class="cursor-pointer label" v-for="sort in sort_list" :key="sort.id">
@@ -47,7 +47,7 @@
       </div>
       <div class="flex-none">
         <div class="dropdown dropdown-hover dropdown-end">
-          <div tabindex="0" class="m-1 btn btn-square btn-ghost text-gray-800">
+          <div tabindex="0" class="m-1 btn btn-square btn-ghost ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6"
@@ -64,7 +64,7 @@
             </svg>
           </div>
           <ul
-            class="ring-1 ring-gray-400 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2"
+            class="ring-1 ring-base-300 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2"
           >
             <div class="form-control">
               <label class="cursor-pointer label" v-for="type in types" :key="type.id">
@@ -91,15 +91,15 @@
           <div
             :class="
               (order.completed ? 'bg-green-100' : 'bg-gray-50') +
-              ' ring-1 ring-gray-400 rounded-t-2xl p-4 flex flex-col md:flex-row'
+              ' ring-1 ring-base-300 rounded-t-2xl p-4 flex flex-col md:flex-row'
             "
           >
             <div class="flex flex-col flex-1">
-              <p class="text-gray-500 text-xs font-bold">{{ order.timestamp }}</p>
-              <p class="text-gray-500 text-xs font-bold pb-4">Order # {{ order.id }}</p>
+              <p class=" text-xs font-bold">{{ order.timestamp }}</p>
+              <p class=" text-xs font-bold pb-4">Order # {{ order.id }}</p>
               <div class="flex flex-col md:flex-row">
                 <div class="pt-4 md:pt-0 md:pr-8">
-                  <h4 class="text-gray-600 text-xs font-bold">Shipping</h4>
+                  <h4 class=" text-xs font-bold">Shipping</h4>
                   <p class="font-bold text-lg">{{ order.shipping.name }}</p>
                   <p>{{ order.shipping.address.line1 }}, {{ order.shipping.address.line2 }}</p>
                   <p>
@@ -108,7 +108,7 @@
                   </p>
                 </div>
                 <div>
-                  <h4 class="text-gray-600 text-xs font-bold">Contact</h4>
+                  <h4 class=" text-xs font-bold">Contact</h4>
                   <p>{{ order.contact }}</p>
                 </div>
               </div>
@@ -117,7 +117,7 @@
               <h3 class="font-bold text-2xl text-green-600">Completed</h3>
             </div>
           </div>
-          <div class="rounded-b-2xl ring-1 ring-gray-400 p-4 space-y-6">
+          <div class="rounded-b-2xl ring-1 ring-base-300 p-4 space-y-6">
             <!-- Line Items -->
             <div v-for="item in lineItem" :key="item.id">
               <div v-if="item.order_id == order.order_id" class="flex w-full">

@@ -4,7 +4,7 @@
     <section class="max-w-7xl mx-auto h-96 flex items-center justify-center">
       <div
         id="landing-banner"
-        class="w-full h-full bg-gray-50 flex items-center justify-center rounded-2xl overflow-hidden ring-1 ring-gray-400"
+        class="w-full h-full bg-gray-50 flex items-center justify-center rounded-2xl overflow-hidden ring-1 ring-base-300"
       >
         <div
           class="h-full w-full flex flex-col items-center justify-center bg-gray-50 bg-opacity-50"
@@ -20,21 +20,21 @@
       ref="subnav"
       style="top: -1px"
       id="subnav"
-      class="max-w-7xl mx-auto navbar bg-white ring-1 ring-gray-400 text-neutral-content rounded-box sticky top-0 px-3 z-50"
+      class="max-w-7xl mx-auto navbar bg-base-100 ring-1 ring-base-300 text-base-content rounded-box sticky top-0 px-3 z-50"
     >
-      <div class="flex-1">
-        <div class="form-control w-full md:mr-8">
+      <div class="flex-1  w-full">
+        <div class="form-control md:mr-8">
           <input
             v-model="search"
             type="text"
             placeholder="Search"
-            class="input input-bordered bg-gray-50 text-gray-800"
+            class="input input-bordered bg-gray-50 "
           />
         </div>
       </div>
       <div class="flex-none">
         <div class="dropdown dropdown-hover dropdown-end">
-          <div tabindex="0" class="m-1 btn btn-square btn-ghost text-gray-800">
+          <div tabindex="0" class="m-1 btn btn-square btn-ghost">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6"
@@ -51,7 +51,7 @@
             </svg>
           </div>
           <ul
-            class="ring-1 ring-gray-400 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2"
+            class="ring-1 ring-base-300 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2"
           >
             <div class="form-control">
               <label class="cursor-pointer label" v-for="sort in sort_list" :key="sort.id">
@@ -73,7 +73,7 @@
       </div>
       <div class="flex-none">
         <div class="dropdown dropdown-hover dropdown-end">
-          <div tabindex="0" class="m-1 btn btn-square btn-ghost text-gray-800">
+          <div tabindex="0" class="m-1 btn btn-square btn-ghost ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6"
@@ -90,7 +90,7 @@
             </svg>
           </div>
           <ul
-            class="ring-1 ring-gray-400 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2"
+            class="ring-1 ring-base-300 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2"
           >
             <div class="form-control">
               <label class="cursor-pointer label" v-for="type in types" :key="type.id">
@@ -112,7 +112,7 @@
       </div>
       <div class="flex-none">
         <div class="dropdown dropdown-hover dropdown-end">
-          <button class="btn btn-square btn-ghost relative text-gray-800">
+          <button class="btn btn-square btn-ghost relative ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6"
@@ -135,13 +135,13 @@
           </button>
           <ul
             v-if="cart.length"
-            class="ring-1 ring-gray-400 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2"
+            class="ring-1 ring-base-300 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2"
           >
             <div class="form-control">
               <div class="max-h-48 overflow-hidden overflow-y-auto">
                 <div class="cursor-pointer label" v-for="item in cart" :key="item.id">
                   <div class="w-full py-2 px-4 rounded-2xl bg-gray-50">
-                    <p class="flex w-full text-gray-700">
+                    <p class="flex w-full ">
                       <span class="flex-none font-bold">{{ item.quantity }}</span>
                       <span class="px-1 truncate flex-1">{{ item.name }}</span>
                       <button
@@ -165,7 +165,7 @@
                   </div>
                 </div>
               </div>
-              <div class="mt-2 pt-2 border-t border-gray-400">
+              <div class="mt-2 pt-2 border-t border-base-300">
                 <nuxt-link to="/cart" class="btn btn-primary w-full">Checkout</nuxt-link>
               </div>
             </div>

@@ -6,6 +6,9 @@ export default {
     htmlAttrs: {
       lang: 'en'
     },
+    bodyAttrs: {
+
+    },
     meta: [
       {
         charset: 'utf-8'
