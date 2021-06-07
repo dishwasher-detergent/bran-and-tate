@@ -23,7 +23,7 @@
       class="max-w-7xl mx-auto navbar bg-base-100 ring-1 ring-base-300 text-base-content rounded-box sticky top-0 px-3 z-50"
     >
       <div class="flex-1  w-full">
-        <div class="form-control md:mr-8">
+        <div class="form-control w-full md:mr-8">
           <input
             v-model="search"
             type="text"
