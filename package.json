@@ -19,9 +19,7 @@
     "imagekit": "^3.1.2",
     "imagekitio-vue": "^1.0.9",
     "nuxt": "^2.15.6",
-    "stripe": "^8.153.0"
-  },
-  "devDependencies": {
+    "stripe": "^8.153.0",
     "@nuxt/image": "^0.4.14",
     "@nuxtjs/tailwindcss": "^4.1.3",
     "@tailwindcss/postcss7-compat": "^2.1.4",
