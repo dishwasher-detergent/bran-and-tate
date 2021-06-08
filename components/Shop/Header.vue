@@ -1,5 +1,5 @@
 <template>
-  <nav class="w-full md:h-20 bg-base-100 border-b border-base-300 relative z-10 ">
+  <nav class="w-full md:h-20 bg-base-100 border-b border-base-300 relative z-20 ">
     <div
       class="mx-auto max-w-7xl h-full px-5 grid grid-cols-1 md:grid-cols-2 items-center justify-items-center md:justify-items-stretch"
     >

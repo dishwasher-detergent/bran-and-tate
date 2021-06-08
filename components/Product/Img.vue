@@ -26,7 +26,7 @@ export default {
 		},
 		height: {
 			type: String,
-			default: "320"
+			default: "400"
 		}
 	}
 }

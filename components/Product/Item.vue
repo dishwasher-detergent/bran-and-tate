@@ -1,6 +1,6 @@
 <template>
 <transition name="fade">
-  <div class="w-80 xl:w-72 rounded-2xl ring-1 ring-base-300 bg-base-100 overflow-hidden ">
+  <div class="w-full xl:w-72 rounded-2xl ring-1 ring-base-300 bg-base-100 overflow-hidden ">
       <div
         class="w-full h-72 bg-gray-50 flex items-center justify-center overflow-hidden relative z-10"
       >
