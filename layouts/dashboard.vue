@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen" data-theme="bt">
+  <div class="h-screen" data-theme="main">
     <Sidebar>
       <Nuxt />
     </Sidebar>
