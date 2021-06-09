@@ -1,14 +1,14 @@
 <template>
-  <div class="w-full max-w-7xl mx-auto flex flex-col space-y-4 pt-6">
+  <div class="w-full max-w-7xl mx-auto flex flex-col space-y-4 py-6 px-4 md:px-8">
     <WidgetContainer v-if="data">
       <div v-for="order in data" :key="order.id" class="mb-4">
         <div class="flex flex-col">
           <div class="ring-1 bg-gray-50 ring-base-300 rounded-t-2xl p-4 flex flex-col md:flex-row">
             <div class="flex flex-col flex-1">
-              <p class=" text-xs font-bold">{{ order.timestamp }}</p>
+              <p class="text-xs font-bold">{{ order.timestamp }}</p>
               <div class="flex flex-col md:flex-row pt-4">
                 <div class="md:pr-8">
-                  <h4 class=" text-xs font-bold">Shipping</h4>
+                  <h4 class="text-xs font-bold">Shipping</h4>
                   <p class="font-bold text-lg">{{ order.shipping.name }}</p>
                   <p>{{ order.shipping.address.line1 }}, {{ order.shipping.address.line2 }}</p>
                   <p>
@@ -17,14 +17,14 @@
                   </p>
                 </div>
                 <div>
-                  <h4 class=" text-xs font-bold">Contact</h4>
+                  <h4 class="text-xs font-bold">Contact</h4>
                   <p>{{ order.contact }}</p>
                 </div>
               </div>
             </div>
-            <div class="flex flex-col items-center justify-center">
-              <h3 v-if="order.completed" class="font-bold text-2xl ">Fully Crafted</h3>
-              <p v-if="order.shipped">Tracking: {{order.tracking}}</p>
+            <div class="flex items-center justify-center flex-col mt-4 md:mt-0">
+              <h3 v-if="order.completed" class="font-bold text-2xl">Crafted</h3>
+              <p v-if="order.shipped">Tracking: {{ order.tracking }}</p>
             </div>
           </div>
           <div class="rounded-b-2xl ring-1 ring-base-300 p-4 space-y-6">
@@ -38,8 +38,19 @@
                 <div v-if="item.completed" class="flex flex-row">
                   <p>Crafted&nbsp;&nbsp;&nbsp;</p>
                   <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
                     </svg>
                   </div>
                 </div>
