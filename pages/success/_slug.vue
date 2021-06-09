@@ -24,7 +24,7 @@
             </div>
             <div class="flex flex-col items-center justify-center">
               <h3 v-if="order.completed" class="font-bold text-2xl ">Fully Crafted</h3>
-              <!-- <h3 v-if="order.completed" class="font-bold text-2xl ">Fully Crafted</h3> -->
+              <p v-if="order.shipped">Tracking: {{order.tracking}}</p>
             </div>
           </div>
           <div class="rounded-b-2xl ring-1 ring-base-300 p-4 space-y-6">

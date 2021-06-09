@@ -4,11 +4,21 @@
       ref="subnav"
       style="top: -1px"
       id="subnav"
-      class="w-full navbar bg-base-100 ring-1 ring-base-300 text-neutral-content rounded-box px-3 z-20 justify-end"
+      class="
+        w-full
+        navbar
+        bg-base-100
+        ring-1 ring-base-300
+        text-base-content
+        rounded-box
+        px-3
+        z-20
+        justify-end
+      "
     >
       <div class="flex-none">
         <div class="dropdown dropdown-hover dropdown-end">
-          <div tabindex="0" class="m-1 btn btn-square btn-ghost ">
+          <div tabindex="0" class="m-1 btn btn-square btn-ghost">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6"
@@ -25,7 +35,16 @@
             </svg>
           </div>
           <ul
-            class="ring-1 ring-base-300 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2"
+            class="
+              ring-1 ring-base-300
+              shadow
+              menu
+              dropdown-content
+              bg-base-100
+              rounded-box
+              w-52
+              p-2
+            "
           >
             <div class="form-control">
               <label class="cursor-pointer label" v-for="sort in sort_list" :key="sort.id">
@@ -47,7 +66,7 @@
       </div>
       <div class="flex-none">
         <div class="dropdown dropdown-hover dropdown-end">
-          <div tabindex="0" class="m-1 btn btn-square btn-ghost ">
+          <div tabindex="0" class="m-1 btn btn-square btn-ghost">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6"
@@ -64,7 +83,16 @@
             </svg>
           </div>
           <ul
-            class="ring-1 ring-base-300 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2"
+            class="
+              ring-1 ring-base-300
+              shadow
+              menu
+              dropdown-content
+              bg-base-100
+              rounded-box
+              w-52
+              p-2
+            "
           >
             <div class="form-control">
               <label class="cursor-pointer label" v-for="type in types" :key="type.id">
@@ -75,7 +103,7 @@
                     type="radio"
                     class="radio radio-primary"
                     name="type"
-                    :value="type == 'open' ? 'false' : 'true'"
+                    :value="type"
                   />
                   <span class="radio-mark"></span>
                 </div>
@@ -88,18 +116,13 @@
     <WidgetContainer>
       <div v-for="order in data" :key="order.id" class="mb-4">
         <div class="flex flex-col">
-          <div
-            :class="
-              (order.completed ? 'bg-green-100' : 'bg-gray-50') +
-              ' ring-1 ring-base-300 rounded-t-2xl p-4 flex flex-col md:flex-row'
-            "
-          >
+          <div class="bg-gray-50 ring-1 ring-base-300 rounded-t-2xl p-4 flex flex-col md:flex-row">
             <div class="flex flex-col flex-1">
-              <p class=" text-xs font-bold">{{ order.timestamp }}</p>
-              <p class=" text-xs font-bold pb-4">Order # {{ order.id }}</p>
+              <p class="text-xs font-bold">{{ order.timestamp }}</p>
+              <p class="text-xs font-bold pb-4">Order # {{ order.id }}</p>
               <div class="flex flex-col md:flex-row">
                 <div class="pt-4 md:pt-0 md:pr-8">
-                  <h4 class=" text-xs font-bold">Shipping</h4>
+                  <h4 class="text-xs font-bold">Shipping</h4>
                   <p class="font-bold text-lg">{{ order.shipping.name }}</p>
                   <p>{{ order.shipping.address.line1 }}, {{ order.shipping.address.line2 }}</p>
                   <p>
@@ -108,13 +131,31 @@
                   </p>
                 </div>
                 <div>
-                  <h4 class=" text-xs font-bold">Contact</h4>
+                  <h4 class="text-xs font-bold">Contact</h4>
                   <p>{{ order.contact }}</p>
                 </div>
               </div>
             </div>
-            <div v-if="order.completed" class="flex items-center justify-center">
-              <h3 class="font-bold text-2xl text-green-600">Completed</h3>
+            <div
+              v-if="order.completed"
+              class="flex items-center justify-center flex-col mt-4 md:mt-0"
+            >
+              <h3 class="font-bold text-2xl">Crafted</h3>
+              <p v-if="order.shipped">Tracking: {{ order.tracking }}</p>
+              <div v-else class="mt-6 flex flex-row items-center justify-center">
+                <input
+                  v-model="tracking"
+                  type="text"
+                  placeholder="Tracking Number"
+                  class="mr-2 input input-bordered rounded-r-none"
+                />
+                <button
+                  @click="shipped_order(order.order_id)"
+                  class="rounded-l-none btn btn-primary btn-square"
+                >
+                  Add
+                </button>
+              </div>
             </div>
           </div>
           <div class="rounded-b-2xl ring-1 ring-base-300 p-4 space-y-6">
@@ -185,7 +226,7 @@ export default {
       data: '',
       lineItem: '',
       types: [],
-      filter: false,
+      filter: 'open',
       sort_list: [
         {
           title: 'New to Old',
@@ -207,6 +248,7 @@ export default {
       sorted: 'old_to_new',
       line_sub: null,
       order_sub: null,
+      tracking: null,
     }
   },
   async mounted() {
@@ -243,6 +285,13 @@ export default {
     },
   },
   methods: {
+    getNow() {
+      const today = new Date()
+      const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+      const time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds()
+      const dateTime = date + ' ' + time
+      return dateTime
+    },
     async retrieve_orders() {
       let sort
       for (let i = 0; i < this.sort_list.length; i++) {
@@ -252,11 +301,19 @@ export default {
         }
       }
 
+      let decider = true
+      let column = this.filter
+
+      if (this.filter == 'open') {
+        decider = false
+        column = 'completed'
+      }
+
       let { data: products, error } = await this.$supabase
         .from('orders')
         .select('*')
         .order(sort.column, { ascending: sort.direction })
-        .eq('completed', this.filter)
+        .eq(column, decider)
       if (error) {
         console.error(error)
       } else {
@@ -322,7 +379,20 @@ export default {
     async complete_order(id, state) {
       const { data, error } = await this.$supabase
         .from('orders')
-        .update({ completed: state })
+        .update({
+          completed: state,
+          completed_timestamp: this.getNow(),
+        })
+        .eq('order_id', id)
+    },
+    async shipped_order(id) {
+      const { data, error } = await this.$supabase
+        .from('orders')
+        .update({
+          shipped: true,
+          tracking: this.tracking,
+          shipped_timestamp: this.getNow(),
+        })
         .eq('order_id', id)
     },
   },

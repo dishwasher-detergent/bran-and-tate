@@ -13,7 +13,7 @@
           <ul
             class="ring-1 ring-base-300 shadow menu dropdown-content bg-base-100 rounded-box w-52 p-2"
           >
-            <h1 class="bg-gray-50 rounded-2xl font-bold text-center">MainStreet MarketPlace</h1>
+            <h1 class="py-1 px-2 bg-base-200 rounded-xl font-bold text-center">MainStreet MarketPlace</h1>
             <p class="mt-2 text-sm w-full text-center"><b>Address</b></p>
             <p class="text-left text-sm">429 W Main St, Yukon, OK 73099</p>
             <p class="mt-2 text-sm w-full text-center"><b>Time</b></p>
