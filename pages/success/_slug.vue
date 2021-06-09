@@ -1,7 +1,7 @@
 <template>
   <div class="h-full w-full max-w-7xl mx-auto flex flex-col p-6">
-    <WidgetContainer v-if="data">
-      <div v-for="order in data" :key="order.id" class="mb-4">
+    <div v-if="data">
+      <div v-for="order in data" :key="order.id">
         <div class="flex flex-col">
           <div class="ring-1 bg-gray-50 ring-base-300 rounded-t-2xl p-4 flex flex-col md:flex-row">
             <div class="flex flex-col flex-1">
@@ -59,7 +59,7 @@
           </div>
         </div>
       </div>
-    </WidgetContainer>
+    </div>
     <div v-else>Loading</div>
   </div>
 </template>
