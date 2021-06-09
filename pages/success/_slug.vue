@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full max-w-7xl mx-auto flex flex-col space-y-4 py-6 px-4 md:px-8">
+  <div class="h-full w-full max-w-7xl mx-auto flex flex-col p-6">
     <WidgetContainer v-if="data">
       <div v-for="order in data" :key="order.id" class="mb-4">
         <div class="flex flex-col">

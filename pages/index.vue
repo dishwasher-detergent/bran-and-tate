@@ -174,7 +174,7 @@
     <!-- Products -->
     <section class="w-full px-2 md:px-0 pb-16">
       <div
-        v-if="products"
+        v-if="products.length > 0"
         class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center justify-items-center gap-5"
       >
         <ProductItem
