@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full w-full max-w-7xl mx-auto flex flex-col p-6">
+  <div class="mx-auto max-w-7xl px-5 h-full p-6">
     <div v-if="data">
       <div v-for="order in data" :key="order.id">
         <div class="flex flex-col">
