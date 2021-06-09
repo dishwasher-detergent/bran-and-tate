@@ -98,7 +98,8 @@
             </label>
           </div>
         </div>
-        <div
+        <!-- NOTE Needs to be properly added -->
+        <!-- <div
           tabindex="0"
           class="collapse w-full md:w-96 rounded-box border border-base-300 collapse-arrow"
         >
@@ -128,7 +129,7 @@
               </label>
             </div>
           </div>
-        </div>
+        </div> -->
         <div
           tabindex="2"
           class="collapse w-full md:w-96 rounded-box border border-base-300 collapse-arrow"

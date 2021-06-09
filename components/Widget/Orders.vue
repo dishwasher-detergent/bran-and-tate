@@ -116,12 +116,11 @@
     <WidgetContainer>
       <div v-for="order in data" :key="order.id" class="mb-4">
         <div class="flex flex-col">
-          <div class="bg-gray-50 ring-1 ring-base-300 rounded-t-2xl p-4 flex flex-col md:flex-row">
+          <div class="ring-1 ring-base-300 rounded-t-2xl p-4 flex flex-col md:flex-row items-start">
             <div class="flex flex-col flex-1">
-              <p class="text-xs font-bold">{{ order.timestamp }}</p>
-              <p class="text-xs font-bold pb-4">Order # {{ order.id }}</p>
-              <div class="flex flex-col md:flex-row">
-                <div class="pt-4 md:pt-0 md:pr-8">
+              <p class="text-xs font-bold">Recieved At: {{ order.timestamp }}</p>
+              <div class="flex flex-col md:flex-row pt-4">
+                <div class="md:pr-8 bg-base-200 rounded-2xl p-4">
                   <h4 class="text-xs font-bold">Shipping</h4>
                   <p class="font-bold text-lg">{{ order.shipping.name }}</p>
                   <p>{{ order.shipping.address.line1 }}, {{ order.shipping.address.line2 }}</p>
@@ -130,18 +129,18 @@
                     {{ order.shipping.address.postal_code }}
                   </p>
                 </div>
-                <div>
+                <div class="mt-4 md:mt-0 md:ml-4 bg-base-200 rounded-2xl p-4">
                   <h4 class="text-xs font-bold">Contact</h4>
                   <p>{{ order.contact }}</p>
                 </div>
               </div>
             </div>
-            <div
-              v-if="order.completed"
-              class="flex items-center justify-center flex-col mt-4 md:mt-0"
-            >
-              <h3 class="font-bold text-2xl">Crafted</h3>
-              <p v-if="order.shipped">Tracking: {{ order.tracking }}</p>
+            <div class="mt-4 md:mt-0 bg-base-200 rounded-2xl p-4">
+              <h4 class="text-xs font-bold">Status</h4>
+              <h3 v-if="order.completed && !order.shipped" class="font-bold text-2xl">Crafted</h3>
+              <h3 v-else-if="order.shipped" class="font-bold text-lg">Shipped</h3>
+              <h3 v-else class="font-bold text-lg">Crafting</h3>
+              <p v-if="order.shipped">{{ order.tracking }}</p>
               <div v-else class="mt-6 flex flex-row items-center justify-center">
                 <input
                   v-model="tracking"
