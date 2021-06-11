@@ -30,20 +30,28 @@
       <div
         class="h-72 rounded-2xl -mt-10 py-5 flex flex-col relative bg-base-100 z-20 ring-1 ring-base-300"
       >
-        <div class="h-full w-full px-4 overflow-y-hidden flex-1 mb-4">
-          <h1 class="font-bold text-2xl truncate">
+        <div :class="'h-full w-full px-4 overflow-y-hidden flex-1 mb-4' + (this.$auth.loggedIn ? ' space-y-4' : '')">
+          <h1 ref="title" id="content" :contenteditable="(this.$auth.loggedIn)" class="font-bold text-2xl truncate">
             {{ title }}
           </h1>
-          <h3 class="text-3xl font-bold">${{ price }}</h3>
-          <p class="break-words pt-2 ">
+          <h3 class="text-3xl font-bold">$<span :contenteditable="(this.$auth.loggedIn)" id="content" ref="price">{{ price }}</span></h3>
+          <p ref="description" id="content" :contenteditable="(this.$auth.loggedIn)" class="break-words pt-2 ">
             {{ description }}
           </p>
         </div>
         <div class="w-full flex items-center justify-center px-4 flex-none">
             <button
+              aria-label="Save Changes"
+              v-if="this.$auth.loggedIn"
+              class="btn w-full btn-secondary"
+              @click="editProduct()"
+            >
+              Save Changes
+            </button>
+            <button
               aria-label="Disabled"
               disabled="disabled"
-              v-if="addedToCart"
+              v-else-if="addedToCart"
               class="btn w-full btn-primary"
             >
               In Cart!
@@ -133,6 +141,23 @@ export default {
         console.log('Error Deleting: ', error.message)
       }
     },
+    async editProduct() {
+      try {
+        const { data, error } = await this.$supabase
+          .from('products')
+          .update({
+            title: this.$refs.title.innerText,
+            price: this.$refs.price.innerText,
+            description: this.$refs.description.innerText
+          })
+          .match({ id: this.id })
+        if (error) {
+          throw error
+        }
+      } catch (error) {
+        console.log('Error Deleting: ', error.message)
+      }
+    },
   },
 }
 </script>
@@ -144,5 +169,11 @@ export default {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+#content[contenteditable="true"] {
+  @apply bg-gray-200 rounded-2xl px-2 py-1
+}
+#content:focus[contenteditable="true"] {
+  @apply bg-gray-100 outline-none
 }
 </style>
