@@ -42,10 +42,7 @@
           <p class="text-lg">Image</p>
           <div class="bg-gray-50 rounded-2xl ring-1 ring-base-300 p-2">
             <label for="product_image">
-              <ik-upload
-                :onError="onError"
-                :onSuccess="onSuccess"
-              />
+              <ik-upload :onError="onError" :onSuccess="onSuccess" />
             </label>
           </div>
         </div>
@@ -70,7 +67,16 @@
         <div>
           <p class="text-lg">Size</p>
           <div
-            class="flex flex-col md:flex-row items-center space-x-2 bg-gray-50 rounded-2xl ring-1 ring-base-300 p-2"
+            class="
+              flex flex-col
+              md:flex-row
+              items-center
+              space-x-2
+              bg-gray-50
+              rounded-2xl
+              ring-1 ring-base-300
+              p-2
+            "
           >
             <label for="product_size_w" class="w-full">
               <p>Width</p>
@@ -130,10 +136,7 @@
             </div>
           </div>
         </div> -->
-        <div
-          tabindex="2"
-          class="collapse w-full md:w-96 rounded-box border border-base-300 collapse-arrow"
-        >
+        <div tabindex="2" class="collapse rounded-box border border-base-300 collapse-arrow">
           <input type="checkbox" />
           <div class="collapse-title text-lg">Type</div>
           <div class="collapse-content">
@@ -158,6 +161,9 @@
                   <span class="checkbox-mark"></span>
                 </div>
               </label>
+              <label class="cursor-pointer label">
+                <a @click="newTypeModal()" class="link text-primary text-sm">Add New Type</a>
+              </label>
             </div>
           </div>
         </div>
@@ -170,6 +176,39 @@
           {{ success ? 'Added!' : 'Upload Product' }}
         </button>
       </form>
+      <transition name="fade">
+        <div
+          v-if="typeModal"
+          class="
+            fixed
+            top-0
+            left-0
+            right-0
+            bottom-0
+            flex
+            items-end
+            md:items-center
+            justify-center
+            z-50
+            bg-opacity-50 bg-base-content
+          "
+        >
+          <div class="modal-box">
+            <label for="new_type" class="w-full">
+              <p>Type</p>
+              <input v-model="new_type" type="text" id="new_type" required />
+            </label>
+            <div class="modal-action">
+              <label role="button" for="my-modal-2" class="btn btn-primary" @click="addNewType()"
+                >Add Type</label
+              >
+              <label role="button" for="my-modal-2" class="btn" @click="newTypeModal()"
+                >Close</label
+              >
+            </div>
+          </div>
+        </div>
+      </transition>
     </WidgetContainer>
     <div class="w-full md:w-96 flex-none">
       <h1 class="text-2xl font-bold mb-4">Preview</h1>
@@ -196,19 +235,24 @@ export default {
       colors: [],
       color_list: ['red', 'green', 'blue'],
       types: [],
-      type_list: ['Wall', 'Porch', 'Seasonal'],
+      type_list: [],
       price: '10',
       image: '',
       error: null,
       loading: false,
       success: false,
+      typeModal: false,
+      new_type: '',
     }
+  },
+  created() {
+    this.getTypes()
   },
   methods: {
     async upload() {
       this.loading = true
       let product_data = await this.upload_product()
-      if (product_data = '') this.error = 'There was an error uploading your product'
+      if ((product_data = '')) this.error = 'There was an error uploading your product'
       this.loading = false
       this.success = true
       setTimeout(() => {
@@ -234,6 +278,34 @@ export default {
         return
       }
     },
+    async getTypes() {
+      let { data: types, error } = await this.$supabase
+        .from('types')
+        .select('*')
+        .eq('title', 'product_types')
+      if (error) {
+        console.error(error)
+      } else {
+        this.type_list = types[0].types
+      }
+    },
+    newTypeModal() {
+      this.typeModal = !this.typeModal
+    },
+    async addNewType() {
+      this.type_list.push(this.new_type)
+      try {
+        const {data, error} = await this.$supabase
+          .from('types')
+          .update({types: this.type_list})
+          .eq('title', 'product_types')
+        if (error) {
+          throw error
+        }
+      } catch (error) {
+        console.error(error)
+      }
+    },
     onError(err) {
       console.log('Error')
       console.log(err)
@@ -246,6 +318,15 @@ export default {
 }
 </script>
 <style scoped>
+.fade-leave-active,
+.fade-enter-active {
+  transition: 0.25s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
 input[type='text'],
 input[type='tel'] {
   @apply input;

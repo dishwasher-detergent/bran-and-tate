@@ -30,19 +30,19 @@
       <div
         class="h-72 rounded-2xl -mt-10 py-5 flex flex-col relative bg-base-100 z-20 ring-1 ring-base-300"
       >
-        <div :class="'h-full w-full px-4 overflow-y-hidden flex-1 mb-4' + (this.$auth.loggedIn ? ' space-y-4' : '')">
-          <h1 ref="title" id="content" :contenteditable="(this.$auth.loggedIn)" class="font-bold text-2xl truncate">
+        <div :class="'h-full w-full px-4 overflow-y-hidden flex-1 mb-4' + (this.$auth.loggedIn  && !editing ? ' space-y-4' : '')">
+          <h1 ref="title" id="content" :contenteditable="(this.$auth.loggedIn  && !editing)" class="font-bold text-2xl truncate">
             {{ title }}
           </h1>
-          <h3 class="text-3xl font-bold">$<span :contenteditable="(this.$auth.loggedIn)" id="content" ref="price">{{ price }}</span></h3>
-          <p ref="description" id="content" :contenteditable="(this.$auth.loggedIn)" class="break-words pt-2 ">
+          <h3 class="text-3xl font-bold">$<span :contenteditable="(this.$auth.loggedIn  && !editing)" id="content" ref="price">{{ price }}</span></h3>
+          <p ref="description" id="content" :contenteditable="(this.$auth.loggedIn && !editing)" class="break-words pt-2 ">
             {{ description }}
           </p>
         </div>
         <div class="w-full flex items-center justify-center px-4 flex-none">
             <button
               aria-label="Save Changes"
-              v-if="this.$auth.loggedIn"
+              v-if="this.$auth.loggedIn  && !editing"
               class="btn w-full btn-secondary"
               @click="editProduct()"
             >

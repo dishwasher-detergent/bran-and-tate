@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div v-for="item in data" :key="item.id" class="mt-4 max-w-7xl mx-auto">
+  <div class="space-y-4">
+    <div v-for="item in data" :key="item.id" class="max-w-7xl mx-auto">
       <div :class="'alert alert-' + item.type">
         <div class="flex-1 flex w-full">
           <div data-tip="Delete" class="tooltip" v-if="editing">
