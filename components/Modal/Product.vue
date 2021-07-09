@@ -32,7 +32,7 @@
                   />
                 </svg>
               </button>
-            	<ProductImg v-if="image" :id="image" width="500" height="550" :alt="title"/>
+            	<ProductImg v-if="image" :id="image" :alt="title"/>
             </div>
             <div class="absolute top-0 h-full flex flex-col w-full overflow-y-auto">
               <div class="w-full h-96 flex-none"></div>
