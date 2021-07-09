@@ -1,13 +1,13 @@
 <template>
-	<div :class="'w-full relative h-' + (height / 16) * 4"> 
-		<ik-image
-			:path="id"
-			:lqip="{active:true}"
-			:transformation="[{q:75,c:'fo-auto',height:height,width:width}]"
-			class="w-full h-full"
-			:alt="alt"
-		/>
-	</div>
+  <div class="w-full h-full relative">
+    <ik-image
+      :path="id"
+      :lqip="{ active: true }"
+      :transformation="[{ q: 75, c: 'fo-auto' }]"
+      class="w-full h-full object-cover object-left-top"
+      :alt="alt"
+    />
+  </div>
 </template>
 <script>
 export default {
@@ -20,14 +20,6 @@ export default {
 			type: String,
 			default: ""
 		},
-		width: {
-			type: String,
-			default: "288"
-		},
-		height: {
-			type: String,
-			default: "400"
-		}
 	}
 }
 </script>
