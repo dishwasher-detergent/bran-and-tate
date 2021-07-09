@@ -1,6 +1,6 @@
 <template>
   <div class="px-4 md:px-0 space-y-4">
-    <div class="bg-base-200 py-4 space-y-4 border-b border-base-300">
+    <div class="py-4 space-y-4 md:bg-base-200 md:border-b md:border-base-300">
       <BannersBanner />
       <section class="max-w-7xl mx-auto h-96 flex items-center justify-center">
         <div
