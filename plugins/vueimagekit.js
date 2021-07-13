@@ -2,7 +2,7 @@ import Vue from 'vue'
 const {ImageKit} = require('imagekitio-vue')
 
 Vue.use(ImageKit, {
-  urlEndpoint: "https://ik.imagekit.io/branandtate/",
-  publicKey: "public_3C3ZlEJz6tKgVa6Glcpb7YSQXe8=",
-  authenticationEndpoint: 'https://branandtate.com/api/imageKit'
+  urlEndpoint: "https://ik.imagekit.io/kennethbass/",
+  publicKey: process.env.NUXT_IMAGEKIT_PUBLIC,
+  authenticationEndpoint: 'https://kennethbass.com/api/imageKit'
 })
