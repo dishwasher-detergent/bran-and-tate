@@ -9,7 +9,8 @@
         mx-auto
         navbar
         bg-base-100
-        bg-opacity-50
+        bg-opacity-80
+        filter
         blur-md
         ring-1 ring-base-300
         text-base-content
