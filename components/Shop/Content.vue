@@ -10,8 +10,8 @@
         navbar
         bg-base-100
         bg-opacity-80
-        filter
-        blur-md
+        backdrop-blur-md
+        backdrop-filter
         ring-1 ring-base-300
         text-base-content
         rounded-box
