@@ -9,6 +9,8 @@
         mx-auto
         navbar
         bg-base-100
+        bg-opacity-50
+        blur-md
         ring-1 ring-base-300
         text-base-content
         rounded-box
