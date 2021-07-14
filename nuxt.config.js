@@ -77,5 +77,11 @@ export default {
     imagekit: {
       baseURL: 'https://ik.imagekit.io/branandtate/'
     }
+  },
+  
+  env: {
+    private_api: process.env.NUXT_IMAGEKIT_PRIVATE,
+    public_api: process.env.NUXT_IMAGEKIT_PUBLIC,
+    imageKit_endpoint: process.env.NUXT_IMAGEKIT_ENDPOINT
   }
 }
