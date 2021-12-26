@@ -56,7 +56,7 @@
       <div v-if="cart.length">
         <p class="w-full text-right text-2xl font-bold py-5">Subtotal: ${{ total }}</p>
         <div class="flex items-center justify-end">
-          <button aria-label="Check Out" class="btn btn-primary" @click="stripe_checkout">
+          <button aria-label="Check Out" class="btn btn-primary">
             Check out
           </button>
         </div>
@@ -113,31 +113,31 @@ export default {
     setCart() {
       if (localStorage.getItem('cart')) this.cart = JSON.parse(localStorage.getItem('cart'))
     },
-    async stripe_checkout() {
-      let items = []
-      for (let i = 0; i < this.cart.length; i++) {
-        items.push({
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: this.cart[i].name,
-              description: this.cart[i].description,
-              metadata: { order_id: '6735' },
-            },
-            unit_amount: this.cart[i].price * 100,
-          },
-          quantity: this.cart[i].quantity,
-        })
-      }
-      try {
-        const { data } = await this.$axios.post('/api/checkout', {
-          order: items,
-        })
-        this.stripe.redirectToCheckout({ sessionId: data.id })
-      } catch (err) {
-        alert(err)
-      }
-    },
+    // async stripe_checkout() {
+    //   let items = []
+    //   for (let i = 0; i < this.cart.length; i++) {
+    //     items.push({
+    //       price_data: {
+    //         currency: 'usd',
+    //         product_data: {
+    //           name: this.cart[i].name,
+    //           description: this.cart[i].description,
+    //           metadata: { order_id: '6735' },
+    //         },
+    //         unit_amount: this.cart[i].price * 100,
+    //       },
+    //       quantity: this.cart[i].quantity,
+    //     })
+    //   }
+    //   try {
+    //     const { data } = await this.$axios.post('/api/checkout', {
+    //       order: items,
+    //     })
+    //     this.stripe.redirectToCheckout({ sessionId: data.id })
+    //   } catch (err) {
+    //     alert(err)
+    //   }
+    // },
   },
 }
 </script>
