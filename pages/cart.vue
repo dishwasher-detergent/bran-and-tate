@@ -56,7 +56,7 @@
       <div v-if="cart.length">
         <p class="w-full text-right text-2xl font-bold py-5">Subtotal: ${{ total }}</p>
         <div class="flex items-center justify-end">
-          <button aria-label="Check Out" class="btn btn-primary">
+          <button aria-label="Check Out" class="btn btn-primary" disabled>
             Check out
           </button>
         </div>
