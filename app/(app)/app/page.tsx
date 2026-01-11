@@ -16,18 +16,18 @@ export default async function Home() {
   const labels = result.success ? result.data!.rows : [];
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-8 flex items-center justify-between">
+    <>
+      <div className="mb-4 flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold mb-2">My Labels</h1>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground mb-2">
             View and manage your candle labels
           </p>
+          <Button
+            nativeButton={false}
+            render={<Link href="/app/labels/create">Create Label</Link>}
+          />
         </div>
-        <Button
-          nativeButton={false}
-          render={<Link href="/app/labels/create">Create Label</Link>}
-        />
       </div>
       {labels.length === 0 ? (
         <Card>
@@ -98,6 +98,6 @@ export default async function Home() {
           })}
         </div>
       )}
-    </div>
+    </>
   );
 }

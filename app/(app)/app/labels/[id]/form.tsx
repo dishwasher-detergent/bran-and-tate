@@ -87,7 +87,7 @@ export function EditLabelForm({ labelId }: EditLabelFormProps) {
       } else {
         toast.error(result.message || "Failed to update label");
       }
-    } catch (error) {
+    } catch {
       toast.error("An error occurred while updating the label");
     } finally {
       setIsUpdating(false);
