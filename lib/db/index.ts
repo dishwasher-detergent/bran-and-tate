@@ -1,31 +1,23 @@
 "use server";
 
 import { revalidateTag, unstable_cache } from "next/cache";
-import { ID, Models, Permission, Query, Role } from "node-appwrite";
+import { ID, Models, Permission, Role } from "node-appwrite";
 
-import { Product } from "@/interfaces/product.interface";
+import { Label } from "@/interfaces/label.interface";
 import { Result } from "@/interfaces/result.interface";
-import { TeamData } from "@/interfaces/team.interface";
-import { UserData } from "@/interfaces/user.interface";
 import { withAuth } from "@/lib/auth";
-import {
-  DATABASE_ID,
-  SAMPLE_COLLECTION_ID,
-  TEAM_COLLECTION_ID,
-  USER_COLLECTION_ID,
-} from "@/lib/constants";
+import { DATABASE_ID, LABEL_COLLECTION_ID } from "@/lib/constants";
+import { LabelFormData } from "@/lib/db/schemas";
 import { createSessionClient } from "@/lib/server/appwrite";
-import { deleteProductImage, uploadProductImage } from "@/lib/storage";
-import { AddProductFormData, EditProductFormData } from "./schemas";
 
 /**
- * Get a list of products
- * @param {string[]} queries The queries to filter the products
- * @returns {Promise<Result<Models.RowList<Product>>>} The list of products
+ * Get a list of labels
+ * @param {string[]} queries The queries to filter the labels
+ * @returns {Promise<Result<Models.RowList<Label>>>} The list of labels
  */
-export async function listProducts(
+export async function listLabel(
   queries: string[] = []
-): Promise<Result<Models.RowList<Product>>> {
+): Promise<Result<Models.RowList<Label>>> {
   return withAuth(async (user) => {
     const { database } = await createSessionClient();
 
@@ -33,68 +25,16 @@ export async function listProducts(
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       async (queries, userId) => {
         try {
-          const products = await database.listRows<Product>({
+          const labels = await database.listRows<Label>({
             databaseId: DATABASE_ID,
-            tableId: SAMPLE_COLLECTION_ID,
-            queries: queries
+            tableId: LABEL_COLLECTION_ID,
+            queries: queries,
           });
-
-          const userIds = products.rows.map((product) => product.userId);
-          const uniqueUserIds = Array.from(new Set(userIds));
-
-          const teamIds = products.rows.map((product) => product.teamId);
-          const uniqueTeamIds = Array.from(new Set(teamIds));
-
-          const users = await database.listRows<UserData>(
-            DATABASE_ID,
-            USER_COLLECTION_ID,
-            [
-              Query.equal("$id", uniqueUserIds),
-              Query.select(["$id", "name", "avatar"]),
-            ]
-          );
-
-          const teams = await database.listRows<TeamData>(
-            DATABASE_ID,
-            TEAM_COLLECTION_ID,
-            [
-              Query.equal("$id", uniqueTeamIds),
-              Query.select(["$id", "name", "avatar"]),
-            ]
-          );
-
-          const userMap = users.rows.reduce<Record<string, UserData>>(
-            (acc, user) => {
-              if (user) {
-                acc[user.$id] = user;
-              }
-              return acc;
-            },
-            {}
-          );
-
-          const teamMap = teams.rows.reduce<Record<string, TeamData>>(
-            (acc, team) => {
-              if (team) {
-                acc[team.$id] = team;
-              }
-              return acc;
-            },
-            {}
-          );
-
-          const newProducts = products.rows.map((product) => ({
-            ...product,
-            user: userMap[product.userId],
-            team: teamMap[product.teamId],
-          }));
-
-          products.rows = newProducts;
 
           return {
             success: true,
-            message: "Products successfully retrieved.",
-            data: products,
+            message: "Label successfully retrieved.",
+            data: labels,
           };
         } catch (err) {
           const error = err as Error;
@@ -105,12 +45,12 @@ export async function listProducts(
           };
         }
       },
-      ["products"],
+      ["labels"],
       {
         tags: [
-          "products",
-          `products:${queries.join("-")}`,
-          `products:user-${user.$id}`,
+          "labels",
+          `labels:${queries.join("-")}`,
+          `labels:user-${user.$id}`,
         ],
         revalidate: 600,
       }
@@ -119,50 +59,32 @@ export async function listProducts(
 }
 
 /**
- * Get a product by ID
- * @param {string} productId The ID of the product
- * @param {string[]} queries The queries to filter the product
- * @returns {Promise<Result<Product>>} The product
+ * Get a label by ID
+ * @param {string} labelId The ID of the label
+ * @param {string[]} queries The queries to filter the label
+ * @returns {Promise<Result<Label>>} The label
  */
-export async function getProductById(
-  productId: string,
+export async function getLabelById(
+  labelId: string,
   queries: string[] = []
-): Promise<Result<Product>> {
+): Promise<Result<Label>> {
   return withAuth(async () => {
     const { database } = await createSessionClient();
 
     return unstable_cache(
       async () => {
         try {
-          const product = await database.getRow<Product>({
+          const label = await database.getRow<Label>({
             databaseId: DATABASE_ID,
-            tableId: SAMPLE_COLLECTION_ID,
-            rowId: productId,
-            queries: queries
-          });
-
-          const userRes = await database.getRow<UserData>({
-            databaseId: DATABASE_ID,
-            tableId: USER_COLLECTION_ID,
-            rowId: product.userId,
-            queries: [Query.select(["$id", "name", "avatar"])]
-          });
-
-          const teamRes = await database.getRow<TeamData>({
-            databaseId: DATABASE_ID,
-            tableId: TEAM_COLLECTION_ID,
-            rowId: product.teamId,
-            queries: [Query.select(["$id", "name", "avatar"])]
+            tableId: LABEL_COLLECTION_ID,
+            rowId: labelId,
+            queries: queries,
           });
 
           return {
             success: true,
-            message: "Product successfully retrieved.",
-            data: {
-              ...product,
-              user: userRes,
-              team: teamRes,
-            },
+            message: "Label successfully retrieved.",
+            data: label,
           };
         } catch (err) {
           const error = err as Error;
@@ -173,9 +95,9 @@ export async function getProductById(
           };
         }
       },
-      ["product", productId],
+      ["label", labelId],
       {
-        tags: ["products", `product:${productId}`],
+        tags: ["labels", `label:${labelId}`],
         revalidate: 600,
       }
     )();
@@ -183,22 +105,22 @@ export async function getProductById(
 }
 
 /**
- * Create a product
- * @param {Object} params The parameters for creating a product
- * @param {string} [params.id] The ID of the product (optional)
- * @param {AddProductFormData} params.data The product data
- * @param {string[]} [params.permissions] The permissions for the product (optional)
- * @returns {Promise<Result<Product>>} The created product
+ * Create a label
+ * @param {Object} params The parameters for creating a label
+ * @param {string} [params.id] The ID of the label (optional)
+ * @param {LabelFormData} params.data The label data
+ * @param {string[]} [params.permissions] The permissions for the label (optional)
+ * @returns {Promise<Result<Label>>} The created label
  */
-export async function createProduct({
+export async function createLabel({
   id = ID.unique(),
   data,
   permissions = [],
 }: {
   id?: string;
-  data: AddProductFormData;
+  data: LabelFormData;
   permissions?: string[];
-}): Promise<Result<Product>> {
+}): Promise<Result<Label>> {
   return withAuth(async (user) => {
     const { database } = await createSessionClient();
 
@@ -206,58 +128,23 @@ export async function createProduct({
       ...permissions,
       Permission.read(Role.user(user.$id)),
       Permission.write(Role.user(user.$id)),
-      Permission.read(Role.team(data.teamId)),
     ];
 
     try {
-      if (data.image instanceof File) {
-        const image = await uploadProductImage({
-          data: data.image,
-          permissions: [Permission.read(Role.team(data.teamId))],
-        });
-
-        if (!image.success) {
-          throw new Error(image.message);
-        }
-
-        data.image = image.data?.$id;
-      }
-
-      const product = await database.createRow<Product>({
+      const label = await database.createRow<Label>({
         databaseId: DATABASE_ID,
-        tableId: SAMPLE_COLLECTION_ID,
+        tableId: LABEL_COLLECTION_ID,
         rowId: id,
-        data: {
-          ...data,
-          userId: user.$id,
-        },
-        permissions: permissions
+        data: data,
+        permissions: permissions,
       });
 
-      const userRes = await database.getRow<UserData>({
-        databaseId: DATABASE_ID,
-        tableId: USER_COLLECTION_ID,
-        rowId: product.userId,
-        queries: [Query.select(["$id", "name", "avatar"])]
-      });
-
-      const teamRes = await database.getRow<TeamData>({
-        databaseId: DATABASE_ID,
-        tableId: TEAM_COLLECTION_ID,
-        rowId: product.teamId,
-        queries: [Query.select(["$id", "name", "avatar"])]
-      });
-
-      revalidateTag("products");
+      revalidateTag("labels");
 
       return {
         success: true,
-        message: "Product successfully created.",
-        data: {
-          ...product,
-          user: userRes,
-          team: teamRes,
-        },
+        message: "Label successfully created.",
+        data: label,
       };
     } catch (err) {
       const error = err as Error;
@@ -271,92 +158,41 @@ export async function createProduct({
 }
 
 /**
- * Update a product
- * @param {Object} params The parameters for creating a product
- * @param {string} [params.id] The ID of the product
- * @param {EditProductFormData} params.data The product data
- * @param {string[]} [params.permissions] The permissions for the product (optional)
- * @returns {Promise<Result<Product>>} The updated product
+ * Update a label
+ * @param {Object} params The parameters for creating a label
+ * @param {string} [params.id] The ID of the label
+ * @param {LabelFormData} params.data The label data
+ * @param {string[]} [params.permissions] The permissions for the label (optional)
+ * @returns {Promise<Result<Label>>} The updated label
  */
-export async function updateProduct({
+export async function updateLabel({
   id,
   data,
   permissions = undefined,
 }: {
   id: string;
-  data: EditProductFormData;
+  data: LabelFormData;
   permissions?: string[];
-}): Promise<Result<Product>> {
-  return withAuth(async (user) => {
+}): Promise<Result<Label>> {
+  return withAuth(async () => {
     const { database } = await createSessionClient();
 
     try {
-      const existingProduct = await database.getRow<Product>({
+      const label = await database.updateRow<Label>({
         databaseId: DATABASE_ID,
-        tableId: SAMPLE_COLLECTION_ID,
-        rowId: id
-      });
-
-      if (data.image instanceof File) {
-        if (existingProduct.image) {
-          await deleteProductImage(existingProduct.image);
-        }
-
-        const image = await uploadProductImage({
-          data: data.image,
-        });
-
-        if (!image.success) {
-          throw new Error(image.message);
-        }
-
-        data.image = image.data?.$id;
-      } else if (data.image === null && existingProduct.image) {
-        const image = await deleteProductImage(existingProduct.image);
-
-        if (!image.success) {
-          throw new Error(image.message);
-        }
-
-        data.image = null;
-      }
-
-      const product = await database.updateRow<Product>({
-        databaseId: DATABASE_ID,
-        tableId: SAMPLE_COLLECTION_ID,
+        tableId: LABEL_COLLECTION_ID,
         rowId: id,
-        data: {
-          ...data,
-          userId: user.$id,
-        },
-        permissions: permissions
+        data: data,
+        permissions: permissions,
       });
 
-      const userRes = await database.getRow<UserData>({
-        databaseId: DATABASE_ID,
-        tableId: USER_COLLECTION_ID,
-        rowId: product.userId,
-        queries: [Query.select(["$id", "name", "avatar"])]
-      });
-
-      const teamRes = await database.getRow<TeamData>({
-        databaseId: DATABASE_ID,
-        tableId: TEAM_COLLECTION_ID,
-        rowId: product.teamId,
-        queries: [Query.select(["$id", "name", "avatar"])]
-      });
-
-      revalidateTag("products");
-      revalidateTag(`product:${id}`);
+      revalidateTag("labels");
+      revalidateTag(`label:${id}`);
 
       return {
         success: true,
-        message: "Product successfully updated.",
-        data: {
-          ...product,
-          user: userRes,
-          team: teamRes,
-        },
+        message: "Label successfully updated.",
+        data: label,
       };
     } catch (err) {
       const error = err as Error;
@@ -370,36 +206,26 @@ export async function updateProduct({
 }
 
 /**
- * Delete a product
- * @param {string} id The ID of the product
- * @returns {Promise<Result<Product>>} The deleted product
+ * Delete a label
+ * @param {string} id The ID of the label
+ * @returns {Promise<Result<Label>>} The deleted label
  */
-export async function deleteProduct(id: string): Promise<Result<Product>> {
+export async function deleteLabel(id: string): Promise<Result<Label>> {
   return withAuth(async () => {
     const { database } = await createSessionClient();
 
     try {
-      const product = await database.getRow<Product>({
+      await database.deleteRow({
         databaseId: DATABASE_ID,
-        tableId: SAMPLE_COLLECTION_ID,
-        rowId: id
+        tableId: LABEL_COLLECTION_ID,
+        rowId: id,
       });
 
-      if (product.image) {
-        const image = await deleteProductImage(product.image);
-
-        if (!image.success) {
-          throw new Error(image.message);
-        }
-      }
-
-      await database.deleteRow({databaseId: DATABASE_ID, tableId: SAMPLE_COLLECTION_ID, rowId: id});
-
-      revalidateTag("products");
+      revalidateTag("labels");
 
       return {
         success: true,
-        message: "Product successfully deleted.",
+        message: "Label successfully deleted.",
       };
     } catch (err) {
       const error = err as Error;

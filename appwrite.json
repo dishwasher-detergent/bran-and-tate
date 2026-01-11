@@ -82,6 +82,59 @@
                 }
             ],
             "indexes": []
+        },
+        {
+            "$id": "label",
+            "$permissions": [
+                "create(\"users\")"
+            ],
+            "databaseId": "main",
+            "name": "label",
+            "enabled": true,
+            "rowSecurity": true,
+            "columns": [
+                {
+                    "key": "company",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 128,
+                    "default": null
+                },
+                {
+                    "key": "type",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 128,
+                    "default": null
+                },
+                {
+                    "key": "scent",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 128,
+                    "default": null
+                },
+                {
+                    "key": "notesOf",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 256,
+                    "default": null
+                },
+                {
+                    "key": "location",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 64,
+                    "default": null
+                }
+            ],
+            "indexes": []
         }
     ],
     "buckets": [],

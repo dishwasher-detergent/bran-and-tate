@@ -1,29 +1,26 @@
-import {
-  DESCRIPTION_MAX_LENGTH,
-  NAME_MAX_LENGTH,
-} from "@/constants/product.constants";
-
 import { z } from "zod";
 
-export const addProductSchema = z.object({
-  name: z.string().min(1).max(NAME_MAX_LENGTH),
-  description: z.string().max(DESCRIPTION_MAX_LENGTH),
-  image: z.union([z.string(), z.instanceof(File), z.null()]).optional(),
-  teamId: z.string().min(1),
+export const labelSchema = z.object({
+  company: z
+    .string()
+    .min(1, "Company name is required")
+    .max(128, "Company name must be less than 128 characters"),
+  type: z
+    .string()
+    .min(1, "Product type is required")
+    .max(128, "Product type must be less than 128 characters"),
+  scent: z
+    .string()
+    .min(1, "Candle name is required")
+    .max(128, "Candle name must be less than 128 characters"),
+  notesOf: z
+    .string()
+    .min(1, "Scent notes are required")
+    .max(256, "Scent notes must be less than 256 characters"),
+  location: z
+    .string()
+    .min(1, "Location is required")
+    .max(64, "Location must be less than 64 characters"),
 });
 
-export type AddProductFormData = z.infer<typeof addProductSchema>;
-
-export const deleteProductSchema = z.object({
-  name: z.string().min(1).max(NAME_MAX_LENGTH),
-});
-
-export type DeleteProductFormData = z.infer<typeof deleteProductSchema>;
-
-export const editProductSchema = z.object({
-  name: z.string().min(1).max(NAME_MAX_LENGTH),
-  description: z.string().max(DESCRIPTION_MAX_LENGTH),
-  image: z.union([z.string(), z.instanceof(File), z.null()]).optional(),
-});
-
-export type EditProductFormData = z.infer<typeof editProductSchema>;
+export type LabelFormData = z.infer<typeof labelSchema>;

@@ -1,11 +1,15 @@
-import type { LabelFormData } from "@/lib/label/schemas";
+"use client";
+
+import type { LabelFormData } from "@/lib/db/schemas";
+import { useEffect, useRef, useState } from "react";
 import { Card, CardContent } from "./ui/card";
 
 type LabelSize = "2x4" | "1.25x3.75";
 
 interface LabelPreviewProps {
   data: LabelFormData;
-  size?: LabelSize;
+  size: LabelSize;
+  responsive?: boolean;
 }
 
 const LABEL_CONFIGS = {
@@ -28,14 +32,59 @@ const LABEL_CONFIGS = {
 const LabelWrapper = ({
   size,
   children,
+  responsive = false,
 }: {
   size: LabelSize;
   children: React.ReactNode;
+  responsive?: boolean;
 }) => {
+  const config = LABEL_CONFIGS[size];
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(0);
+
+  useEffect(() => {
+    if (!responsive) return;
+
+    const updateScale = () => {
+      if (containerRef.current) {
+        const containerWidth = containerRef.current.offsetWidth;
+        const calculatedScale = Math.min(1, containerWidth / config.width);
+        setScale(calculatedScale);
+      }
+    };
+
+    updateScale();
+    window.addEventListener("resize", updateScale);
+    return () => window.removeEventListener("resize", updateScale);
+  }, [responsive, config.width]);
+
   return (
-    <Card className="p-1 bg-foreground/10 ring-1 ring-foreground/20 gap-1">
-      <Card className="p-0">{children}</Card>
-      <CardContent className="p-0 flex flex-row justify-end gap-2">
+    <Card className="p-1 bg-foreground/10 ring-1 ring-foreground/20 gap-1 max-w-full">
+      <Card className="p-0">
+        {responsive ? (
+          <div
+            ref={containerRef}
+            className="w-full overflow-hidden"
+            style={{
+              height: scale > 0 ? `${config.height * scale}px` : undefined,
+            }}
+          >
+            <div
+              className="origin-top-left"
+              style={{
+                width: `${config.width}px`,
+                height: `${config.height}px`,
+                scale: scale.toString(),
+              }}
+            >
+              {children}
+            </div>
+          </div>
+        ) : (
+          children
+        )}
+      </Card>
+      <CardContent className="p-0 flex flex-row justify-end gap-2 px-2">
         <p className="text-sm">
           <b>Avery Template:</b> {LABEL_CONFIGS[size].averyTemplate}
         </p>
@@ -47,13 +96,17 @@ const LabelWrapper = ({
   );
 };
 
-export function LabelPreview({ data, size = "2x4" }: LabelPreviewProps) {
+export function LabelPreview({
+  data,
+  size = "2x4",
+  responsive = false,
+}: LabelPreviewProps) {
   const config = LABEL_CONFIGS[size];
 
   if (config.layout === "vertical") {
     // Vertical layout for 1.25x3.75
     return (
-      <LabelWrapper size={size}>
+      <LabelWrapper size={size} responsive={responsive}>
         <div
           className="bg-label-accent overflow-hidden flex"
           style={{ width: `${config.width}px`, height: `${config.height}px` }}
@@ -62,10 +115,10 @@ export function LabelPreview({ data, size = "2x4" }: LabelPreviewProps) {
             <div className="flex-1 flex items-center justify-center text-base font-label-accent text-label-background font-bold bg-label-accent rounded-[3px]">
               <p className="px-2 py-1 text-2xl">{data.company}</p>
             </div>
-            <div className="px-2 py-1 text-sm font-label bg-label-background rounded-[3px]">
+            <div className="px-2 py-1 text-sm font-label bg-label-background text-label-accent rounded-[3px]">
               <p>{data.type}</p>
             </div>
-            <div className="bg-label-background rounded-[3px] py-1.5 px-2 flex-none font-label-accent">
+            <div className="bg-label-background rounded-[3px] py-1.5 px-2 flex-none font-label-accent text-label-accent">
               <p className="font-semibold text-xs pb-0.5">Handmade In</p>
               <p className="text-xs leading-tight">{data.location}</p>
             </div>
@@ -77,7 +130,7 @@ export function LabelPreview({ data, size = "2x4" }: LabelPreviewProps) {
               </p>
             </div>
             <div className="flex flex-row flex-none gap-1 font-label-accent">
-              <div className="flex-1 bg-label-background rounded-[3px] py-1.5 px-2">
+              <div className="flex-1 bg-label-background rounded-[3px] py-1.5 px-2 text-label-accent">
                 <p className="font-semibold text-xs pb-0.5">With Notes Of</p>
                 <p className="text-xs leading-tight">{data.notesOf}</p>
               </div>
@@ -89,16 +142,16 @@ export function LabelPreview({ data, size = "2x4" }: LabelPreviewProps) {
   }
 
   return (
-    <LabelWrapper size={size}>
+    <LabelWrapper size={size} responsive={responsive}>
       <div
-        className="bg-label-accent overflow-hidden shadow-2xl border-label-accent flex flex-col"
+        className="bg-label-accent overflow-hidden border-label-accent flex flex-col"
         style={{ width: `${config.width}px`, height: `${config.height}px` }}
       >
         <div className="flex flex-row p-1 h-14 flex-none gap-1">
           <p className="flex-1 flex items-center justify-center text-2xl font-label-accent text-label-background font-bold bg-label-accent rounded-[3px] h-full">
             {data.company}
           </p>
-          <p className="flex-1 flex items-center justify-center text-2xl font-label bg-label-background rounded-[3px] h-full">
+          <p className="flex-1 flex items-center justify-center text-2xl font-label bg-label-background rounded-[3px] h-full text-label-accent">
             {data.type}
           </p>
         </div>
@@ -108,11 +161,11 @@ export function LabelPreview({ data, size = "2x4" }: LabelPreviewProps) {
           </p>
         </div>
         <div className="flex flex-row p-1 flex-none gap-1 font-label-accent">
-          <div className="flex-1 bg-label-background rounded-[3px] h-full py-1.5 px-4">
+          <div className="flex-1 bg-label-background rounded-[3px] h-full py-1.5 px-4 text-label-accent">
             <p className="font-semibold">With Notes Of</p>
             <p className="text-base">{data.notesOf}</p>
           </div>
-          <div className="bg-label-background rounded-[3px] h-full py-1.5 px-4">
+          <div className="bg-label-background rounded-[3px] h-full py-1.5 px-4 text-label-accent">
             <p className="font-semibold">Handmade In</p>
             <p className="text-base">{data.location}</p>
           </div>
