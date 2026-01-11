@@ -1,9 +1,11 @@
 "use client";
 
+import { getLabelById } from "@/lib/db";
 import { IconChevronRight, IconHome } from "@tabler/icons-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
+import { Skeleton } from "./skeleton";
 
 interface BreadcrumbItem {
   label: string;
@@ -17,20 +19,64 @@ const pathLabelMap: Record<string, string> = {
   recover: "Recover Password",
   reset: "Reset Password",
   accept: "Accept Invitation",
+  labels: "Labels",
+  create: "Create",
 };
 
 export function Breadcrumbs() {
   const pathname = usePathname();
+  const [dynamicLabels, setDynamicLabels] = useState<Record<string, string>>(
+    {}
+  );
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchDynamicData = async () => {
+      const paths = pathname.split("/").filter(Boolean);
+      const newDynamicLabels: Record<string, string> = {};
+
+      const labelIndex = paths.indexOf("labels");
+      if (
+        labelIndex !== -1 &&
+        paths[labelIndex + 1] &&
+        paths[labelIndex + 1] !== "create"
+      ) {
+        const labelId = paths[labelIndex + 1];
+        setIsLoading(true);
+        try {
+          const result = await getLabelById(labelId);
+          if (result.success && result.data) {
+            newDynamicLabels[labelId] = result.data.scent || "Label";
+          }
+        } catch (error) {
+          console.error("Failed to fetch label:", error);
+        } finally {
+          setIsLoading(false);
+        }
+      }
+
+      setDynamicLabels(newDynamicLabels);
+    };
+
+    fetchDynamicData();
+  }, [pathname]);
 
   const generateBreadcrumbs = (): BreadcrumbItem[] => {
     const paths = pathname.split("/").filter(Boolean);
     const breadcrumbs: BreadcrumbItem[] = [];
 
     let currentPath = "";
-    paths.forEach((path, index) => {
+    paths.forEach((path) => {
       currentPath += `/${path}`;
-      const label =
-        pathLabelMap[path] || path.charAt(0).toUpperCase() + path.slice(1);
+
+      let label: string;
+      if (dynamicLabels[path]) {
+        label = dynamicLabels[path];
+      } else {
+        label =
+          pathLabelMap[path] || path.charAt(0).toUpperCase() + path.slice(1);
+      }
+
       breadcrumbs.push({
         label,
         href: currentPath,
@@ -41,6 +87,12 @@ export function Breadcrumbs() {
   };
 
   const breadcrumbs = generateBreadcrumbs();
+  const paths = pathname.split("/").filter(Boolean);
+  const labelIndex = paths.indexOf("labels");
+  const hasDynamicLabel =
+    labelIndex !== -1 &&
+    paths[labelIndex + 1] &&
+    paths[labelIndex + 1] !== "create";
 
   if (breadcrumbs.length < 1) {
     return null;
@@ -50,7 +102,6 @@ export function Breadcrumbs() {
     <nav aria-label="Breadcrumb" className="border-b bg-muted/30">
       <ol className="container mx-auto flex items-center gap-2 text-sm px-4 py-3">
         {breadcrumbs.map((breadcrumb, index) => {
-          const isLast = index === breadcrumbs.length - 1;
           const isFirst = index === 0;
 
           return (
@@ -60,9 +111,13 @@ export function Breadcrumbs() {
               )}
               <li className="flex items-center">
                 {!isFirst ? (
-                  <span className="font-medium text-foreground">
-                    {breadcrumb.label}
-                  </span>
+                  isLoading && hasDynamicLabel ? (
+                    <Skeleton className="h-4 w-24" />
+                  ) : (
+                    <span className="font-medium text-foreground">
+                      {breadcrumb.label}
+                    </span>
+                  )
                 ) : (
                   <Link
                     href={breadcrumb.href}

@@ -1,7 +1,6 @@
 "use client";
 
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export function Navbar() {
@@ -13,13 +12,6 @@ export function Navbar() {
             <Link href="/app" className="flex items-center space-x-2">
               <span className="text-xl font-bold">Bran & Tate</span>
             </Link>
-            <div className="hidden md:flex items-center gap-4">
-              <Link href="/app">
-                <Button variant="ghost" size="sm">
-                  Label Designer
-                </Button>
-              </Link>
-            </div>
           </div>
           <div className="flex items-center gap-2">
             <ThemeToggle />

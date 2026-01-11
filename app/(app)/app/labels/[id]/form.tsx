@@ -1,18 +1,7 @@
 "use client";
 
 import { LabelPreview } from "@/components/label-preview";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Drawer,
@@ -29,22 +18,24 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { deleteLabel, getLabelById, updateLabel } from "@/lib/db";
+import { getLabelById, updateLabel } from "@/lib/db";
 import { labelSchema, type LabelFormData } from "@/lib/db/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { IconPencil, IconTrash } from "@tabler/icons-react";
+import { IconPencil } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-export default function EditLabelPage({ params }: { params: { id: string } }) {
+interface EditLabelFormProps {
+  labelId: string;
+}
+
+export function EditLabelForm({ labelId }: EditLabelFormProps) {
   const router = useRouter();
-  const [open, setOpen] = useState(false);
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const [isUpdating, setIsUpdating] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const form = useForm<LabelFormData>({
     resolver: zodResolver(labelSchema),
@@ -63,7 +54,7 @@ export default function EditLabelPage({ params }: { params: { id: string } }) {
   useEffect(() => {
     const loadLabel = async () => {
       try {
-        const result = await getLabelById(params.id);
+        const result = await getLabelById(labelId);
         if (result.success && result.data) {
           form.reset({
             company: result.data.company,
@@ -85,12 +76,12 @@ export default function EditLabelPage({ params }: { params: { id: string } }) {
     };
 
     loadLabel();
-  }, [params.id, form, router]);
+  }, [labelId, form, router]);
 
   const onSubmit = async (data: LabelFormData) => {
     setIsUpdating(true);
     try {
-      const result = await updateLabel({ id: params.id, data });
+      const result = await updateLabel({ id: labelId, data });
 
       if (result.success) {
         toast.success("Label updated successfully!");
@@ -106,34 +97,7 @@ export default function EditLabelPage({ params }: { params: { id: string } }) {
     }
   };
 
-  const onDelete = async () => {
-    setIsDeleting(true);
-    setDeleteDialogOpen(false);
-    try {
-      const result = await deleteLabel(params.id);
-
-      if (result.success) {
-        toast.success("Label deleted successfully!");
-        router.push("/app");
-      } else {
-        toast.error(result.message || "Failed to delete label");
-      }
-    } catch (error) {
-      toast.error("An error occurred while deleting the label");
-    } finally {
-      setIsDeleting(false);
-    }
-  };
-
-  if (isLoading) {
-    return (
-      <div className="container mx-auto px-4 py-8">
-        <p>Loading...</p>
-      </div>
-    );
-  }
-
-  const formContent = (
+  const formFields = (
     <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
       <FieldGroup>
         <Controller
@@ -238,46 +202,17 @@ export default function EditLabelPage({ params }: { params: { id: string } }) {
               <CardHeader>
                 <CardTitle>Edit Label</CardTitle>
               </CardHeader>
-              <CardContent>{formContent}</CardContent>
-            </Card>
-            <CardContent className="p-0 flex flex-row justify-between">
-              <AlertDialog
-                open={deleteDialogOpen}
-                onOpenChange={setDeleteDialogOpen}
-              >
-                <AlertDialogTrigger
-                  className={buttonVariants({ variant: "destructive" })}
-                  disabled={isDeleting}
+              <CardContent>
+                {formFields}
+                <Button
+                  onClick={form.handleSubmit(onSubmit)}
+                  disabled={isUpdating || !form.formState.isValid}
+                  className="mt-4 w-full"
                 >
-                  <IconTrash className="h-4 w-4 mr-2" />
-                  {isDeleting ? "Deleting..." : "Delete"}
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>Delete Label</AlertDialogTitle>
-                    <AlertDialogDescription>
-                      Are you sure you want to delete this label? This action
-                      cannot be undone.
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction
-                      onClick={onDelete}
-                      className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                    >
-                      Delete
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
-              <Button
-                onClick={form.handleSubmit(onSubmit)}
-                disabled={isUpdating || !form.formState.isValid}
-              >
-                {isUpdating ? "Updating..." : "Update"}
-              </Button>
-            </CardContent>
+                  {isUpdating ? "Updating..." : "Update"}
+                </Button>
+              </CardContent>
+            </Card>
           </Card>
         </div>
         <div className="flex flex-col gap-4 items-end">
@@ -307,52 +242,14 @@ export default function EditLabelPage({ params }: { params: { id: string } }) {
               <DrawerTitle>Edit Label Details</DrawerTitle>
             </DrawerHeader>
             <div className="overflow-y-auto max-h-[60vh] px-4 pb-4">
-              {formContent}
-              <div className="flex gap-2 mt-4">
-                <AlertDialog
-                  open={deleteDialogOpen}
-                  onOpenChange={setDeleteDialogOpen}
-                >
-                  <AlertDialogTrigger
-                    className={`flex-1 ${buttonVariants({
-                      variant: "destructive",
-                    })}`}
-                    disabled={isDeleting}
-                  >
-                    <IconTrash className="h-4 w-4 mr-2" />
-                    {isDeleting ? "Deleting..." : "Delete"}
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>Delete Label</AlertDialogTitle>
-                      <AlertDialogDescription>
-                        Are you sure you want to delete this label? This action
-                        cannot be undone.
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel
-                        onClick={() => setDeleteDialogOpen(false)}
-                      >
-                        Cancel
-                      </AlertDialogCancel>
-                      <AlertDialogAction
-                        onClick={onDelete}
-                        className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                      >
-                        Delete
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-                <Button
-                  onClick={form.handleSubmit(onSubmit)}
-                  disabled={isUpdating || !form.formState.isValid}
-                  className="flex-1"
-                >
-                  {isUpdating ? "Updating..." : "Update"}
-                </Button>
-              </div>
+              {formFields}
+              <Button
+                onClick={form.handleSubmit(onSubmit)}
+                disabled={isUpdating || !form.formState.isValid}
+                className="mt-4 w-full"
+              >
+                {isUpdating ? "Updating..." : "Update"}
+              </Button>
             </div>
           </DrawerContent>
         </Drawer>
