@@ -34,7 +34,6 @@ interface EditLabelFormProps {
 export function EditLabelForm({ labelId }: EditLabelFormProps) {
   const router = useRouter();
   const [isUpdating, setIsUpdating] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const [open, setOpen] = useState(false);
 
   const form = useForm<LabelFormData>({
@@ -67,11 +66,9 @@ export function EditLabelForm({ labelId }: EditLabelFormProps) {
           toast.error("Failed to load label");
           router.push("/app");
         }
-      } catch (error) {
+      } catch {
         toast.error("An error occurred while loading the label");
         router.push("/app");
-      } finally {
-        setIsLoading(false);
       }
     };
 

@@ -134,7 +134,7 @@ export async function updateProfile({
   id: string;
   data: UpdateProfileFormData;
 }): Promise<Response> {
-  return withAuth(async (user) => {
+  return withAuth(async () => {
     const { account, database } = await createSessionClient();
 
     try {
@@ -429,7 +429,6 @@ export async function createUserData(
         rowId: userId,
         data: {
           name: user.name,
-          avatar: null,
         },
         permissions: [
           Permission.read(Role.user(userId)),

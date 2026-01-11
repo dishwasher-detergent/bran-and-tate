@@ -62,7 +62,7 @@ export default function Page() {
       } else {
         toast.error(result.message || "Failed to create label");
       }
-    } catch (error) {
+    } catch {
       toast.error("An error occurred while creating the label");
     } finally {
       setIsCreating(false);
