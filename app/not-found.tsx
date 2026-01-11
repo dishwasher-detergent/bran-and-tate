@@ -16,9 +16,7 @@ export default function NotFound() {
         </div>
 
         <div className="flex justify-center gap-4">
-          <Button asChild>
-            <Link href="/">Go home</Link>
-          </Button>
+          <Button nativeButton={false} render={<Link href="/">Go Home</Link>} />
         </div>
       </div>
     </div>
