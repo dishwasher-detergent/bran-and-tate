@@ -2,13 +2,12 @@
 
 import { Button } from "@/components/ui/button";
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+  Field,
+  FieldContent,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { resetPassword } from "@/lib/auth";
 import {
@@ -17,10 +16,10 @@ import {
 } from "@/lib/auth/schemas";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LucideLoader2, LucideLock } from "lucide-react";
+import { IconLoader2, IconLock } from "@tabler/icons-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 export function ResetForm() {
@@ -56,60 +55,66 @@ export function ResetForm() {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
-        <FormField
+    <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
+      <FieldGroup>
+        <Controller
           control={form.control}
           name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>New Password</FormLabel>
-              <FormControl>
+          render={({ field, fieldState }) => (
+            <Field>
+              <FieldLabel htmlFor="password">New Password</FieldLabel>
+              <FieldContent>
                 <Input
                   {...field}
                   type="password"
                   placeholder="Enter new password"
+                  id="password"
                 />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
+              </FieldContent>
+              {fieldState.error && <FieldError errors={[fieldState.error]} />}
+            </Field>
           )}
         />
-        <FormField
+      </FieldGroup>
+      <FieldGroup>
+        <Controller
           control={form.control}
           name="confirmPassword"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Confirm Password</FormLabel>
-              <FormControl>
+          render={({ field, fieldState }) => (
+            <Field>
+              <FieldLabel htmlFor="confirmPassword">
+                Confirm Password
+              </FieldLabel>
+              <FieldContent>
                 <Input
                   {...field}
                   type="password"
                   placeholder="Confirm new password"
+                  id="confirmPassword"
                 />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
+              </FieldContent>
+              {fieldState.error && <FieldError errors={[fieldState.error]} />}
+            </Field>
           )}
         />
-        <Button
-          className="w-full"
-          type="submit"
-          disabled={loading || !form.formState.isValid}
-        >
-          {loading ? (
-            <>
-              Resetting Password
-              <LucideLoader2 className="ml-2 size-3.5 animate-spin" />
-            </>
-          ) : (
-            <>
-              Reset Password
-              <LucideLock className="ml-2 size-3.5" />
-            </>
-          )}
-        </Button>
-      </form>
-    </Form>
+      </FieldGroup>
+      <Button
+        className="w-full"
+        type="submit"
+        disabled={loading || !form.formState.isValid}
+      >
+        {loading ? (
+          <>
+            Resetting Password
+            <IconLoader2 className="ml-2 size-3.5 animate-spin" />
+          </>
+        ) : (
+          <>
+            Reset Password
+            <IconLock className="ml-2 size-3.5" />
+          </>
+        )}
+      </Button>
+    </form>
   );
 }

@@ -1,26 +1,25 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LucideLoader2, LucideMail } from "lucide-react";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+  Field,
+  FieldContent,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { createPasswordRecovery } from "@/lib/auth";
 import {
   resetPasswordSchema,
   type ResetPasswordFormData,
 } from "@/lib/auth/schemas";
+import { IconLoader2, IconMail } from "@tabler/icons-react";
 
 export function RecoverForm() {
   const [loading, setLoading] = useState(false);
@@ -40,39 +39,44 @@ export function RecoverForm() {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
-        <FormField
+    <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
+      <FieldGroup>
+        <Controller
           control={form.control}
           name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input {...field} type="email" placeholder="user@example.com" />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
+          render={({ field, fieldState }) => (
+            <Field>
+              <FieldLabel htmlFor="email">Email</FieldLabel>
+              <FieldContent>
+                <Input
+                  {...field}
+                  type="email"
+                  placeholder="user@example.com"
+                  id="email"
+                />
+              </FieldContent>
+              {fieldState.error && <FieldError errors={[fieldState.error]} />}
+            </Field>
           )}
         />
-        <Button
-          className="w-full"
-          type="submit"
-          disabled={loading || !form.formState.isValid}
-        >
-          {loading ? (
-            <>
-              Sending Reset Link
-              <LucideLoader2 className="ml-2 size-3.5 animate-spin" />
-            </>
-          ) : (
-            <>
-              Send Reset Link
-              <LucideMail className="ml-2 size-3.5" />
-            </>
-          )}
-        </Button>
-      </form>
-    </Form>
+      </FieldGroup>
+      <Button
+        className="w-full"
+        type="submit"
+        disabled={loading || !form.formState.isValid}
+      >
+        {loading ? (
+          <>
+            Sending Reset Link
+            <IconLoader2 className="ml-2 size-3.5 animate-spin" />
+          </>
+        ) : (
+          <>
+            Send Reset Link
+            <IconMail className="ml-2 size-3.5" />
+          </>
+        )}
+      </Button>
+    </form>
   );
 }

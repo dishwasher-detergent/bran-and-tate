@@ -1,24 +1,22 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LucideGithub, LucideLoader2, LucideLogIn } from "lucide-react";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+  Field,
+  FieldContent,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
-import { signInWithEmail, signUpWithGithub } from "@/lib/auth";
+import { signInWithEmail } from "@/lib/auth";
 import { signInSchema, type SignInFormData } from "@/lib/auth/schemas";
+import { IconLoader2, IconLogin } from "@tabler/icons-react";
 
 export function SignInForm() {
   const [loading, setLoading] = useState(false);
@@ -40,62 +38,63 @@ export function SignInForm() {
 
   return (
     <>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
-          <FormField
+      <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
+        <FieldGroup>
+          <Controller
             control={form.control}
             name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
+            render={({ field, fieldState }) => (
+              <Field>
+                <FieldLabel htmlFor="email">Email</FieldLabel>
+                <FieldContent>
                   <Input
                     {...field}
                     type="email"
                     placeholder="user@example.com"
+                    id="email"
                   />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+                </FieldContent>
+                {fieldState.error && <FieldError errors={[fieldState.error]} />}
+              </Field>
             )}
           />
-          <FormField
+        </FieldGroup>
+        <FieldGroup>
+          <Controller
             control={form.control}
             name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <Input {...field} type="password" placeholder="Password" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+            render={({ field, fieldState }) => (
+              <Field>
+                <FieldLabel htmlFor="password">Password</FieldLabel>
+                <FieldContent>
+                  <Input
+                    {...field}
+                    type="password"
+                    placeholder="Password"
+                    id="password"
+                  />
+                </FieldContent>
+                {fieldState.error && <FieldError errors={[fieldState.error]} />}
+              </Field>
             )}
           />
-          <Button
-            className="w-full"
-            type="submit"
-            disabled={loading || !form.formState.isValid}
-          >
-            {loading ? (
-              <>
-                Signing in
-                <LucideLoader2 className="ml-2 size-3.5 animate-spin" />
-              </>
-            ) : (
-              <>
-                Sign In
-                <LucideLogIn className="ml-2 size-3.5" />
-              </>
-            )}
-          </Button>
-        </form>
-      </Form>
-      <Separator />
-      <form className="w-full" action={signUpWithGithub}>
-        <Button type="submit" variant="secondary" className="w-full">
-          Github
-          <LucideGithub className="ml-2 size-3.5" />
+        </FieldGroup>
+        <Button
+          className="w-full"
+          type="submit"
+          disabled={loading || !form.formState.isValid}
+        >
+          {loading ? (
+            <>
+              Signing in
+              <IconLoader2 className="ml-2 size-3.5 animate-spin" />
+            </>
+          ) : (
+            <>
+              Sign In
+              <IconLogin className="ml-2 size-3.5" />
+            </>
+          )}
         </Button>
       </form>
     </>

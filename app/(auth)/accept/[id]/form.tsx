@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useSession } from "@/hooks/userSession";
 import { createClient } from "@/lib/client/appwrite";
-import { LucideLoader2 } from "lucide-react";
+import { IconLoader2 } from "@tabler/icons-react";
 import { toast } from "sonner";
 
 interface AcceptFormProps {
@@ -67,7 +67,7 @@ export function AcceptForm({
       <input name="secret" value={secret} readOnly className="hidden" />
       <Button className="w-full" type="submit" disabled={loading}>
         Accept Invite
-        {loading && <LucideLoader2 className="mr-2 size-3.5 animate-spin" />}
+        {loading && <IconLoader2 className="mr-2 size-3.5 animate-spin" />}
       </Button>
     </form>
   );

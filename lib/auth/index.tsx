@@ -9,7 +9,6 @@ import { AuthResponse, Response, Result } from "@/interfaces/result.interface";
 import { User, UserData } from "@/interfaces/user.interface";
 import { COOKIE_KEY, DATABASE_ID, USER_COLLECTION_ID } from "@/lib/constants";
 import { createAdminClient, createSessionClient } from "@/lib/server/appwrite";
-import { deleteAvatarImage, uploadAvatarImage } from "@/lib/storage";
 import {
   ResetPasswordFormData,
   SignInFormData,
@@ -46,7 +45,7 @@ export async function getUserData(): Promise<Result<User>> {
           const data = await database.getRow<UserData>({
             databaseId: DATABASE_ID,
             tableId: USER_COLLECTION_ID,
-            rowId: id
+            rowId: id,
           });
 
           return {
@@ -93,7 +92,7 @@ export async function getUserById(id: string): Promise<Result<UserData>> {
           const data = await database.getRow<UserData>({
             databaseId: DATABASE_ID,
             tableId: USER_COLLECTION_ID,
-            rowId: id
+            rowId: id,
           });
 
           return {
@@ -139,45 +138,15 @@ export async function updateProfile({
     const { account, database } = await createSessionClient();
 
     try {
-      const userData = await database.getRow<UserData>({
+      await account.updateName({ name: data.name });
+      await database.updateRow({
         databaseId: DATABASE_ID,
         tableId: USER_COLLECTION_ID,
-        rowId: user.$id
-      });
-
-      if (data.image instanceof File) {
-        if (userData.avatar) {
-          await deleteAvatarImage(userData.avatar);
-        }
-
-        const image = await uploadAvatarImage({
-          data: data.image,
-        });
-
-        if (!image.success) {
-          throw new Error(image.message);
-        }
-
-        data.image = image.data?.$id;
-      } else if (data.image === null && userData.avatar) {
-        const image = await deleteAvatarImage(userData.avatar);
-
-        if (!image.success) {
-          throw new Error(image.message);
-        }
-
-        data.image = null;
-      }
-
-      await account.updateName({name: data.name});
-      await database.updateRow({
-        databaseId: DATABASE_ID, 
-        tableId: USER_COLLECTION_ID, 
-        rowId: id, 
+        rowId: id,
         data: {
           avatar: data.image,
           about: data.about,
-        }
+        },
       });
 
       revalidateTag("user");
@@ -253,7 +222,7 @@ export async function logOut(): Promise<boolean> {
 export async function deleteSession(): Promise<void> {
   const { account } = await createSessionClient();
 
-  account.deleteSession({sessionId: "current"});
+  account.deleteSession({ sessionId: "current" });
   (await cookies()).delete(COOKIE_KEY);
 
   revalidateTag("logged_in_user");
@@ -273,7 +242,10 @@ export async function signInWithEmail(
   const { account } = await createAdminClient();
 
   try {
-    const session = await account.createEmailPasswordSession({email: email, password: password});
+    const session = await account.createEmailPasswordSession({
+      email: email,
+      password: password,
+    });
 
     revalidateTag("logged_in_user");
 
@@ -317,7 +289,10 @@ export async function signUpWithEmail(
   try {
     const id = ID.unique();
     await account.create(id, email, password, name);
-    const session = await account.createEmailPasswordSession({email: email, password: password});
+    const session = await account.createEmailPasswordSession({
+      email: email,
+      password: password,
+    });
 
     (await cookies()).set(COOKIE_KEY, session.secret, {
       path: "/",
@@ -353,7 +328,7 @@ export async function signUpWithGithub(): Promise<void> {
   const redirectUrl = await account.createOAuth2Token({
     provider: OAuthProvider.Github,
     success: `${origin}/api/auth/callback`,
-    failure: `${origin}/signup`
+    failure: `${origin}/signup`,
   });
 
   return redirect(redirectUrl);
@@ -373,7 +348,7 @@ export async function createPasswordRecovery(
   const origin = (await headers()).get("origin");
 
   try {
-    await account.createRecovery({email: email, url: `${origin}/reset`});
+    await account.createRecovery({ email: email, url: `${origin}/reset` });
   } catch (err) {
     const error = err as Error;
 
@@ -404,7 +379,11 @@ export async function resetPassword(
   const { account } = await createAdminClient();
 
   try {
-    await account.updateRecovery({userId: id, secret: token, password: password});
+    await account.updateRecovery({
+      userId: id,
+      secret: token,
+      password: password,
+    });
   } catch (err) {
     const error = err as Error;
 
@@ -436,7 +415,7 @@ export async function createUserData(
       await database.getRow<UserData>({
         databaseId: DATABASE_ID,
         tableId: USER_COLLECTION_ID,
-        rowId: userId
+        rowId: userId,
       });
 
       return {
@@ -456,7 +435,7 @@ export async function createUserData(
           Permission.read(Role.user(userId)),
           Permission.write(Role.user(userId)),
           Permission.read(Role.users()),
-        ]
+        ],
       });
 
       return {
