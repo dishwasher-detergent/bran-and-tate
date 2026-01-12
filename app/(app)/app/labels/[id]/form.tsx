@@ -206,7 +206,6 @@ export function EditLabelForm({ labelId }: EditLabelFormProps) {
               <Button
                 onClick={form.handleSubmit(onSubmit)}
                 disabled={isUpdating || !form.formState.isValid}
-                className="flex-1"
               >
                 {isUpdating ? "Updating..." : "Update"}
               </Button>
