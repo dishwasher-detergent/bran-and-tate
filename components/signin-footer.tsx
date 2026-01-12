@@ -9,6 +9,7 @@ export function SignInFooter() {
         Don&apos;t have an account?
         <Button
           variant="link"
+          className="text-muted-foreground p-1 text-sm"
           render={
             <Link href="/signup" className="underline">
               Sign Up Here
@@ -20,6 +21,8 @@ export function SignInFooter() {
         Forgot your password?
         <Button
           variant="link"
+          className="text-muted-foreground p-1 text-sm"
+          nativeButton={false}
           render={
             <Link href="/recover" className="underline">
               Reset Here

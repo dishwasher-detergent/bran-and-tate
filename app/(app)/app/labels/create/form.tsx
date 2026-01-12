@@ -1,7 +1,6 @@
 "use client";
 
 import { LabelPreview } from "@/components/label-preview";
-import { DownloadLabel } from "@/components/label/download-label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -19,83 +18,58 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { getLabelById, updateLabel } from "@/lib/db";
+import { createLabel } from "@/lib/db";
 import { labelSchema, type LabelFormData } from "@/lib/db/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IconPencil } from "@tabler/icons-react";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-interface EditLabelFormProps {
-  labelId: string;
-}
-
-export function EditLabelForm({ labelId }: EditLabelFormProps) {
-  const router = useRouter();
-  const [isUpdating, setIsUpdating] = useState(false);
+export function CreateLabelForm() {
   const [open, setOpen] = useState(false);
+  const [isCreating, setIsCreating] = useState(false);
 
   const form = useForm<LabelFormData>({
     resolver: zodResolver(labelSchema),
     defaultValues: {
-      company: "",
-      type: "",
+      company: "Bran & Tate",
+      type: "Soy Wax Candles",
       scent: "",
       notesOf: "",
-      location: "",
+      location: "Alva, Ok",
     },
     mode: "onChange",
   });
 
   const labelData = form.watch();
 
-  useEffect(() => {
-    const loadLabel = async () => {
-      try {
-        const result = await getLabelById(labelId);
-        if (result.success && result.data) {
-          form.reset({
-            company: result.data.company,
-            type: result.data.type,
-            scent: result.data.scent,
-            notesOf: result.data.notesOf,
-            location: result.data.location,
-          });
-        } else {
-          toast.error("Failed to load label");
-          router.push("/app");
-        }
-      } catch {
-        toast.error("An error occurred while loading the label");
-        router.push("/app");
-      }
-    };
-
-    loadLabel();
-  }, [labelId, form, router]);
-
   const onSubmit = async (data: LabelFormData) => {
-    setIsUpdating(true);
+    setIsCreating(true);
     try {
-      const result = await updateLabel({ id: labelId, data });
+      const result = await createLabel({ data });
 
       if (result.success) {
-        toast.success("Label updated successfully!");
+        toast.success("Label created successfully!");
+        form.reset({
+          company: "Bran & Tate",
+          type: "Soy Wax Candles",
+          scent: "",
+          notesOf: "",
+          location: "Alva, Ok",
+        });
         setOpen(false);
-        router.push("/app");
       } else {
-        toast.error(result.message || "Failed to update label");
+        toast.error(result.message || "Failed to create label");
       }
     } catch {
-      toast.error("An error occurred while updating the label");
+      toast.error("An error occurred while creating the label");
     } finally {
-      setIsUpdating(false);
+      setIsCreating(false);
     }
   };
 
-  const formFields = (
+  const formContent = (
     <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
       <FieldGroup>
         <Controller
@@ -198,20 +172,18 @@ export function EditLabelForm({ labelId }: EditLabelFormProps) {
           <Card className="p-1 bg-foreground/10 ring-1 ring-foreground/20 gap-1">
             <Card>
               <CardHeader>
-                <CardTitle>Edit Label</CardTitle>
+                <CardTitle>Label Details</CardTitle>
               </CardHeader>
-              <CardContent>{formFields}</CardContent>
+              <CardContent>{formContent}</CardContent>
             </Card>
-            <div className="flex gap-2">
+            <CardContent className="p-0 flex flex-row justify-end">
               <Button
                 onClick={form.handleSubmit(onSubmit)}
-                disabled={isUpdating || !form.formState.isValid}
-                className="flex-1"
+                disabled={isCreating || !form.formState.isValid}
               >
-                {isUpdating ? "Updating..." : "Update"}
+                {isCreating ? "Creating..." : "Create"}
               </Button>
-              <DownloadLabel data={labelData} />
-            </div>
+            </CardContent>
           </Card>
         </div>
         <div className="flex flex-col gap-4 items-end">
@@ -221,7 +193,7 @@ export function EditLabelForm({ labelId }: EditLabelFormProps) {
       </div>
       <div className="lg:hidden flex flex-col">
         <div className="flex-1 overflow-auto">
-          <h1 className="text-2xl font-bold mb-4">Edit Label</h1>
+          <h1 className="text-2xl font-bold mb-6">Candle Label Designer</h1>
           <div className="flex flex-col gap-4 items-start">
             <LabelPreview data={labelData} size="2x4" responsive />
             <LabelPreview data={labelData} size="1.25x3.75" responsive />
@@ -241,17 +213,14 @@ export function EditLabelForm({ labelId }: EditLabelFormProps) {
               <DrawerTitle>Edit Label Details</DrawerTitle>
             </DrawerHeader>
             <div className="overflow-y-auto max-h-[60vh] px-4 pb-4">
-              {formFields}
-              <div className="mt-4 flex gap-2">
-                <Button
-                  onClick={form.handleSubmit(onSubmit)}
-                  disabled={isUpdating || !form.formState.isValid}
-                  className="flex-1"
-                >
-                  {isUpdating ? "Updating..." : "Update"}
-                </Button>
-                <DownloadLabel data={labelData} />
-              </div>
+              {formContent}
+              <Button
+                className="w-full mt-4"
+                onClick={form.handleSubmit(onSubmit)}
+                disabled={isCreating || !form.formState.isValid}
+              >
+                {isCreating ? "Creating..." : "Create"}
+              </Button>
             </div>
           </DrawerContent>
         </Drawer>

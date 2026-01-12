@@ -19,9 +19,9 @@ export default async function Home() {
   return (
     <>
       <div className="mb-4 flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold mb-2">My Labels</h1>
-          <p className="text-muted-foreground mb-2">
+        <div className="space-y-2">
+          <h1 className="text-2xl font-bold">Candles</h1>
+          <p className="text-muted-foreground">
             View and manage your candle labels
           </p>
           <Button
