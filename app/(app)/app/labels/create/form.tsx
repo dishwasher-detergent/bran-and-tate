@@ -199,31 +199,30 @@ export function CreateLabelForm() {
             <LabelPreview data={labelData} size="1.25x3.75" responsive />
           </div>
         </div>
-        <Drawer open={open} onOpenChange={setOpen}>
-          <DrawerTrigger asChild>
-            <Button
-              className="fixed bottom-6 right-6 z-40 rounded-full h-12 w-12 shadow-lg"
-              size="icon"
-            >
-              <IconPencil className="h-5 w-5" />
-            </Button>
-          </DrawerTrigger>
-          <DrawerContent>
-            <DrawerHeader>
-              <DrawerTitle>Edit Label Details</DrawerTitle>
-            </DrawerHeader>
-            <div className="overflow-y-auto max-h-[60vh] px-4 pb-4">
-              {formContent}
-              <Button
-                className="w-full mt-4"
-                onClick={form.handleSubmit(onSubmit)}
-                disabled={isCreating || !form.formState.isValid}
-              >
-                {isCreating ? "Creating..." : "Create"}
+        <div className="fixed bottom-6 right-6 z-40 flex gap-2 p-1 bg-foreground/10 rounded-full ring-1 ring-foreground/20">
+          <Drawer open={open} onOpenChange={setOpen}>
+            <DrawerTrigger asChild>
+              <Button className="rounded-full size-10" size="icon">
+                <IconPencil />
               </Button>
-            </div>
-          </DrawerContent>
-        </Drawer>
+            </DrawerTrigger>
+            <DrawerContent>
+              <DrawerHeader>
+                <DrawerTitle>Edit Label Details</DrawerTitle>
+              </DrawerHeader>
+              <div className="overflow-y-auto max-h-[60vh] px-4 pb-4">
+                {formContent}
+                <Button
+                  className="w-full mt-4"
+                  onClick={form.handleSubmit(onSubmit)}
+                  disabled={isCreating || !form.formState.isValid}
+                >
+                  {isCreating ? "Creating..." : "Create"}
+                </Button>
+              </div>
+            </DrawerContent>
+          </Drawer>
+        </div>
       </div>
     </>
   );

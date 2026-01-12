@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { LabelFormData } from "@/lib/db/schemas";
+import { cn } from "@/lib/utils";
 import { IconDownload, IconLoader2 } from "@tabler/icons-react";
 import { toPng } from "html-to-image";
 import { useRef, useState } from "react";
@@ -20,9 +21,10 @@ type LabelSize = "2x4" | "1.25x3.75";
 
 interface DownloadLabelProps {
   data: LabelFormData;
+  className?: string;
 }
 
-export function DownloadLabel({ data }: DownloadLabelProps) {
+export function DownloadLabel({ data, className }: DownloadLabelProps) {
   const [isGenerating, setIsGenerating] = useState(false);
   const hiddenContainerRef = useRef<HTMLDivElement>(null);
 
@@ -101,7 +103,11 @@ export function DownloadLabel({ data }: DownloadLabelProps) {
       <DropdownMenu>
         <DropdownMenuTrigger
           render={
-            <Button className="flex-none" size="icon" disabled={isGenerating}>
+            <Button
+              className={cn("flex-none", className)}
+              size="icon"
+              disabled={isGenerating}
+            >
               {isGenerating ? (
                 <IconLoader2 className="size-4" />
               ) : (

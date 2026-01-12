@@ -229,34 +229,31 @@ export function EditLabelForm({ labelId }: EditLabelFormProps) {
             <LabelPreview data={labelData} size="1.25x3.75" responsive />
           </div>
         </div>
-        <Drawer open={open} onOpenChange={setOpen}>
-          <DrawerTrigger asChild>
-            <Button
-              className="fixed bottom-6 right-6 z-40 rounded-full h-12 w-12 shadow-lg"
-              size="icon"
-            >
-              <IconPencil className="h-5 w-5" />
-            </Button>
-          </DrawerTrigger>
-          <DrawerContent>
-            <DrawerHeader>
-              <DrawerTitle>Edit Label Details</DrawerTitle>
-            </DrawerHeader>
-            <div className="overflow-y-auto max-h-[60vh] px-4 pb-4">
-              {formFields}
-              <ButtonGroup className="mt-4 w-full">
+        <div className="fixed bottom-6 right-6 z-40 flex gap-2 p-1 bg-foreground/10 rounded-full ring-1 ring-foreground/20">
+          <DownloadLabel className="rounded-full size-10" data={labelData} />
+          <Drawer open={open} onOpenChange={setOpen}>
+            <DrawerTrigger asChild>
+              <Button className="rounded-full size-10" size="icon-lg">
+                <IconPencil className="h-5 w-5" />
+              </Button>
+            </DrawerTrigger>
+            <DrawerContent>
+              <DrawerHeader>
+                <DrawerTitle>Edit Label Details</DrawerTitle>
+              </DrawerHeader>
+              <div className="overflow-y-auto max-h-[60vh] px-4 pb-4">
+                {formFields}
                 <Button
                   onClick={form.handleSubmit(onSubmit)}
                   disabled={isUpdating || !form.formState.isValid}
-                  className="flex-1"
+                  className="mt-4 w-full"
                 >
                   {isUpdating ? "Updating..." : "Update"}
                 </Button>
-                <DownloadLabel data={labelData} />
-              </ButtonGroup>
-            </div>
-          </DrawerContent>
-        </Drawer>
+              </div>
+            </DrawerContent>
+          </Drawer>
+        </div>
       </div>
     </>
   );
