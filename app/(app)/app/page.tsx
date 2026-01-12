@@ -1,4 +1,5 @@
 import { DeleteLabel } from "@/components/label/delete-label";
+import { DownloadLabel } from "@/components/label/download-label";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -47,6 +48,14 @@ export default async function Home() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {labels.map((label) => {
+            const labelData = {
+              company: label.company,
+              type: label.type,
+              scent: label.scent,
+              notesOf: label.notesOf,
+              location: label.location,
+            };
+
             return (
               <Card
                 key={label.$id}
@@ -92,6 +101,7 @@ export default async function Home() {
                     nativeButton={false}
                     render={<Link href={`/app/labels/${label.$id}`}>Edit</Link>}
                   />
+                  <DownloadLabel data={labelData} />
                 </CardContent>
               </Card>
             );
