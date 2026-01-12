@@ -16,8 +16,9 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NextJS with Appwrite",
-  description: "A NextJS starter with Appwrite, TypeScript, and TailwindCSS",
+  title: "Bran & Tate",
+  description:
+    "Bran & Tate is a premium candle company specializing in handcrafted, aromatic candles.",
 };
 
 export default function RootLayout({

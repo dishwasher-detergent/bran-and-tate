@@ -1,6 +1,7 @@
 import { DeleteLabel } from "@/components/label/delete-label";
 import { DownloadLabel } from "@/components/label/download-label";
 import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@/components/ui/button-group";
 import {
   Card,
   CardContent,
@@ -95,13 +96,17 @@ export default async function Home() {
                     </FieldGroup>
                   </CardContent>
                 </Card>
-                <CardContent className="p-0 flex flex-row justify-end gap-2">
-                  <DeleteLabel label={label} />
-                  <Button
-                    nativeButton={false}
-                    render={<Link href={`/app/labels/${label.$id}`}>Edit</Link>}
-                  />
-                  <DownloadLabel data={labelData} />
+                <CardContent className="p-0 flex flex-row justify-end">
+                  <ButtonGroup>
+                    <DeleteLabel label={label} />
+                    <Button
+                      nativeButton={false}
+                      render={
+                        <Link href={`/app/labels/${label.$id}`}>Edit</Link>
+                      }
+                    />
+                    <DownloadLabel data={labelData} />
+                  </ButtonGroup>
                 </CardContent>
               </Card>
             );

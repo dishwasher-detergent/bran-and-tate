@@ -202,10 +202,10 @@ export function CreateLabelForm() {
         <Drawer open={open} onOpenChange={setOpen}>
           <DrawerTrigger asChild>
             <Button
-              className="fixed bottom-4 right-4 z-40 rounded-full h-14 w-14 shadow-lg"
+              className="fixed bottom-6 right-6 z-40 rounded-full h-12 w-12 shadow-lg"
               size="icon"
             >
-              <IconPencil className="h-6 w-6" />
+              <IconPencil className="h-5 w-5" />
             </Button>
           </DrawerTrigger>
           <DrawerContent>

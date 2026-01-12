@@ -47,19 +47,16 @@ export function DownloadLabel({ data }: DownloadLabelProps) {
 
     setIsGenerating(true);
     try {
-      // Create a temporary container with the label
       const container = document.createElement("div");
       container.style.position = "absolute";
       container.style.left = "-9999px";
       container.style.top = "-9999px";
       document.body.appendChild(container);
 
-      // Import React and ReactDOM for rendering
       const React = (await import("react")).default;
       const ReactDOM = (await import("react-dom/client")).default;
-
-      // Create a root and render the label
       const root = ReactDOM.createRoot(container);
+
       await new Promise<void>((resolve) => {
         root.render(
           React.createElement(
@@ -77,11 +74,10 @@ export function DownloadLabel({ data }: DownloadLabelProps) {
             })
           )
         );
-        // Wait for render to complete
+
         setTimeout(resolve, 500);
       });
 
-      // Find the innermost label element (with bg-label-accent class)
       const labelElement = container.querySelector(
         ".bg-label-accent"
       ) as HTMLElement;
@@ -90,20 +86,16 @@ export function DownloadLabel({ data }: DownloadLabelProps) {
         throw new Error("Label element not found");
       }
 
-      // Generate PNG from the label element
       const dataUrl = await toPng(labelElement, {
         quality: 1,
         pixelRatio: 2, // Higher quality
         backgroundColor: "transparent",
       });
 
-      // Create download link
       const link = document.createElement("a");
       link.download = `${data.scent || "untitled"}-${size}.png`;
       link.href = dataUrl;
       link.click();
-
-      // Cleanup
       root.unmount();
       document.body.removeChild(container);
 
@@ -122,7 +114,7 @@ export function DownloadLabel({ data }: DownloadLabelProps) {
       <DropdownMenu>
         <DropdownMenuTrigger
           render={
-            <Button disabled={isGenerating}>
+            <Button size="icon" disabled={isGenerating}>
               {isGenerating ? (
                 <IconLoader2 className="size-4" />
               ) : (

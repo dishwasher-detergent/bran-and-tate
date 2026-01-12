@@ -3,6 +3,7 @@
 import { LabelPreview } from "@/components/label-preview";
 import { DownloadLabel } from "@/components/label/download-label";
 import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@/components/ui/button-group";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Drawer,
@@ -198,19 +199,21 @@ export function EditLabelForm({ labelId }: EditLabelFormProps) {
           <Card className="p-1 bg-foreground/10 ring-1 ring-foreground/20 gap-1">
             <Card>
               <CardHeader>
-                <CardTitle>Edit Label</CardTitle>
+                <CardTitle>Label Details</CardTitle>
               </CardHeader>
               <CardContent>{formFields}</CardContent>
             </Card>
-            <div className="flex gap-2">
-              <Button
-                onClick={form.handleSubmit(onSubmit)}
-                disabled={isUpdating || !form.formState.isValid}
-              >
-                {isUpdating ? "Updating..." : "Update"}
-              </Button>
-              <DownloadLabel data={labelData} />
-            </div>
+            <CardContent className="p-0 flex flex-row justify-end">
+              <ButtonGroup>
+                <Button
+                  onClick={form.handleSubmit(onSubmit)}
+                  disabled={isUpdating || !form.formState.isValid}
+                >
+                  {isUpdating ? "Updating..." : "Update"}
+                </Button>
+                <DownloadLabel data={labelData} />
+              </ButtonGroup>
+            </CardContent>
           </Card>
         </div>
         <div className="flex flex-col gap-4 items-end">
@@ -218,7 +221,7 @@ export function EditLabelForm({ labelId }: EditLabelFormProps) {
           <LabelPreview data={labelData} size="1.25x3.75" responsive />
         </div>
       </div>
-      <div className="lg:hidden flex flex-col">
+      <div className="lg:hidden flex flex-col pb-24">
         <div className="flex-1 overflow-auto">
           <h1 className="text-2xl font-bold mb-4">Edit Label</h1>
           <div className="flex flex-col gap-4 items-start">
@@ -229,10 +232,10 @@ export function EditLabelForm({ labelId }: EditLabelFormProps) {
         <Drawer open={open} onOpenChange={setOpen}>
           <DrawerTrigger asChild>
             <Button
-              className="fixed bottom-4 right-4 z-40 rounded-full h-14 w-14 shadow-lg"
+              className="fixed bottom-6 right-6 z-40 rounded-full h-12 w-12 shadow-lg"
               size="icon"
             >
-              <IconPencil className="h-6 w-6" />
+              <IconPencil className="h-5 w-5" />
             </Button>
           </DrawerTrigger>
           <DrawerContent>
