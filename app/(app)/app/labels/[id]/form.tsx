@@ -1,6 +1,7 @@
 "use client";
 
 import { LabelPreview } from "@/components/label-preview";
+import { DownloadLabel } from "@/components/label/download-label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -199,17 +200,18 @@ export function EditLabelForm({ labelId }: EditLabelFormProps) {
               <CardHeader>
                 <CardTitle>Edit Label</CardTitle>
               </CardHeader>
-              <CardContent>
-                {formFields}
-                <Button
-                  onClick={form.handleSubmit(onSubmit)}
-                  disabled={isUpdating || !form.formState.isValid}
-                  className="mt-4 w-full"
-                >
-                  {isUpdating ? "Updating..." : "Update"}
-                </Button>
-              </CardContent>
+              <CardContent>{formFields}</CardContent>
             </Card>
+            <div className="flex gap-2">
+              <Button
+                onClick={form.handleSubmit(onSubmit)}
+                disabled={isUpdating || !form.formState.isValid}
+                className="flex-1"
+              >
+                {isUpdating ? "Updating..." : "Update"}
+              </Button>
+              <DownloadLabel data={labelData} />
+            </div>
           </Card>
         </div>
         <div className="flex flex-col gap-4 items-end">
@@ -240,13 +242,16 @@ export function EditLabelForm({ labelId }: EditLabelFormProps) {
             </DrawerHeader>
             <div className="overflow-y-auto max-h-[60vh] px-4 pb-4">
               {formFields}
-              <Button
-                onClick={form.handleSubmit(onSubmit)}
-                disabled={isUpdating || !form.formState.isValid}
-                className="mt-4 w-full"
-              >
-                {isUpdating ? "Updating..." : "Update"}
-              </Button>
+              <div className="mt-4 flex gap-2">
+                <Button
+                  onClick={form.handleSubmit(onSubmit)}
+                  disabled={isUpdating || !form.formState.isValid}
+                  className="flex-1"
+                >
+                  {isUpdating ? "Updating..." : "Update"}
+                </Button>
+                <DownloadLabel data={labelData} />
+              </div>
             </div>
           </DrawerContent>
         </Drawer>
