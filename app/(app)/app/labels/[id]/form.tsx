@@ -1,7 +1,7 @@
 "use client";
 
-import { LabelPreview } from "@/components/label-preview";
 import { DownloadLabel } from "@/components/label/download-label";
+import { LabelPreview } from "@/components/label/label-preview";
 import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -219,6 +219,7 @@ export function EditLabelForm({ labelId }: EditLabelFormProps) {
         <div className="flex flex-col gap-4 items-end">
           <LabelPreview data={labelData} size="2x4" responsive />
           <LabelPreview data={labelData} size="1.25x3.75" responsive />
+          <LabelPreview data={labelData} size="2x2" responsive />
         </div>
       </div>
       <div className="lg:hidden flex flex-col pb-24">
@@ -227,6 +228,7 @@ export function EditLabelForm({ labelId }: EditLabelFormProps) {
           <div className="flex flex-col gap-4 items-start">
             <LabelPreview data={labelData} size="2x4" responsive />
             <LabelPreview data={labelData} size="1.25x3.75" responsive />
+            <LabelPreview data={labelData} size="2x2" responsive />
           </div>
         </div>
         <div className="fixed bottom-6 right-6 z-40 flex gap-2 p-1 bg-foreground/10 rounded-full ring-1 ring-foreground/20">

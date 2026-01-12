@@ -1,6 +1,6 @@
 "use client";
 
-import { LABEL_CONFIGS, LabelPreview } from "@/components/label-preview";
+import { LABEL_CONFIGS, LabelPreview } from "@/components/label/label-preview";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,

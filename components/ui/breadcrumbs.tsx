@@ -1,11 +1,11 @@
 "use client";
 
+import { Skeleton } from "@/components/ui/skeleton";
 import { getLabelById } from "@/lib/db";
 import { IconChevronRight, IconHome } from "@tabler/icons-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Fragment, useEffect, useState } from "react";
-import { Skeleton } from "./skeleton";
 
 interface BreadcrumbItem {
   label: string;

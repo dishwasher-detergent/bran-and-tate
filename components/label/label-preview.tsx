@@ -2,9 +2,9 @@
 
 import type { LabelFormData } from "@/lib/db/schemas";
 import { useEffect, useRef, useState } from "react";
-import { Card, CardContent } from "./ui/card";
+import { Card, CardContent } from "../ui/card";
 
-type LabelSize = "2x4" | "1.25x3.75";
+type LabelSize = "2x4" | "1.25x3.75" | "2x2";
 
 interface LabelPreviewProps {
   data: LabelFormData;
@@ -17,7 +17,6 @@ export const LABEL_CONFIGS = {
     // 4" x 2" label at 150 DPI = 600px x 300px
     width: 600,
     height: 300,
-    layout: "horizontal" as const,
     averyTemplate: 5163,
     name: '2" x 4"',
   },
@@ -25,9 +24,15 @@ export const LABEL_CONFIGS = {
     // 3.75" x 1.25" label at 150 DPI = 562.5px x 187.5px
     width: 563,
     height: 188,
-    layout: "vertical" as const,
     averyTemplate: 94228,
     name: '1.25" x 3.75"',
+  },
+  "2x2": {
+    // 2" x 2" label at 150 DPI = 300px x 300px
+    width: 300,
+    height: 300,
+    averyTemplate: 94228,
+    name: '2" x 2"',
   },
 };
 
@@ -105,8 +110,7 @@ export function LabelPreview({
 }: LabelPreviewProps) {
   const config = LABEL_CONFIGS[size];
 
-  if (config.layout === "vertical") {
-    // Vertical layout for 1.25x3.75
+  if (size === "1.25x3.75") {
     return (
       <LabelWrapper size={size} responsive={responsive}>
         <div
@@ -137,6 +141,33 @@ export function LabelPreview({
                 <p className="text-xs leading-tight">{data.notesOf}</p>
               </div>
             </div>
+          </div>
+        </div>
+      </LabelWrapper>
+    );
+  }
+
+  if (size === "2x2") {
+    return (
+      <LabelWrapper size={size} responsive={responsive}>
+        <div
+          className="p-1 bg-label-accent overflow-hidden flex items-center justify-center rounded-full"
+          style={{ width: `${config.width}px`, height: `${config.height}px` }}
+        >
+          <div className="size-full bg-label-background rounded-full flex flex-col justify-center items-center">
+            <p className="text-label-accent font-label-accent font-bold">
+              {data.company}
+            </p>
+            <p className="text-label-accent font-label text-xs">{data.type}</p>
+            <p className="text-label-accent font-label text-4xl font-bold py-4">
+              {data.scent}
+            </p>
+            <p className="text-label-accent font-label-accent text-xs">
+              With Notes Of {data.notesOf}
+            </p>
+            <p className="text-label-accent font-label-accent text-xs">
+              Handmade In {data.location}
+            </p>
           </div>
         </div>
       </LabelWrapper>

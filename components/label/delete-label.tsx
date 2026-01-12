@@ -8,6 +8,7 @@ import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
+import { DyanmicDrawer } from "@/components/ui/dynamic-drawer";
 import {
   Field,
   FieldContent,
@@ -20,7 +21,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/interfaces/label.interface";
 import { deleteLabel } from "@/lib/db";
 import { DeleteLabelFormData, deleteLabelSchema } from "@/lib/db/schemas";
-import { DyanmicDrawer } from "../ui/dynamic-drawer";
 
 export function DeleteLabel({ label }: { label: Label }) {
   const [open, setOpen] = useState(false);
