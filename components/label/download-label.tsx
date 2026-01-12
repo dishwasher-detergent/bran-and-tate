@@ -1,5 +1,6 @@
 "use client";
 
+import { LABEL_CONFIGS, LabelPreview } from "@/components/label-preview";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -14,26 +15,12 @@ import { IconDownload, IconLoader2 } from "@tabler/icons-react";
 import { toPng } from "html-to-image";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
-import { LabelPreview } from "../label-preview";
 
 type LabelSize = "2x4" | "1.25x3.75";
 
 interface DownloadLabelProps {
   data: LabelFormData;
 }
-
-const LABEL_CONFIGS = {
-  "2x4": {
-    width: 600,
-    height: 300,
-    name: '2" x 4" Label',
-  },
-  "1.25x3.75": {
-    width: 563,
-    height: 188,
-    name: '1.25" x 3.75" Label',
-  },
-};
 
 export function DownloadLabel({ data }: DownloadLabelProps) {
   const [isGenerating, setIsGenerating] = useState(false);
@@ -114,7 +101,7 @@ export function DownloadLabel({ data }: DownloadLabelProps) {
       <DropdownMenu>
         <DropdownMenuTrigger
           render={
-            <Button size="icon" disabled={isGenerating}>
+            <Button className="flex-none" size="icon" disabled={isGenerating}>
               {isGenerating ? (
                 <IconLoader2 className="size-4" />
               ) : (

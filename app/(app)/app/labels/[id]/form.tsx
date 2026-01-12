@@ -244,7 +244,7 @@ export function EditLabelForm({ labelId }: EditLabelFormProps) {
             </DrawerHeader>
             <div className="overflow-y-auto max-h-[60vh] px-4 pb-4">
               {formFields}
-              <div className="mt-4 flex gap-2">
+              <ButtonGroup className="mt-4 w-full">
                 <Button
                   onClick={form.handleSubmit(onSubmit)}
                   disabled={isUpdating || !form.formState.isValid}
@@ -253,7 +253,7 @@ export function EditLabelForm({ labelId }: EditLabelFormProps) {
                   {isUpdating ? "Updating..." : "Update"}
                 </Button>
                 <DownloadLabel data={labelData} />
-              </div>
+              </ButtonGroup>
             </div>
           </DrawerContent>
         </Drawer>

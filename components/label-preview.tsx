@@ -12,13 +12,14 @@ interface LabelPreviewProps {
   responsive?: boolean;
 }
 
-const LABEL_CONFIGS = {
+export const LABEL_CONFIGS = {
   "2x4": {
     // 4" x 2" label at 150 DPI = 600px x 300px
     width: 600,
     height: 300,
     layout: "horizontal" as const,
     averyTemplate: 5163,
+    name: '2" x 4"',
   },
   "1.25x3.75": {
     // 3.75" x 1.25" label at 150 DPI = 562.5px x 187.5px
@@ -26,6 +27,7 @@ const LABEL_CONFIGS = {
     height: 188,
     layout: "vertical" as const,
     averyTemplate: 94228,
+    name: '1.25" x 3.75"',
   },
 };
 
@@ -89,7 +91,7 @@ const LabelWrapper = ({
           <b>Avery Template:</b> {LABEL_CONFIGS[size].averyTemplate}
         </p>
         <p className="text-sm">
-          <b>Size:</b> {size}
+          <b>Size:</b> {LABEL_CONFIGS[size].name}
         </p>
       </CardContent>
     </Card>
